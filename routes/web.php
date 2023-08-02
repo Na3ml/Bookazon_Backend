@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 //Dashboards
 
 
-
-
     Route::get('/', function () {
     return redirect()->route('dashboard');
 });
@@ -26,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('dashboard')->group(function () {
 Route::view('/', 'dashboards.default_dashboard')->name('dashboard');
 });
+
 
 //page_layout
 Route::view('box-layout', 'page_layout.box_layout')->name('box_layout');
@@ -37,8 +36,23 @@ Route::view('footer-dark', 'page_layout.footer_dark')->name('footer_dark');
 Route::view('footer-fixed', 'page_layout.footer_fixed')->name('footer_fixed');
 
 
-
-
+Route::resource('photo', 'PhotoController');
+Route::resource('property', 'PropertyController');
+Route::resource('user', 'UserController');
+Route::resource('room', 'RoomController');
+Route::resource('amenity', 'AmenityController');
+Route::resource('ptypes', 'PTypesController');
+Route::resource('rate_property', 'Rate_PropertyController');
+Route::resource('order', 'OrderController');
+Route::resource('site_settings', 'Site_SettingsController');
+Route::resource('chat_message', 'Chat_MessageController');
+Route::resource('facility', 'FacilityController');
+Route::resource('properties_facilities', 'Properties_FacilitiesController');
+Route::resource('contact_us', 'Contact_UsController');
+Route::resource('slider', 'SliderController');
+Route::resource('notification', 'NotificationController');
+Route::resource('video', 'VideoController');
+Route::resource('wishlist', 'WishlistController');
 
 
 
