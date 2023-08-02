@@ -1,0 +1,152 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Eloquent\Model;
+
+class CreateForeignKeys extends Migration {
+
+	public function up()
+	{
+		Schema::table('photos', function(Blueprint $table) {
+			$table->foreign('property_id')->references('id')->on('Properties')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('Properties', function(Blueprint $table) {
+			$table->foreign('user_id')->references('id')->on('users')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('rooms', function(Blueprint $table) {
+			$table->foreign('property_id')->references('id')->on('Properties')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('amenities', function(Blueprint $table) {
+			$table->foreign('property_id')->references('id')->on('Properties')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('property_types', function(Blueprint $table) {
+			$table->foreign('property_id')->references('id')->on('Properties')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('rate_property', function(Blueprint $table) {
+			$table->foreign('user_id')->references('id')->on('users')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('rate_property', function(Blueprint $table) {
+			$table->foreign('proprty_id')->references('id')->on('Properties')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('orders', function(Blueprint $table) {
+			$table->foreign('propertiy_id')->references('id')->on('Properties')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('orders', function(Blueprint $table) {
+			$table->foreign('user_id')->references('id')->on('users')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('chat_messages', function(Blueprint $table) {
+			$table->foreign('sender_id')->references('id')->on('users')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('chat_messages', function(Blueprint $table) {
+			$table->foreign('receiver_id')->references('id')->on('users')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('properties_facilities', function(Blueprint $table) {
+			$table->foreign('property_id')->references('id')->on('Properties')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('properties_facilities', function(Blueprint $table) {
+			$table->foreign('facility_id')->references('id')->on('facilities')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('contact_us', function(Blueprint $table) {
+			$table->foreign('user_id')->references('id')->on('users')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('videos', function(Blueprint $table) {
+			$table->foreign('property_id')->references('id')->on('Properties')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('wishlists', function(Blueprint $table) {
+			$table->foreign('user_id')->references('id')->on('users')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('wishlists', function(Blueprint $table) {
+			$table->foreign('property_id')->references('id')->on('Properties')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+	}
+
+	public function down()
+	{
+		Schema::table('photos', function(Blueprint $table) {
+			$table->dropForeign('photos_property_id_foreign');
+		});
+		Schema::table('Properties', function(Blueprint $table) {
+			$table->dropForeign('Properties_user_id_foreign');
+		});
+		Schema::table('rooms', function(Blueprint $table) {
+			$table->dropForeign('rooms_property_id_foreign');
+		});
+		Schema::table('amenities', function(Blueprint $table) {
+			$table->dropForeign('amenities_property_id_foreign');
+		});
+		Schema::table('property_types', function(Blueprint $table) {
+			$table->dropForeign('property_types_property_id_foreign');
+		});
+		Schema::table('rate_property', function(Blueprint $table) {
+			$table->dropForeign('rate_property_user_id_foreign');
+		});
+		Schema::table('rate_property', function(Blueprint $table) {
+			$table->dropForeign('rate_property_proprty_id_foreign');
+		});
+		Schema::table('orders', function(Blueprint $table) {
+			$table->dropForeign('orders_propertiy_id_foreign');
+		});
+		Schema::table('orders', function(Blueprint $table) {
+			$table->dropForeign('orders_user_id_foreign');
+		});
+		Schema::table('chat_messages', function(Blueprint $table) {
+			$table->dropForeign('chat_messages_sender_id_foreign');
+		});
+		Schema::table('chat_messages', function(Blueprint $table) {
+			$table->dropForeign('chat_messages_receiver_id_foreign');
+		});
+		Schema::table('properties_facilities', function(Blueprint $table) {
+			$table->dropForeign('properties_facilities_property_id_foreign');
+		});
+		Schema::table('properties_facilities', function(Blueprint $table) {
+			$table->dropForeign('properties_facilities_facility_id_foreign');
+		});
+		Schema::table('contact_us', function(Blueprint $table) {
+			$table->dropForeign('contact_us_user_id_foreign');
+		});
+		Schema::table('videos', function(Blueprint $table) {
+			$table->dropForeign('videos_property_id_foreign');
+		});
+		Schema::table('wishlists', function(Blueprint $table) {
+			$table->dropForeign('wishlists_user_id_foreign');
+		});
+		Schema::table('wishlists', function(Blueprint $table) {
+			$table->dropForeign('wishlists_property_id_foreign');
+		});
+	}
+}
