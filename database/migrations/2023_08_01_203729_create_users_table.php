@@ -13,12 +13,12 @@ class CreateUsersTable extends Migration {
 			$table->string('first_name', 255);
 			$table->string('last_name', 255);
 			$table->string('password');
-			$table->string('email', 100);
-			$table->string('phone_number', 50);
-			$table->string('address', 500);
-			$table->enum('gender', array('male', 'female'));
-			$table->enum('role', array('superadmin', 'Propertyowner', 'booker'));
-			$table->string('profile_picture', 255);
+			$table->string('email', 100)->unique();
+			$table->string('phone_number', 50)->nullable();
+			$table->string('address', 500)->nullable();
+			$table->enum('gender', array('male', 'female'))->nullable();
+			$table->enum('role', array('superadmin', 'Propertyowner', 'booker'))->default('booker');
+			$table->string('profile_picture', 255)->nullable();
 			$table->enum('status', array('active', 'inactive'))->nullable();
 		});
 	}

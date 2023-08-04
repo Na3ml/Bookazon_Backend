@@ -7,7 +7,7 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class PropertyOwnerController extends Controller
 {
 
   /**
@@ -17,8 +17,8 @@ class UserController extends Controller
    */
   public function index()
   {
-      $users = User::where('role','superadmin')->get();
-      return view('admin.superadmin.index',compact('users'));
+      $users = User::where('role','Propertyowner')->get();
+      return view('admin.propertyowner.index',compact('users'));
 
   }
 
@@ -29,7 +29,7 @@ class UserController extends Controller
    */
   public function create()
   {
-      return view('admin.superadmin.create');
+      return view('admin.propertyowner.create');
   }
 
   /**
@@ -44,11 +44,11 @@ class UserController extends Controller
           'last_name'=>$request->last_name,
           'email'=>$request->email,
           'password'=>bcrypt($request->password),
-          'role'=>'superadmin',
+          'role'=>'Propertyowner',
       ]);
 
       if ($user){
-          return redirect()->route('admin.index');
+          return redirect()->route('properyowner.index');
       }
 
   }
@@ -73,7 +73,7 @@ class UserController extends Controller
   {
 //      dd($user);
       $user = User::findOrFail($id);
-      return view('admin.superadmin.edit',compact('user'));
+      return view('admin.propertyowner.edit',compact('user'));
   }
 
   /**
@@ -94,7 +94,7 @@ class UserController extends Controller
           'password'=>$password,
       ]);
 
-      return redirect()->route('admin.index');
+      return redirect()->route('propertyowner.index');
   }
 
   /**
