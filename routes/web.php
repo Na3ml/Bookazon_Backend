@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PropertyOwnerController;
+use App\Http\Controllers\Admin\BookerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
@@ -24,6 +25,7 @@ Route::prefix('dashboard')->middleware('auth:admin')->group(function () {
     Route::view('/', 'dashboards.default_dashboard')->name('dashboard');
     Route::resource('admin',UserController::class);
     Route::resource('propertyowner',PropertyOwnerController::class);
+    Route::resource('booker',BookerController::class);
 });
 
 

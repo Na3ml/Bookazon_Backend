@@ -12,12 +12,12 @@
     <div class="page-title">
       <div class="row">
         <div class="col-sm-6">
-          <h3>Edit Property Owner</h3>
+          <h3>Edit Booker</h3>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{route('propertyowner.index')}}">Property Owner</a></li>
+            <li class="breadcrumb-item"><a href="{{route('booker.index')}}">Booker</a></li>
             <li class="breadcrumb-item active">all</li>
           </ol>
         </div>
@@ -31,10 +31,10 @@
         <div class="col-sm-12">
             <div class="card">
 {{--                <div class="card-header pb-0">--}}
-{{--                    <h4>Create Property Owner</h4>--}}
+{{--                    <h4>Create Booker</h4>--}}
 {{--                </div>--}}
                 <div class="card-body">
-                    <form class="needs-validation" novalidate="" action="{{route('propertyowner.update',$user->id)}}" method="post">
+                    <form class="needs-validation" novalidate="" action="{{route('booker.update',$user->id)}}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="row g-3">

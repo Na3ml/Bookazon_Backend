@@ -19,13 +19,19 @@
                     <hr>
                     <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="airplay"></i><span class="">Super Admin</span></a>
                         <ul class="sidebar-submenu">
-                            <li><a href="{{route('admin.index')}}">Mange</a></li>
+                            <li><a href="{{route('admin.index')}}">Manage</a></li>
 {{--                            <li><a href="">Chart</a></li>--}}
                         </ul>
                     </li>
                     <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="airplay"></i><span class="">Property Owner</span></a>
                         <ul class="sidebar-submenu">
-                            <li><a href="{{route('propertyowner.index')}}">Mange</a></li>
+                            <li><a href="{{route('propertyowner.index')}}">Manage</a></li>
+{{--                            <li><a href="">Chart</a></li>--}}
+                        </ul>
+                    </li>
+                    <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="airplay"></i><span class="">Booker</span></a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{route('booker.index')}}">Manage</a></li>
 {{--                            <li><a href="">Chart</a></li>--}}
                         </ul>
                     </li>

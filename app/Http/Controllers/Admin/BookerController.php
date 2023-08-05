@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\AdminEditRequest;
-use App\Http\Requests\Auth\PropertyOwnerEditRequest;
 use App\Http\Requests\Auth\PropertyOwnerRequest;
-use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Owner\PropertyOwnerEditRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class BookerController extends Controller
 {
 
   /**
@@ -20,8 +18,8 @@ class UserController extends Controller
    */
   public function index()
   {
-      $users = User::where('role','superadmin')->get();
-      return view('admin.superadmin.index',compact('users'));
+      $users = User::where('role','booker')->get();
+      return view('admin.booker.index',compact('users'));
 
   }
 
@@ -32,7 +30,7 @@ class UserController extends Controller
    */
   public function create()
   {
-      return view('admin.superadmin.create');
+      return view('admin.booker.create');
   }
 
   /**
@@ -40,18 +38,21 @@ class UserController extends Controller
    *
    * @return Response
    */
-  public function store(RegisterRequest $request)
+  public function store(PropertyOwnerEditRequest $request)
   {
       $user = User::create([
           'first_name'=>$request->first_name,
           'last_name'=>$request->last_name,
           'email'=>$request->email,
+          'address'=>$request->address,
+          'phone_number'=>$request->phone_number,
+          'gender'=>$request->gender,
           'password'=>bcrypt($request->password),
-          'role'=>'superadmin',
+          'role'=>'booker',
       ]);
 
       if ($user){
-          return redirect()->route('admin.index');
+          return redirect()->route('booker.index');
       }
 
   }
@@ -76,7 +77,7 @@ class UserController extends Controller
   {
 //      dd($user);
       $user = User::findOrFail($id);
-      return view('admin.superadmin.edit',compact('user'));
+      return view('admin.booker.edit',compact('user'));
   }
 
   /**
@@ -85,22 +86,20 @@ class UserController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update(AdminEditRequest $request, $id)
+  public function update(PropertyOwnerEditRequest $request,$id)
   {
-//      dd($request->all());
-//      $request->validate([
-//         'email'=>'required|unique:users,email,'.$id,
-//      ]);
       $user = User::findOrFail($id);
       $password = $request->password ? bcrypt($request->password):$user->password;
       $user->update([
           'first_name'=>$request->first_name,
           'last_name'=>$request->last_name,
           'email'=>$request->email,
+          'address'=>$request->address,
+          'phone_number'=>$request->phone_number,
           'password'=>$password,
       ]);
 
-      return redirect()->route('admin.index');
+      return redirect()->route('booker.index');
   }
 
   /**

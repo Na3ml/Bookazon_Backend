@@ -12,12 +12,12 @@
     <div class="page-title">
       <div class="row">
         <div class="col-sm-6">
-          <h3>List of Property Owner</h3>
+          <h3>List of Booker</h3>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a></li>
-            <li class="breadcrumb-item">Property Owner</li>
+            <li class="breadcrumb-item"><a href="{{route('booker.index')}}">Booker</a></li>
             <li class="breadcrumb-item active">all</li>
           </ol>
         </div>
@@ -31,7 +31,7 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h4><a href="{{route('propertyowner.create')}}" class="btn btn-primary">Add New Property Owner</a></h4>
+                    <h4><a href="{{route('booker.create')}}" class="btn btn-primary">Add New Booker</a></h4>
                 </div>
                 <div class="table-responsive theme-scrollbar">
                     <table class="table">
@@ -58,12 +58,12 @@
                                 <td>{{$user->address}}</td>
                                 <td>{{$user->gender}}</td>
                                 <td>
-                                    <form method="post" action="{{route('propertyowner.destroy',$user->id)}}">
+                                    <form method="post" action="{{route('booker.destroy',$user->id)}}">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger" type="submit" @if($user->id == Auth::id()) disabled @endif><i class="fa fa-trash"></i></button>
                                     </form>
-                                    <a href="{{route('propertyowner.edit',$user->id)}}" class="btn btn-primary" ><i class="fa fa-edit"></i></a>
+                                    <a href="{{route('booker.edit',$user->id)}}" class="btn btn-primary" ><i class="fa fa-edit"></i></a>
                                 </td>
                             </tr>
                         @empty

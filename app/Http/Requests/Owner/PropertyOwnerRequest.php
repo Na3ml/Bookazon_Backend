@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Owner;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminEditRequest extends FormRequest
+class PropertyOwnerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,16 @@ class AdminEditRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'email' => ['required', 'string', 'email','unique:users'],
+            'password' => ['required', 'string','min:3'],
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
+            'phone_number' => ['required', 'string','min:11'],
+            'address' => ['required', 'string'],
         ];
+    }
+
+    public function edit(){
+
     }
 }

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Auth\PropertyOwnerRequest;
+use App\Http\Requests\Owner\PropertyOwnerEditRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -37,18 +38,21 @@ class PropertyOwnerController extends Controller
    *
    * @return Response
    */
-  public function store(RegisterRequest $request)
+  public function store(PropertyOwnerEditRequest $request)
   {
       $user = User::create([
           'first_name'=>$request->first_name,
           'last_name'=>$request->last_name,
           'email'=>$request->email,
+          'address'=>$request->address,
+          'phone_number'=>$request->phone_number,
+          'gender'=>$request->gender,
           'password'=>bcrypt($request->password),
           'role'=>'Propertyowner',
       ]);
 
       if ($user){
-          return redirect()->route('properyowner.index');
+          return redirect()->route('propertyowner.index');
       }
 
   }
@@ -82,15 +86,17 @@ class PropertyOwnerController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update(Request $request,$id)
+  public function update(PropertyOwnerEditRequest $request,$id)
   {
-//      dd($request->all());
       $user = User::findOrFail($id);
       $password = $request->password ? bcrypt($request->password):$user->password;
       $user->update([
           'first_name'=>$request->first_name,
           'last_name'=>$request->last_name,
           'email'=>$request->email,
+          'address'=>$request->address,
+          'gender'=>$request->gender,
+          'phone_number'=>$request->phone_number,
           'password'=>$password,
       ]);
 

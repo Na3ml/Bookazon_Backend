@@ -41,14 +41,14 @@
                                 <label class="form-label" >First name</label>
                                 <input class="form-control"  type="text" name="first_name" required value="{{old('first_name')}}">
                                 @error('first_name')
-                                <div class="invalid">{{$message}}</div>
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label" >Last name</label>
                                 <input class="form-control"  type="text" name="last_name" required value="{{old('last_name')}}">
                                 @error('last_name')
-                                <div class="invalid">{{$message}}</div>
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6">
@@ -57,14 +57,39 @@
                                     <input class="form-control" type="email" name="email" placeholder="Email" aria-describedby="inputGroupPrepend" required value="{{old('email')}}">
                                 </div>
                                 @error('email')
-                                <div class="invalid">{{$message}}</div>
+                                <div class="invalid font-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" for="validationCustom03">Phone</label>
+                                <input class="form-control" id="validationCustom03555" type="text" name="phone_number" placeholder="Phone" required value="{{old('phone_number')}}">
+                                @error('phone_number')
+                                <div class="invalid font-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" for="validationCustom03">Gender</label>
+                                <select class="form-select" name="gender" required >
+                                    <option ></option>
+                                    <option value="male" @if (old('gender') == "male") selected @endif>Male</option>
+                                    <option value="female" @if (old('gender') == "female") selected @endif>Female</option>
+                                </select>
+                                @error('gender')
+                                <div class="invalid font-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" for="validationCustom03">Address</label>
+                                <input class="form-control" id="validationCustom03555" type="text" name="address" placeholder="address" required value="{{old('address')}}">
+                                @error('address')
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label" for="validationCustom03">Password</label>
-                                <input class="form-control" id="validationCustom03555" type="password" name="password" placeholder="Password" required ="">
+                                <input class="form-control" id="validationCustom03555" type="password" name="password" placeholder="Password" required>
                                 @error('password')
-                                <div class="invalid">{{$message}}</div>
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                         </div>

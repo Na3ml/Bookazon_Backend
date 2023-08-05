@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration {
 			$table->enum('gender', array('male', 'female'))->nullable();
 			$table->enum('role', array('superadmin', 'Propertyowner', 'booker'))->default('booker');
 			$table->string('profile_picture', 255)->nullable();
-			$table->enum('status', array('active', 'inactive'))->nullable();
+			$table->enum('status', array('active', 'inactive'))->nullable()->default('inactive');
 		});
 	}
 

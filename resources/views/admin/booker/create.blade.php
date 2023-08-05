@@ -12,13 +12,13 @@
     <div class="page-title">
       <div class="row">
         <div class="col-sm-6">
-          <h3>Edit Property Owner</h3>
+          <h3>Create Booker</h3>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{route('propertyowner.index')}}">Property Owner</a></li>
-            <li class="breadcrumb-item active">all</li>
+            <li class="breadcrumb-item"><a href="{{route('booker.index')}}">Booker</a></li>
+            <li class="breadcrumb-item active">Create</li>
           </ol>
         </div>
       </div>
@@ -31,66 +31,65 @@
         <div class="col-sm-12">
             <div class="card">
 {{--                <div class="card-header pb-0">--}}
-{{--                    <h4>Create Property Owner</h4>--}}
+{{--                    <h4>Create Booker</h4>--}}
 {{--                </div>--}}
                 <div class="card-body">
-                    <form class="needs-validation" novalidate="" action="{{route('propertyowner.update',$user->id)}}" method="post">
+                    <form class="needs-validation" novalidate="" action="{{route('booker.store')}}" method="post">
                         @csrf
-                        @method('PUT')
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label" >First name</label>
-                                <input class="form-control"  type="text" name="first_name" required value="{{$user->first_name}}">
+                                <input class="form-control"  type="text" name="first_name" required value="{{old('first_name')}}">
                                 @error('first_name')
-                                <div class="invalid">{{$message}}</div>
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label" >Last name</label>
-                                <input class="form-control"  type="text" name="last_name" required value="{{$user->last_name}}">
+                                <input class="form-control"  type="text" name="last_name" required value="{{old('last_name')}}">
                                 @error('last_name')
-                                <div class="invalid">{{$message}}</div>
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label" >Email</label>
                                 <div class="input-group left-radius"><span class="input-group-text" id="inputGroupPrepend">@</span>
-                                    <input class="form-control" type="email" name="email" placeholder="Email" aria-describedby="inputGroupPrepend" required value="{{$user->email}}">
+                                    <input class="form-control" type="email" name="email" placeholder="Email" aria-describedby="inputGroupPrepend" required value="{{old('email')}}">
                                 </div>
                                 @error('email')
-                                <div class="invalid">{{$message}}</div>
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label" for="validationCustom03">Phone number</label>
-                                <input class="form-control" id="validationCustom03" type="text" name="phone_number" placeholder="Phone" required ="" value="{{$user->phone_number}}">
+                                <label class="form-label" for="validationCustom03">Phone</label>
+                                <input class="form-control" id="validationCustom03555" type="text" name="phone_number" placeholder="Phone" required value="{{old('phone_number')}}">
                                 @error('phone_number')
-                                <div class="invalid">{{$message}}</div>
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label" for="validationCustom03">Gender</label>
                                 <select class="form-select" name="gender" required >
                                     <option ></option>
-                                    <option value="male" @if ($user->gender == "male") selected @endif>Male</option>
-                                    <option value="female" @if ($user->gender == "female") selected @endif>Female</option>
+                                    <option value="male" @if (old('gender') == "male") selected @endif>Male</option>
+                                    <option value="female" @if (old('gender') == "female") selected @endif>Female</option>
                                 </select>
                                 @error('gender')
-                                <div class="invalid">{{$message}}</div>
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label" for="validationCustom03">Address</label>
-                                <input class="form-control" id="validationCustom03555" type="text" name="address" placeholder="address" required ="" value="{{$user->address}}">
+                                <input class="form-control" id="validationCustom03555" type="text" name="address" placeholder="address" required value="{{old('address')}}">
                                 @error('address')
-                                <div class="invalid">{{$message}}</div>
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label" for="validationCustom03">Password</label>
-                                <input class="form-control" id="validationCustom03555" type="password" name="password" placeholder="Password" required ="">
+                                <input class="form-control" id="validationCustom03555" type="password" name="password" placeholder="Password" required>
                                 @error('password')
-                                <div class="invalid">{{$message}}</div>
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                         </div>
