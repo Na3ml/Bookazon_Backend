@@ -12,12 +12,12 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-sm-6">
-                    <h3>List of Super Admin</h3>
+                    <h3>Add Property Type</h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item">Super Admin</li>
+                        <li class="breadcrumb-item">Property Type</li>
                         <li class="breadcrumb-item active">all</li>
                     </ol>
                 </div>
@@ -26,49 +26,42 @@
     </div>
     <!-- Container-fluid starts-->
 
-    <div class="container-fluid basic_table">
+    <div class="container-fluid form-validate">
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4><a href="{{ route('admin.create') }}" class="btn btn-primary">Add New Admin</a></h4>
-                    </div>
-                    <div class="table-responsive theme-scrollbar">
-                        <table class="table">
-                            <thead>
-                                <tr class="border-bottom-primary">
-                                    <th scope="col">Id</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($users as $user)
-                                    <tr class="border-bottom-secondary">
-                                        <th scope="row">{{ $user->id }}</th>
-                                        <td> <img class="img-30 me-2"
-                                                src="{{ asset('assets/images/dashboard/default/01.png') }}"
-                                                alt="">{{ $user->first_name }}</td>
-                                        <td>{{ $user->last_name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>
-                                            <form method="post" action="{{ route('admin.destroy', $user->id) }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger" type="submit"
-                                                    @if ($user->id == Auth::id()) disabled @endif><i
-                                                        class="fa fa-trash"></i></button>
-                                            </form>
-                                            <a href="{{ route('admin.edit', $user->id) }}" class="btn btn-primary"><i
-                                                    class="fa fa-edit"></i></a>
-                                        </td>
-                                    </tr>
-                                @empty
-                                @endforelse
-                            </tbody>
-                        </table>
+                    {{--                <div class="card-header pb-0"> --}}
+                    {{--                    <h4>Create Super Admin</h4> --}}
+                    {{--                </div> --}}
+                    <div class="card-body">
+                        <form class="needs-validation" novalidate="" action="{{ route('propertytype.store') }}"
+                            method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Type Name</label>
+                                    <input class="form-control" type="text" name="type_name" required>
+                                    @error('type_name')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="col-sm-3 col-form-label">Type Icon</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" type="file" name="type_icon"
+                                            data-bs-original-title="" title="">
+                                    </div>
+                                    @error('type_icon')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-3 text-center m-t-5">
+                                <button class="btn btn-primary" type="submit">Save</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

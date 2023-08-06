@@ -5,6 +5,8 @@
     @include('layout.head')
     <!-- comman css-->
     @include('layout.css')
+    @include('sweetalert::alert')
+
 </head>
 
 @switch(Route::currentRouteName())
@@ -75,6 +77,8 @@
                     </div>
                     {{-- scripts --}}
                     @include('layout.script')
+                    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
+
                     {{-- end scripts --}}
 
                 </body>
