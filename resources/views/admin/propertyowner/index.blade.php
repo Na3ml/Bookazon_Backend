@@ -51,9 +51,10 @@
                         @forelse($users as $user)
                             <tr class="border-bottom-secondary">
                                 <th scope="row">{{$user->id}}</th>
-                                <td> <img class="img-30 me-2" src="{{ asset('assets/images/dashboard/default/01.png') }}" alt="">{{$user->first_name}}</td>
+                                <td> <img class="img-30 me-2" src="{{ asset('assets/images/dashboard/default/01.png') }}" alt=""><a
+                                        href="{{route('propertyowner.show',$user->id)}}">{{$user->first_name}}</a></td>
                                 <td>{{$user->last_name}}</td>
-                                <td>{{$user->email}}</td>
+                                <td>{{$user->email}}</td>e
                                 <td>{{$user->phone_number}}</td>
                                 <td>{{$user->address}}</td>
                                 <td>{{$user->gender}}</td>
