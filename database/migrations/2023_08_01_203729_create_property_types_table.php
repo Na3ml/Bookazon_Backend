@@ -12,7 +12,6 @@ class CreatePropertyTypesTable extends Migration {
 			$table->timestamps();
 			$table->string('type_name', 255);
 			$table->string('type_icon', 255);
-			$table->integer('property_id')->unsigned();
 		});
 	}
 

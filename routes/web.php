@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BookerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\Property_TypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +22,13 @@ Route::get('/', function () {
     return route('dashboard');
 });
 
-Route::prefix('dashboard')->middleware('auth:admin')->group(function () {
+Route::prefix('admin/dashboard')->middleware('auth:admin')->group(function () {
     Route::view('/', 'dashboards.default_dashboard')->name('dashboard');
     Route::resource('admin',UserController::class);
     Route::resource('propertyowner',PropertyOwnerController::class);
     Route::resource('booker',BookerController::class);
+    //Property type controller
+    Route::resource('propertytype', Property_TypeController::class);
 });
 
 
