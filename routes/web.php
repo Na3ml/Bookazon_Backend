@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\Property_TypeController;
+use App\Http\Controllers\Admin\AminityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,12 +29,11 @@ Route::prefix('admin/dashboard')->middleware('auth:admin')->group(function () {
     Route::resource('admin',UserController::class);
     Route::resource('propertyowner',PropertyOwnerController::class);
     Route::resource('booker',BookerController::class);
-<<<<<<< HEAD
     Route::resource('property',PropertyController::class);
-=======
     //Property type controller
     Route::resource('propertytype', Property_TypeController::class);
->>>>>>> 7528abad734bed478e568d062200d295d688b696
+    Route::resource('aminities', AminityController::class);
+
 });
 
 

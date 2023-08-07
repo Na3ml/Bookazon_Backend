@@ -53,6 +53,14 @@
                             {{--                            <li><a href="">Chart</a></li> --}}
                         </ul>
                     </li>
+                    <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
+                            href="javascript:void(0)"><i data-feather="airplay"></i><span
+                                class="">Aminity</span></a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('aminities.index') }}">Manage</a></li>
+                            {{--                            <li><a href="">Chart</a></li> --}}
+                        </ul>
+                    </li>
 
                 </ul>
             </div>

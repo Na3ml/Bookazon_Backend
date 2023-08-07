@@ -11,7 +11,6 @@ class CreateAmenitiesTable extends Migration {
 			$table->increments('id');
 			$table->timestamps();
 			$table->string('amenities_name', 255);
-			$table->integer('property_id')->unsigned();
 		});
 	}
 

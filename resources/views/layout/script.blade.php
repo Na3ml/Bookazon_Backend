@@ -11,12 +11,13 @@
   <!-- Sidebar jquery-->
   <script src="{{ asset('assets/js/config.js') }}"></script>
   <script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
+  <script src="{{ asset('assets/js/validate.min.js') }}"></script>
 
   {{-- scripts includes --}}
   @yield('scripts')
-  {{--end scripts includes --}}
+  {{-- end scripts includes --}}
 
-   <!-- Template js-->
-   <script src="{{ asset('assets/js/script.js') }}"></script>
-   <script src="{{ asset('assets/js/theme-customizer/customizer.js') }}"></script>
-   <!-- login js-->
+  <!-- Template js-->
+  <script src="{{ asset('assets/js/script.js') }}"></script>
+  <script src="{{ asset('assets/js/theme-customizer/customizer.js') }}"></script>
+  <!-- login js-->
