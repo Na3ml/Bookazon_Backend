@@ -12,12 +12,12 @@
     <div class="page-title">
       <div class="row">
         <div class="col-sm-6">
-          <h3>Edit Property Owner</h3>
+          <h3>Edit Propert</h3>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a></li>
-            <li class="breadcrumb-item"><a href="{{route('propertyowner.index')}}">Property Owner</a></li>
+            <li class="breadcrumb-item"><a href="{{route('propertyowner.show',$owner)}}">Property</a></li>
             <li class="breadcrumb-item active">all</li>
           </ol>
         </div>
@@ -34,68 +34,76 @@
 {{--                    <h4>Create Property Owner</h4>--}}
 {{--                </div>--}}
                 <div class="card-body">
-                    <form class="needs-validation" novalidate="" action="{{route('propertyowner.update',$user->id)}}" method="post">
+                    <form class="needs-validation" novalidate="" action="{{route('property.update',[$owner,$property->id])}}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label" >First name</label>
-                                <input class="form-control"  type="text" name="first_name" required value="{{$user->first_name}}">
-                                @error('first_name')
-                                <div class="invalid">{{$message}}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label" >Last name</label>
-                                <input class="form-control"  type="text" name="last_name" required value="{{$user->last_name}}">
-                                @error('last_name')
-                                <div class="invalid">{{$message}}</div>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label" >Email</label>
-                                <div class="input-group left-radius"><span class="input-group-text" id="inputGroupPrepend">@</span>
-                                    <input class="form-control" type="email" name="email" placeholder="Email" aria-describedby="inputGroupPrepend" required value="{{$user->email}}">
-                                </div>
-                                @error('email')
-                                <div class="invalid">{{$message}}</div>
+                            <div class="col-md-3">
+                                <label class="form-label" >Property code</label>
+                                <input class="form-control"  type="text" name="property_code" required value="{{$property->property_code}}">
+                                @error('property_code')
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label" for="validationCustom03">Phone number</label>
-                                <input class="form-control" id="validationCustom03" type="text" name="phone_number" placeholder="Phone" required ="" value="{{$user->phone_number}}">
-                                @error('phone_number')
-                                <div class="invalid">{{$message}}</div>
+                                <label class="form-label" >Property status</label>
+                                <input class="form-control"  type="text" name="property_status" required value="{{$property->property_status}}">
+                                @error('property_status')
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label" for="validationCustom03">Gender</label>
-                                <select class="form-select" name="gender" required >
-                                    <option ></option>
-                                    <option value="male" @if ($user->gender == "male") selected @endif>Male</option>
-                                    <option value="female" @if ($user->gender == "female") selected @endif>Female</option>
-                                </select>
-                                @error('gender')
-                                <div class="invalid">{{$message}}</div>
+                                <label class="form-label" >Property price</label>
+                                <input class="form-control"  type="number" name="price" required value="{{$property->price}}">
+                                @error('price')
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label" for="validationCustom03">Address</label>
-                                <input class="form-control" id="validationCustom03555" type="text" name="address" placeholder="address" required ="" value="{{$user->address}}">
+                            <div class="col-md-3">
+                                <label class="form-label" >Additional fees</label>
+                                <input class="form-control"  type="text" name="Additional_fees" required value="{{$property->Additional_fees}}">
+                                @error('Additional_fees')
+                                <div class="invalid font-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" >Property size</label>
+                                <input class="form-control"  type="number" name="property_size" required value="{{$property->property_size}}">
+                                @error('property_size')
+                                <div class="invalid font-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" >Address</label>
+                                <input class="form-control"  type="text" name="address" required value="{{$property->address}}">
                                 @error('address')
-                                <div class="invalid">{{$message}}</div>
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label" for="validationCustom03">Password</label>
-                                <input class="form-control" id="validationCustom03555" type="password" name="password" placeholder="Password" required ="">
-                                @error('password')
-                                <div class="invalid">{{$message}}</div>
+                            <div class="col-md-3">
+                                <label class="form-label" >Country</label>
+                                <input class="form-control"  type="text" name="country" required value="{{$property->country}}">
+                                @error('country')
+                                <div class="invalid font-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label" >City</label>
+                                <input class="form-control"  type="text" name="city" required value="{{$property->city}}">
+                                @error('city')
+                                <div class="invalid font-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label" >description</label>
+                                <textarea class="form-control" name="description" >{{$property->description}}</textarea>
+                                @error('description')
+                                <div class="invalid font-danger">{{$message}}</div>
                                 @enderror
                             </div>
                         </div>
                         <div class="mb-3 text-center m-t-5">
-                            <button class="btn btn-primary" type="submit">Save</button>
+                            <button class="btn btn-primary w-25" type="submit">Save</button>
                         </div>
                     </form>
                 </div>

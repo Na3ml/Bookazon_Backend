@@ -70,9 +70,11 @@ class PropertyController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function edit($id)
+  public function edit($owner,$id)
   {
-
+//      $owner = $owner;
+      $property = Property::findOrFail($id);
+      return view('admin.property.edit',compact('owner','property'));
   }
 
   /**
@@ -81,9 +83,23 @@ class PropertyController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update(Request $request, $owner ,$id)
   {
-
+      if ($owner){
+          $property = Property::findOrFail($id);
+          $property->update([
+              'property_code' =>$request->property_code,
+              'property_status' =>$request->property_status,
+              'price' =>$request->price,
+              'description' =>$request->description,
+              'property_size' =>$request->property_size,
+              'address' =>$request->address,
+              'country' =>$request->country,
+              'city' =>$request->city,
+              'Additional_fees' =>$request->Additional_fees,
+          ]);
+          return redirect()->route('propertyowner.show',$owner);
+      }
   }
 
   /**
@@ -92,9 +108,11 @@ class PropertyController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function destroy($id)
+  public function destroy($owner ,$id)
   {
-
+      $property = Property::findOrFail($id);
+      $property->delete();
+      return redirect()->route('propertyowner.show',$owner);
   }
 
 }
