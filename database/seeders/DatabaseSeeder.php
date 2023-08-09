@@ -12,7 +12,8 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {
+    {   
+        $this->call(RoleSeeder::class);
         $this->call(UserTableSeeder::class);
         User::factory(5)->create();
 

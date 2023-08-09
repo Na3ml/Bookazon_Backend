@@ -183,6 +183,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
 
         /*
@@ -214,6 +215,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
             'Image' => Intervention\Image\Facades\Image::class,
             'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+            'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+            'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 
 
     ])->toArray(),

@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder {
                 'password'=>Hash::make( 12345678 ),
                 'address'=>'Egypt,Damietta',
                 'phone_number'=>'01099812636',
-                'role'=>'superadmin',
+                'role_id'=>1,
                 'status'=>'active',
                 'gender'=>'male',
 
@@ -37,7 +37,7 @@ class UserTableSeeder extends Seeder {
                 'password'=>Hash::make( 12345678 ),
                 'address'=>'Egypt,Mansoura',
                 'phone_number'=>'01099812434',
-                'role'=>'Propertyowner',
+                'role_id'=>2,
                 'status'=>'active',
                 'gender'=>'male',
             ],
@@ -49,7 +49,7 @@ class UserTableSeeder extends Seeder {
                 'password'=>Hash::make( 12345678 ),
                 'address'=>'Egypt,Mansoura',
                 'phone_number'=>'01099812535',
-                'role'=>'user',
+                'role_id'=>3,
                 'status'=>'active',
                 'gender'=>'male',
             ]

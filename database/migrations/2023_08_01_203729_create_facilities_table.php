@@ -11,6 +11,8 @@ class CreateFacilitiesTable extends Migration {
 			$table->increments('id');
 			$table->timestamps();
 			$table->string('facility_name', 255);
+			$table->string('distance');
+			$table->integer('property_id')->unsigned();
 		});
 	}
 
