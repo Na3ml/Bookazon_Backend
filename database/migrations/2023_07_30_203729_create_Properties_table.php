@@ -11,7 +11,7 @@ class CreatePropertiesTable extends Migration {
 			$table->increments('id');
 			$table->timestamps();
 			$table->uuid('UUID');
-			$table->integer('prorerty_code');
+			$table->integer('property_code');
 			$table->integer('property_status');
 			$table->float('price');
 			$table->text('description');
@@ -21,10 +21,10 @@ class CreatePropertiesTable extends Migration {
 			$table->string('country', 255);
 			$table->string('city', 255);
 			$table->string('Additional_fees');
-			$table->string('longitude', 255);
-			$table->string('latitude', 255);
-			$table->string('hot', 255);
-			$table->string('featured', 255);
+			$table->string('longitude', 255)->nullable();
+			$table->string('latitude', 255)->nullable();
+			$table->string('hot', 255)->nullable();
+			$table->string('featured', 255)->nullable();
 			$table->integer('user_id')->unsigned();
 		});
 	}

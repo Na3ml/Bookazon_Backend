@@ -16,7 +16,7 @@ class User extends Authenticatable implements JWTSubject {
     public $timestamps = true;
     protected $fillable = array( 'first_name', 'last_name', 'password', 'email', 'phone_number', 'address', 'gender', 'role_id', 'profile_picture', 'status' );
 
-    public function ptoperties()
+    public function properties()
  {
         return $this->hasMany( Property::class );
     }

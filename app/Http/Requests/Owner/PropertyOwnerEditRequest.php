@@ -22,7 +22,7 @@ class PropertyOwnerEditRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'email' => ['required', 'string', 'email','unique:users'],
 //            'password' => ['min:3'],
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],

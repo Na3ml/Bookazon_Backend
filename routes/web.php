@@ -29,7 +29,7 @@ Route::prefix('admin/dashboard')->middleware('auth:admin')->group(function () {
     Route::resource('admin',UserController::class);
     Route::resource('propertyowner',PropertyOwnerController::class);
     Route::resource('booker',BookerController::class);
-    Route::resource('property',PropertyController::class);
+    Route::resource('{owner}/property',PropertyController::class);
     //Property type controller
     Route::resource('propertytype', Property_TypeController::class);
     Route::resource('aminities', AminityController::class);
