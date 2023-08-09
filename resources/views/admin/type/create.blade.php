@@ -16,7 +16,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a>
+                        </li>
                         <li class="breadcrumb-item">Property Type</li>
                         <li class="breadcrumb-item active">all</li>
                     </ol>
@@ -35,31 +36,29 @@
                     {{--                </div> --}}
                     <div class="card-body">
                         <form class="needs-validation" novalidate="" action="{{ route('propertytype.store') }}"
-                            method="post" enctype="multipart/form-data">
+                              method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">Type Name</label>
                                     <input class="form-control" type="text" name="type_name" required>
                                     @error('type_name')
-                                        <div class="text-danger">{{ $message }}</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label class="col-sm-3 col-form-label">Type Icon</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="file" name="type_icon"
-                                            data-bs-original-title="" title="">
-                                    </div>
+                                    <label class="form-label">Type Icon</label>
+                                    <input class="form-control" type="file" name="type_icon"
+                                           data-bs-original-title="" title="">
                                     @error('type_icon')
-                                        <div class="text-danger">{{ $message }}</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
 
                             <div class="mb-3 text-center m-t-5">
-                                <button class="btn btn-primary" type="submit">Save</button>
+                                <button class="btn btn-primary w-25" type="submit">Save</button>
                             </div>
                         </form>
                     </div>

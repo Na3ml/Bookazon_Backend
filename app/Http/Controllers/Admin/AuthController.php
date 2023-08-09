@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\PropertyOwnerRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -58,14 +59,14 @@ class AuthController extends Controller
     * @return Response
     */
 
-    public function store( PropertyOwnerRequest $request )
+    public function store(RegisterRequest $request )
  {
         $user = User::create( [
             'first_name'=>$request->first_name,
             'last_name'=>$request->last_name,
             'email'=>$request->email,
             'password'=>bcrypt( $request->password ),
-            'role'=>'superadmin',
+            'role_id'=>1,
         ] );
 
         if ( $user ) {

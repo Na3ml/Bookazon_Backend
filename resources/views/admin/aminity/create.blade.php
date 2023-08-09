@@ -33,15 +33,15 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    {{--                <div class="card-header pb-0"> --}}
-                    {{--                    <h4>Create Super Admin</h4> --}}
-                    {{--                </div> --}}
+{{--                                    <div class="card-header pb-0">--}}
+{{--                                        <h4>Create Super Admin</h4>--}}
+{{--                                    </div>--}}
                     <div class="card-body">
                         <form class="needs-validation" novalidate="" action="{{ route('aminities.store') }}" method="post"
                             enctype="multipart/form-data" id="myForm">
                             @csrf
                             <div class="form-group row g-3">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <label class="form-label">Amenitis Name</label>
                                     <input class="form-control" type="text" name="amenities_name" required>
 
@@ -51,7 +51,7 @@
                             </div>
 
                             <div class="mb-3 text-center m-t-5">
-                                <button class="btn btn-primary" type="submit">Save</button>
+                                <button class="btn btn-primary w-25" type="submit">Save</button>
                             </div>
                         </form>
                     </div>

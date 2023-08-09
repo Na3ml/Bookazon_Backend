@@ -13,9 +13,9 @@ class CreateUsersTable extends Migration {
 			$table->string('last_name', 255);
 			$table->string('password');
 			$table->string('email', 100)->unique();
-			$table->string('phone_number', 50);
-			$table->string('address', 500);
-			$table->enum('gender', array('male', 'female'));
+			$table->string('phone_number', 50)->nullable();
+			$table->string('address', 500)->nullable();
+			$table->enum('gender', array('male', 'female'))->nullable();
   			$table->foreignId('role_id')->constrained();
   			$table->string('profile_picture', 255)->nullable();
 			$table->enum('status', array('active', 'inactive'))->nullable();
