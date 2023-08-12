@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\Property_TypeController;
 use App\Http\Controllers\Admin\AminityController;
+use App\Http\Controllers\Admin\DropdownController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::prefix('admin/dashboard')->middleware('auth:admin')->group(function () {
     //Property type controller
     Route::resource('propertytype', Property_TypeController::class);
     Route::resource('aminities', AminityController::class);
+    Route::post('api/fetch-states', [DropdownController::class, 'fetchState']);
+    Route::post('api/fetch-cities', [DropdownController::class, 'fetchCity']);
 
 });
 
