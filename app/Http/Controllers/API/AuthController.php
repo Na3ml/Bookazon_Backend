@@ -49,7 +49,7 @@ class AuthController extends Controller {
             'c_password' => 'required|same:password',
             'address'=>[ 'required', 'string', 'max:150' ],
             'phone_number'=>'required|min:11|numeric',
-            'role_id' => [ 'required', Rule::in( Role::ROLE_OWNER, Role::ROLE_USER ) ],
+            'role_id' => [ 'required', Rule::in( Role::ROLE_OWNER, Rolحاحe::ROLE_USER ) ],
         ] );
 
         if ( $validator->fails() ) {
@@ -57,6 +57,7 @@ class AuthController extends Controller {
         }
 
         $input[ 'password' ] = bcrypt( $input[ 'password' ] );
+        $input[ 'role_id' ] = 3;
         // use bcrypt to hash the passwords
         $user = User::create( $input );
         // eloquent creation of data

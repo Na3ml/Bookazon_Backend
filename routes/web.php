@@ -21,7 +21,7 @@ use App\Http\Controllers\Admin\AminityController;
 */
 
 Route::get('/', function () {
-    return route('dashboard');
+    return redirect()->route('dashboard');
 });
 
 Route::prefix('admin/dashboard')->middleware('auth:admin')->group(function () {

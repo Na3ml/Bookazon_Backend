@@ -185,9 +185,9 @@
                         </li>
                         <li><a href="/"><i
                                     data-feather="settings"></i><span>Settings</span></a></li>
-                        <form action="{{route('logout')}}" method="post" id="logout">
+                        <li><a href="javascript:{}" onclick="document.getElementById('logout').submit()"><i data-feather="log-in"> </i><span>Log out</span></a></li>
+                        <form action="{{route('logout')}}" method="post" id="logout" hidden>
                             @csrf
-                            <li><a href="/"><i data-feather="log-in" onclick="" onsubmit=""> </i><span>Log out</span></a></li>
                         </form>
                     </ul>
                 </li>
