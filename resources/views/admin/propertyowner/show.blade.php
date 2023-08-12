@@ -12,13 +12,13 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-sm-6">
-                    <h3>List of Property Of <span class="bg-info">{{$user->first_name}}</span></h3>
+                    <h3>List of Property Of <span class="bg-info">{{ $user->first_name }}</span></h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a></li>
                         <li class="breadcrumb-item">Property</li>
-                        <li class="breadcrumb-item active">{{$user->first_name}}</li>
+                        <li class="breadcrumb-item active">{{ $user->first_name }}</li>
                     </ol>
                 </div>
             </div>
@@ -31,40 +31,43 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4><a href="{{route('property.create',$user->id)}}" class="btn btn-primary">Add New Property</a></h4>
+                        <h4><a href="{{ route('property.create', ['owner' => $user->id]) }}" class="btn btn-primary">Add
+                                New Property</a></h4>
                     </div>
                     <div class="table-responsive theme-scrollbar">
                         <table class="table">
                             <thead>
-                            <tr class="border-bottom-primary">
-                                <th scope="col">Id</th>
-                                <th scope="col">Code</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">price</th>
-                                <th scope="col">Size</th>
-                                <th scope="col">Action</th>
-                            </tr>
+                                <tr class="border-bottom-primary">
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">price</th>
+                                    <th scope="col">Size</th>
+                                    <th scope="col">Action</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            @forelse($user->properties as $property)
-                                <tr class="border-bottom-secondary">
-                                    <th scope="row">{{$property->id}}</th>
-                                    <td>{{$property->property_code}}</td>
-                                    <td>{{$property->property_status}}</td>
-                                    <td>{{$property->price}}</td>
-                                    <td>{{$property->property_size}}</td>
-                                    <td>
-                                        <form method="post" action="{{route('property.destroy',[$user->id,$property->id])}}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger" type="submit" ><i class="fa fa-trash"></i></button>
-                                        </form>
-                                        <a href="{{route('property.edit',[$user->id,$property->id])}}" class="btn btn-primary" ><i class="fa fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                            @empty
-
-                            @endforelse
+                                @forelse($user->properties as $property)
+                                    <tr class="border-bottom-secondary">
+                                        <th scope="row">{{ $property->id }}</th>
+                                        <td>{{ $property->property_code }}</td>
+                                        <td>{{ $property->property_status }}</td>
+                                        <td>{{ $property->price }}</td>
+                                        <td>{{ $property->property_size }}</td>
+                                        <td>
+                                            <form method="post"
+                                                action="{{ route('property.destroy', [$user->id, $property->id]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </form>
+                                            <a href="{{ route('property.edit', [$user->id, $property->id]) }}"
+                                                class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -72,12 +75,9 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')
-
-
     <script src="{{ asset('assets/js/chart/chartist/chartist.js') }}"></script>
     <script src="{{ asset('assets/js/chart/chartist/chartist-plugin-tooltip.js') }}"></script>
     <script src="{{ asset('assets/js/chart/apex-chart/apex-chart.js') }}"></script>

@@ -9,7 +9,9 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "cviebrock/eloquent-sluggable": "^10.0",
         "guzzlehttp/guzzle": "^7.2",
+        "haruncpi/laravel-id-generator": "^1.1",
         "intervention/image": "^2.7",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
@@ -19,6 +21,7 @@
         "tymon/jwt-auth": "^2.0"
     },
     "require-dev": {
+        "dipeshsukhia/laravel-country-state-city-data": "^2.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "*",
         "laravel/pint": "^1.0",

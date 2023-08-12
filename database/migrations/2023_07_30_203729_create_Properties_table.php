@@ -9,16 +9,17 @@ class CreatePropertiesTable extends Migration {
 	{
 		Schema::create('Properties', function(Blueprint $table) {
 			$table->increments('id');
-			$table->timestamps();
-			$table->uuid('UUID');
+			$table->string('slug')->unique();
+			$table->char('property_name', 255);
 			$table->integer('property_code');
 			$table->integer('property_status');
 			$table->float('price');
 			$table->text('description');
-			$table->string('property_thumbnail', 255);
+			$table->string('property_thumbnail', 255)->nullable();
 			$table->string('property_size', 255);
 			$table->string('address', 255);
 			$table->string('country', 255);
+			$table->string('state', 255);
 			$table->string('city', 255);
 			$table->string('Additional_fees');
 			$table->string('longitude', 255)->nullable();
@@ -26,6 +27,10 @@ class CreatePropertiesTable extends Migration {
 			$table->string('hot', 255)->nullable();
 			$table->string('featured', 255)->nullable();
 			$table->integer('user_id')->unsigned();
+			$table->integer('amenities_id')->unsigned();
+			$table->integer('ptype_id')->unsigned();
+			$table->timestamps();
+
 		});
 	}
 
