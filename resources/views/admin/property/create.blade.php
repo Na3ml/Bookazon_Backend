@@ -45,7 +45,7 @@
                             <div class="row g-3">
                                 <div class="col-md-3">
                                     <label class="form-label">Property Name</label>
-                                    <input class="form-control" type="text" name="property_name" required
+                                    <input type="text" name="property_name" class="form-control"
                                         value="{{ old('property_name') }}">
                                     @error('property_name')
                                         <div class="invalid font-danger">{{ $message }}</div>
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label class="form-label">Property size</label>
-                                    <input class="form-control" type="number" name="property_size" required
+                                    <input type="text" name="property_size" class="form-control"
                                         value="{{ old('property_size') }}">
                                     @error('property_size')
                                         <div class="invalid font-danger">{{ $message }}</div>
@@ -91,8 +91,7 @@
                                 </div>
                                 <div class="col-md-5">
                                     <label class="form-label">Address</label>
-                                    <input class="form-control" type="text" name="address" required
-                                        value="{{ old('address') }}">
+                                    <input type="text" name="address" class="form-control" value="{{ old('address') }}">
                                     @error('address')
                                         <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
@@ -150,7 +149,7 @@
                                             multiple="multiple" data-width="100%">
 
                                             @foreach ($amenities as $ameni)
-                                                <option value="{{ $ameni->id }}">{{ $ameni->amenities_name }}</option>
+                                                <option value="{{ $ameni->id }}">{{ $ameni->amenitis_name }}</option>
                                             @endforeach
 
                                         </select>
@@ -182,7 +181,8 @@
                                         <div class="mb-3">
 
                                             <label class="form-label">Latitude</label>
-                                            <input type="text" name="latitude" class="form-control">
+                                            <input type="text" name="latitude" class="form-control"
+                                                value="{{ old('latitude') }}">
                                             <a href="https://www.latlong.net/convert-address-to-lat-long.html"
                                                 target="_blank">Go here to get Latitude from address</a>
                                         </div>
@@ -191,7 +191,8 @@
                                         <div class="mb-3">
 
                                             <label class="form-label">Longitude</label>
-                                            <input type="text" name="longitude" class="form-control">
+                                            <input type="text" name="longitude" class="form-control"
+                                                value="{{ old('longitude') }}">
                                             <a href="https://www.latlong.net/convert-address-to-lat-long.html"
                                                 target="_blank">Go here to get Longitude from address</a>
                                         </div>

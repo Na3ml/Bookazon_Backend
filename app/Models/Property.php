@@ -21,6 +21,10 @@ class Property extends Model
         return $this->belongsTo( User::class );
     }
 
+    public function type() {
+        return $this->belongsTo( PTypes::class, 'ptype_id', 'id' );
+    }
+
     public function sluggable(): array
  {
         return [

@@ -31,6 +31,10 @@ Route::prefix('admin/dashboard')->middleware('auth:admin')->group(function () {
     Route::resource('propertyowner',PropertyOwnerController::class);
     Route::resource('booker',BookerController::class);
     Route::resource('{owner}/property',PropertyController::class);
+    Route::post('/{owner}/update/property/thambnail/', [PropertyController::class,'UpdatePropertyThambnail'])->name('update.property.thambnail');
+    Route::post('/{owner}/update/property/facilities/', [PropertyController::class,'UpdatePropertyFacilities'])->name('update.property.facilities');
+    Route::post('/{owner}/update/property/multiimage/', [PropertyController::class,'UpdatePropertyMultiimage'])->name('update.property.multiimage');
+
     //Property type controller
     Route::resource('propertytype', Property_TypeController::class);
     Route::resource('aminities', AminityController::class);
