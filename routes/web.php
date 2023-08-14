@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\Property_TypeController;
 use App\Http\Controllers\Admin\AminityController;
 use App\Http\Controllers\Admin\DropdownController;
+use App\Http\Controllers\Admin\RoomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ Route::prefix('admin/dashboard')->middleware('auth:admin')->group(function () {
     Route::post('/{owner}/update/property/thambnail/', [PropertyController::class,'UpdatePropertyThambnail'])->name('update.property.thambnail');
     Route::post('/{owner}/update/property/facilities/', [PropertyController::class,'UpdatePropertyFacilities'])->name('update.property.facilities');
     Route::post('/{owner}/update/property/multiimage/', [PropertyController::class,'UpdatePropertyMultiimage'])->name('update.property.multiimage');
-
+    Route::resource('/rooms', RoomController::class);
     //Property type controller
     Route::resource('propertytype', Property_TypeController::class);
     Route::resource('aminities', AminityController::class);

@@ -6,9 +6,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/prism.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/vector-map.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/select2.css') }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
-        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 
 @section('main_content')
@@ -38,9 +35,10 @@
                     {{--                    <h4>Create Property</h4> --}}
                     {{--                </div> --}}
 
+
                     <div class="card-body">
                         <form class="needs-validation" novalidate="" action="{{ route('property.store', $owner) }}"
-                            method="post" id="myForm" enctype="multipart/form-data">
+                            method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-3">
@@ -139,6 +137,9 @@
                                                 <option value="{{ $ptype->id }}">{{ $ptype->type_name }}</option>
                                             @endforeach
                                         </select>
+                                        @error('ptype_id')
+                                            <div class="invalid font-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div><!-- Col -->
 
@@ -149,10 +150,13 @@
                                             multiple="multiple" data-width="100%">
 
                                             @foreach ($amenities as $ameni)
-                                                <option value="{{ $ameni->id }}">{{ $ameni->amenitis_name }}</option>
+                                                <option value="{{ $ameni->id }}">{{ $ameni->amenities_name }}</option>
                                             @endforeach
 
                                         </select>
+                                        @error('amenities_id')
+                                            <div class="invalid font-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div><!-- Col -->
 
@@ -163,6 +167,9 @@
 
                                         <img src="" id="mainThmb">
                                     </div>
+                                    @error('property_thambnail')
+                                        <div class="invalid font-danger">{{ $message }}</div>
+                                    @enderror
                                 </div><!-- Col -->
 
                                 <div class="col-sm-6">
@@ -172,6 +179,10 @@
                                             multiple="">
 
                                         <div class="row" id="preview_img"> </div>
+
+                                        @error('multi_img')
+                                            <div class="invalid font-danger">{{ $message }}</div>
+                                        @enderror
 
                                     </div>
                                 </div><!-- Col -->
@@ -186,6 +197,9 @@
                                             <a href="https://www.latlong.net/convert-address-to-lat-long.html"
                                                 target="_blank">Go here to get Latitude from address</a>
                                         </div>
+                                        @error('latitude')
+                                            <div class="invalid font-danger">{{ $message }}</div>
+                                        @enderror
                                     </div><!-- Col -->
                                     <div class="col-sm-6">
                                         <div class="mb-3">
@@ -196,6 +210,9 @@
                                             <a href="https://www.latlong.net/convert-address-to-lat-long.html"
                                                 target="_blank">Go here to get Longitude from address</a>
                                         </div>
+                                        @error('longitude')
+                                            <div class="invalid font-danger">{{ $message }}</div>
+                                        @enderror
                                     </div><!-- Col -->
                                 </div><!-- Row -->
 
@@ -230,6 +247,9 @@
                                         <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> Add
                                             More..</a>
                                     </div>
+                                    @error('facility_name')
+                                        <div class="invalid font-danger">{{ $message }}</div>
+                                    @enderror
                                 </div> <!---end row-->
 
                                 <!--========== Start of add multiple class with ajax ==============-->
@@ -295,12 +315,14 @@
                                         <input class="checkbox_animated" id="chk-ani" type="checkbox" name="featured">
                                         Features Property
                                     </label>
+
                                 </div>
                                 <div class="col-md-6">
                                     <label class="d-block" for="chk-ani1">
                                         <input class="checkbox_animated" id="chk-ani1" type="checkbox" name="hot">
                                         Hot Property
                                     </label>
+
                                 </div>
                             </div>
                     </div>
@@ -407,36 +429,7 @@
             });
         });
     </script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myForm').validate({
-                rules: {
-                    property_name: {
-                        required: true,
-                    },
 
-                },
-                messages: {
-                    property_name: {
-                        required: 'Please Enter property_name',
-                    },
-
-
-                },
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                },
-            });
-        });
-    </script>
 
     <!----For Section-------->
     <script type="text/javascript">

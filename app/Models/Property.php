@@ -47,4 +47,19 @@ class Property extends Model
         */
         return SluggableObserver::SAVED;
     }
+
+    public function setAminitiesAttribute( $value )
+ {
+        $this->attributes[ 'amenities_id' ] = json_encode( $value );
+    }
+
+    /**
+    * Get the categories
+    *
+    */
+
+    public function getAminitiesAttribute( $value )
+ {
+        return $this->attributes[ 'amenities_id' ] = json_decode( $value );
+    }
 }

@@ -24,7 +24,6 @@ class StoreProperty extends FormRequest {
             //
             'property_thambnail' => 'required|image|mimes:jpg,jpeg,png,gif',
             'property_name' => 'required|min:3',
-            'slug' => 'required|unique:properties,slug',
             'property_status' => 'required|numeric',
             'price' => 'required|numeric',
             'description' => 'required|string|max:2550',
@@ -36,7 +35,6 @@ class StoreProperty extends FormRequest {
             'Additional_fees' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',
-            'user_id' => 'required',
             'amenities_id' => 'required',
             'ptype_id' => 'required'
         ];

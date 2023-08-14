@@ -58,6 +58,9 @@
                                             <input type="text" name="property_name" class="form-control"
                                                 value="{{ $property->property_name }}">
                                         </div>
+                                        @error('property_name')
+                                            <div class="invalid font-danger">{{ $message }}</div>
+                                        @enderror
                                     </div><!-- Col -->
                                     <div class="col-sm-6">
                                         <div class="form-group mb-3">
@@ -72,13 +75,16 @@
                                                     {{ $property->property_status == 0 ? 'selected' : '' }}>Inactive
                                                 </option>
                                             </select>
+                                            @error('property_status')
+                                                <div class="invalid font-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div><!-- Col -->
 
 
                                     <div class="col-md-3">
                                         <label class="form-label">Property price</label>
-                                        <input class="form-control" type="number" name="price" required
+                                        <input class="form-control" type="number" name="price"
                                             value="{{ $property->price }}">
                                         @error('price')
                                             <div class="invalid font-danger">{{ $message }}</div>
@@ -86,7 +92,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label class="form-label">Additional fees</label>
-                                        <input class="form-control" type="text" name="Additional_fees" required
+                                        <input class="form-control" type="text" name="Additional_fees"
                                             value="{{ $property->Additional_fees }}">
                                         @error('Additional_fees')
                                             <div class="invalid font-danger">{{ $message }}</div>
@@ -107,6 +113,9 @@
                                             <input type="text" name="address" class="form-control"
                                                 value="{{ $property->address }}">
                                         </div>
+                                        @error('address')
+                                            <div class="invalid font-danger">{{ $message }}</div>
+                                        @enderror
                                     </div><!-- Col -->
 
 
@@ -114,7 +123,7 @@
 
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label">Country</label>
-                                            <select id="country-dd" class="form-select" name="country" required>
+                                            <select id="country-dd" class="form-select" name="country">
                                                 <option value="">-- Select Country --</option>
                                                 @foreach ($countries as $data)
                                                     <option value="{{ $data->id }}"
@@ -128,7 +137,7 @@
                                         </div>
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label">State</label>
-                                            <select id="state-dd" class="form-select" name="state" required>
+                                            <select id="state-dd" class="form-select" name="state">
                                             </select>
                                             @error('state')
                                                 <div class="invalid font-danger">{{ $message }}</div>
@@ -137,7 +146,7 @@
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label">City</label>
 
-                                            <select id="city-dd" class="form-select" name="city" required>
+                                            <select id="city-dd" class="form-select" name="city">
                                             </select>
                                             @error('city')
                                                 <div class="invalid font-danger">{{ $message }}</div>
@@ -154,6 +163,9 @@
                                                 <input type="text" name="property_size" class="form-control"
                                                     value="{{ $property->property_size }}">
                                             </div>
+                                            @error('property_size')
+                                                <div class="invalid font-danger">{{ $message }}</div>
+                                            @enderror
                                         </div><!-- Col -->
 
                                         <div class="col-sm-4">
@@ -167,6 +179,9 @@
                                                         </option>
                                                     @endforeach
                                                 </select>
+                                                @error('ptype_id')
+                                                    <div class="invalid font-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div><!-- Col -->
                                         <div class="col-sm-4">
@@ -182,6 +197,9 @@
                                                     @endforeach
 
                                                 </select>
+                                                @error('amenities_id')
+                                                    <div class="invalid font-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div><!-- Col -->
                                     </div><!-- Col -->
@@ -198,6 +216,9 @@
                                                 target="_blank">Go
                                                 here to get Latitude from address</a>
                                         </div>
+                                        @error('latitude')
+                                            <div class="invalid font-danger">{{ $message }}</div>
+                                        @enderror
                                     </div><!-- Col -->
                                     <div class="col-sm-6">
                                         <div class="mb-3">
@@ -208,9 +229,51 @@
                                                 target="_blank">Go
                                                 here to get Longitude from address</a>
                                         </div>
+                                        @error('longitude')
+                                            <div class="invalid font-danger">{{ $message }}</div>
+                                        @enderror
                                     </div><!-- Col -->
                                 </div><!-- Row -->
 
+                                <!--  /// Property Main Thambnail Image Update //// -->
+
+                                <div class="page-content" style="margin-top: -35px;">
+
+                                    <div class="row profile-body">
+                                        <div class="col-md-12 col-xl-12 middle-wrapper">
+                                            <div class="row">
+
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h6 class="card-title">Edit Main Thambnail Image </h6>
+
+                                                        <input type="hidden" name="id"
+                                                            value="{{ $property->id }}">
+                                                        <input type="hidden" name="old_img"
+                                                            value="{{ $property->property_thambnail }}">
+                                                        <div class="row mb-3">
+                                                            <div class="form-group col-md-6">
+                                                                <label class="form-label">Main Thambnail </label>
+                                                                <input type="file" name="property_thambnail"
+                                                                    class="form-control" onChange="mainThamUrl(this)">
+                                                                <img src="" id="mainThmb">
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label class="form-label"> </label>
+                                                                <img src="{{ asset($property->property_thumbnail) }}"
+                                                                    style="width:100px; height:100px;">
+                                                            </div>
+                                                        </div><!-- Col -->
+                                                        @error('property_thambnail')
+                                                            <div class="invalid font-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--    /// End  Property Main Thambnail Image Update //// -->
                                 <div class="col-md-12">
                                     <label class="form-label">description</label>
                                     <textarea id="editor1" name="description" cols="30" rows="10">{!! $property->description !!}</textarea>
@@ -228,6 +291,7 @@
                                         <label class="form-check-label" for="checkInline1">
                                             Features Property
                                         </label>
+
                                     </div>
 
                                     <div class="form-check form-check-inline">
@@ -256,61 +320,7 @@
 
                         </div><!-- Row -->
 
-                        <!--  /// Property Main Thambnail Image Update //// -->
 
-                        <div class="page-content" style="margin-top: -35px;">
-
-                            <div class="row profile-body">
-                                <div class="col-md-12 col-xl-12 middle-wrapper">
-                                    <div class="row">
-
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h6 class="card-title">Edit Main Thambnail Image </h6>
-
-
-                                                <form method="post"
-                                                    action="{{ route('update.property.thambnail', $owner) }}"
-                                                    id="myForm" enctype="multipart/form-data">
-                                                    @csrf
-
-
-                                                    <input type="hidden" name="id" value="{{ $property->id }}">
-                                                    <input type="hidden" name="old_img"
-                                                        value="{{ $property->property_thambnail }}">
-
-                                                    <div class="row mb-3">
-                                                        <div class="form-group col-md-6">
-                                                            <label class="form-label">Main Thambnail </label>
-                                                            <input type="file" name="property_thambnail"
-                                                                class="form-control" onChange="mainThamUrl(this)">
-
-                                                            <img src="" id="mainThmb">
-
-                                                        </div>
-
-
-                                                        <div class="form-group col-md-6">
-                                                            <label class="form-label"> </label>
-                                                            <img src="{{ asset($property->property_thumbnail) }}"
-                                                                style="width:100px; height:100px;">
-                                                        </div>
-                                                    </div><!-- Col -->
-
-                                                    <button type="submit" class="btn btn-primary">Save
-                                                        Changes
-                                                    </button>
-
-
-                                                </form>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--    /// End  Property Main Thambnail Image Update //// -->
 
                         <!--  /// Property Multi Image Update //// -->
 
@@ -339,7 +349,7 @@
                                                                     <th>Sl</th>
                                                                     <th>Image</th>
                                                                     <th>Change Image </th>
-                                                                    <th>Delete </th>
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -359,14 +369,7 @@
                                                                             <input type="file" class="form-group"
                                                                                 name="multi_img">
                                                                         </td>
-                                                                        <td>
-                                                                            <input type="submit"
-                                                                                class="btn btn-primary px-4"
-                                                                                value="Update Image">
 
-                                                                            <a href="" class="btn btn-danger"
-                                                                                id="delete">Delete </a>
-                                                                        </td>
                                                                     </tr>
                                                                 @endforeach
 
@@ -377,9 +380,11 @@
 
 
                                                     <br><br>
-                                                    <button type="submit" class="btn btn-primary">Save
-                                                        Changes
-                                                    </button>
+                                                    <div class="mb-3 text-center m-t-5">
+                                                        <button class="btn btn-primary w-25" type="submit">Save
+                                                            changes</button>
+                                                    </div>
+
 
 
                                                 </form>
@@ -490,9 +495,11 @@
                                                         </div>
                                                     @endforeach
                                                     <br> <br>
-                                                    <button type="submit" class="btn btn-primary">Save
-                                                        Changes
-                                                    </button>
+                                                    <div class="mb-3 text-center m-t-5">
+                                                        <button class="btn btn-primary w-25" type="submit">Save
+                                                            changes</button>
+                                                    </div>
+
                                                 </form>
                                             </div>
                                         </div>
@@ -608,73 +615,6 @@
                         });
                     }
                 });
-            });
-        });
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myForm').validate({
-                rules: {
-                    property_name: {
-                        required: true,
-                    },
-                    property_status: {
-                        required: true,
-                    },
-                    lowest_price: {
-                        required: true,
-                    },
-                    max_price: {
-                        required: true,
-                    },
-                    ptype_id: {
-                        required: true,
-                    },
-
-
-                },
-                messages: {
-                    property_name: {
-                        required: 'Please Enter Property Name',
-                    },
-                    property_status: {
-                        required: 'Please Select Property Status',
-                    },
-                    lowest_price: {
-                        required: 'Please Enter Lowest Price',
-                    },
-                    max_price: {
-                        required: 'Please Enter Max Price',
-                    },
-                    ptype_id: {
-                        required: 'Please Select Property Type',
-                    },
-
-                },
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                },
             });
         });
     </script>

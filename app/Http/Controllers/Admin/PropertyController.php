@@ -11,6 +11,7 @@ use Intervention\Image\Facades\Image;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Requests\Property\StoreProperty;
 use App\Models\Photo;
 use App\Models\Country;
 use App\Models\Facility;
@@ -52,7 +53,7 @@ class PropertyController extends Controller {
     * @return Response
     */
 
-    public function store( Request $request, $owner ) {
+    public function store( StoreProperty $request, $owner ) {
 
         if ( $owner ) {
             $amen = $request->amenities_id;
@@ -173,7 +174,7 @@ class PropertyController extends Controller {
     * @return Response
     */
 
-    public function update( Request $request, $owner, $id ) {
+    public function update( StoreProperty $request, $owner, $id ) {
         if ( $owner ) {
 
             $amen = $request->amenities_id;

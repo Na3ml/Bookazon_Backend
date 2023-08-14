@@ -27,7 +27,7 @@ class CreatePropertiesTable extends Migration {
 			$table->string('hot', 255)->nullable();
 			$table->string('featured', 255)->nullable();
 			$table->integer('user_id')->unsigned();
-			$table->integer('amenities_id')->unsigned();
+			$table->string('amenities_id',255);
 			$table->integer('ptype_id')->unsigned();
 			$table->timestamps();
 
