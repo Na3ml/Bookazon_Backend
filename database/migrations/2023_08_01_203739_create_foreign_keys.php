@@ -23,11 +23,7 @@ class CreateForeignKeys extends Migration {
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });
-    Schema::table('Properties', function (Blueprint $table) {
-        $table->foreign('amenities_id')->references('id')->on('amenities')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
-    });
+    
     Schema::table('rooms', function (Blueprint $table) {
         $table->foreign('property_id')->references('id')->on('Properties')
                     ->onDelete('cascade')

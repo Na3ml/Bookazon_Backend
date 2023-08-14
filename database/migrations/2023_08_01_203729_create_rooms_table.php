@@ -9,17 +9,24 @@ class CreateRoomsTable extends Migration {
 	{
 		Schema::create('rooms', function(Blueprint $table) {
 			$table->increments('id');
-			$table->timestamps();
-			$table->string('name', 255);
+			$table->integer('room_number');
 			$table->text('description');
-			$table->string('price');
-			$table->string('size', 255);
+			$table->string('nightly_rate');
+			$table->decimal('price');
+			$table->enum('room_type', ['single', 'double', 'deluxe','suite'])->default('single');
 			$table->string('amenities', 255);
-			$table->integer('total_bathrooms');
-			$table->integer('total_balconies');
-			$table->integer('total_guests');
+			$table->timestamp('availability_date_start');
+ 			$table->timestamp('availability_date_end')->nullable();
+			$table->tinyInteger('occupancy_limit')->unsigned()->nullable();
+			$table->string('Additional_fees');
+            $table->text('total_beds')->nullable();
+            $table->text('total_bathrooms')->nullable();
+            $table->text('total_balconies')->nullable();
+            $table->text('total_guests')->nullable();
 			$table->string('featured_photo');
 			$table->integer('property_id')->unsigned();
+			$table->text('video_id')->nullable();
+            $table->timestamps();
 		});
 	}
 

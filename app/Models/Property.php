@@ -21,6 +21,10 @@ class Property extends Model
         return $this->belongsTo( User::class );
     }
 
+    public function type() {
+        return $this->belongsTo( PTypes::class, 'ptype_id', 'id' );
+    }
+
     public function sluggable(): array
  {
         return [
@@ -42,5 +46,20 @@ class Property extends Model
         * This will likely become the new default in the next major release.
         */
         return SluggableObserver::SAVED;
+    }
+
+    public function setAminitiesAttribute( $value )
+ {
+        $this->attributes[ 'amenities_id' ] = json_encode( $value );
+    }
+
+    /**
+    * Get the categories
+    *
+    */
+
+    public function getAminitiesAttribute( $value )
+ {
+        return $this->attributes[ 'amenities_id' ] = json_decode( $value );
     }
 }

@@ -8,17 +8,17 @@
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
-                    <div class="col-sm-6">
-                        <h3>Aminities Table</h3>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a>
-                            </li>
-                            <li class="breadcrumb-item">Data Table</li>
-                            <li class="breadcrumb-item active">Aminities Table</li>
-                        </ol>
-                    </div>
+                <div class="col-sm-6">
+                    <h3>Aminities Table</h3>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">Data Table</li>
+                        <li class="breadcrumb-item active">Aminities Table</li>
+                    </ol>
+                </div>
             </div>
         </div>
         <!-- Container-fluid starts-->
@@ -28,7 +28,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4><a href="{{ route('aminities.create') }}" class="btn btn-primary">Add New Aminities</a>
+                            <h4><a href="{{ route('aminities.create') }}" class="btn btn-primary">Add New Aminity</a>
                             </h4>
                         </div>
                         <div class="card-body">

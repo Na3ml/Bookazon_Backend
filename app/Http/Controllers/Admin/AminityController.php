@@ -15,7 +15,7 @@ class AminityController extends Controller {
     public function index() {
         //
         $Aminties = Amenity::latest()->get();
-        $title = 'Delete User!';
+        $title = 'Delete Aminity!';
         $text = 'Are you sure you want to delete?';
         confirmDelete( $title, $text );
         return view( 'admin.aminity.index', compact( 'Aminties' ) );

@@ -9,6 +9,6 @@ class PTypes extends Model
 
     protected $table = 'property_types';
     public $timestamps = true;
-    protected $fillable = array( 'type_name', 'type_icon', 'property_id', 'created_at' );
+    protected $fillable = array( 'type_name', 'type_icon', 'created_at' );
 
 }
