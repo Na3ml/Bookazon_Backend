@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\PropertyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,10 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);    
+    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+//    Route::get('/properties', [AuthController::class, 'userProfile']);
+});
+
+Route::group([],function(){
+   Route::get('/properties',[PropertyController::class,'index']);
 });

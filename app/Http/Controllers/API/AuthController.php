@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Validation\Rule;
 use App\Models\Role;
+use function inclued\sendError;
+use function inclued\sendResponse;
 
 class AuthController extends Controller {
     //
@@ -19,24 +21,6 @@ class AuthController extends Controller {
         $this->middleware( 'auth:api', [ 'except' => [ 'login', 'register' ] ] );
     }
 
-    public function sendResponse( $data, $message, $status = 200 ) {
-        $response = [
-            'data' => $data,
-            'message' => $message
-        ];
-
-        return response()->json( $response, $status );
-    }
-
-    public function sendError( $errorData, $message, $status = 500 ) {
-        $response = [];
-        $response[ 'message' ] = $message;
-        if ( !empty( $errorData ) ) {
-            $response[ 'data' ] = $errorData;
-        }
-
-        return response()->json( $response, $status );
-    }
 
     public function register( Request $request ) {
         $input = $request->only( 'first_name', 'last_name', 'email', 'password', 'c_password', 'role_id', 'address', 'phone_number' );
@@ -47,13 +31,13 @@ class AuthController extends Controller {
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
             'c_password' => 'required|same:password',
-            'address'=>[ 'required', 'string', 'max:150' ],
+//            'address'=>[ 'required', 'string', 'max:150' ],
             'phone_number'=>'required|min:11|numeric',
-            'role_id' => [ 'required', Rule::in( Role::ROLE_OWNER, Rolحاحe::ROLE_USER ) ],
+//            'role_id' => [ 'required', Rule::in( Role::ROLE_OWNER, Role::ROLE_USER ) ],
         ] );
 
         if ( $validator->fails() ) {
-            return $this->sendError( $validator->errors(), 'Validation Error', 422 );
+            return sendError( $validator->errors(), 'Validation Error', 422 );
         }
 
         $input[ 'password' ] = bcrypt( $input[ 'password' ] );
@@ -64,7 +48,7 @@ class AuthController extends Controller {
 
         $success[ 'user' ] = $user;
 
-        return $this->sendResponse( $success, 'user registered successfully', 201 );
+        return sendResponse( $success, 'user registered successfully', 201 );
 
     }
 
@@ -77,37 +61,37 @@ class AuthController extends Controller {
         ] );
 
         if ( $validator->fails() ) {
-            return $this->sendError( $validator->errors(), 'Validation Error', 422 );
+            return sendError( $validator->errors(), 'Validation Error', 422 );
         }
 
         try {
             // this authenticates the user details with the database and generates a token
             if ( ! $token = JWTAuth::attempt( $input ) ) {
-                return $this->sendError( [], 'invalid login credentials', 400 );
+                return sendError( [], 'invalid login credentials', 400 );
             }
         } catch ( JWTException $e ) {
-            return $this->sendError( [], $e->getMessage(), 500 );
+            return sendError( [], $e->getMessage(), 500 );
         }
 
         $success = [
             'token' => $token,
             'user'=>Auth::user(),
         ];
-        return $this->sendResponse( $success, 'successful login', 200 );
+        return sendResponse( $success, 'successful login', 200 );
     }
 
     public function getUser() {
         try {
             $user = JWTAuth::parseToken()->authenticate();
             if ( !$user ) {
-                return $this->sendError( [], 'user not found', 403 );
+                return sendError( [], 'user not found', 403 );
             }
 
         } catch ( JWTException $e ) {
-            return $this->sendError( [], $e->getMessage(), 500 );
+            return sendError( [], $e->getMessage(), 500 );
         }
 
-        return $this->sendResponse( $user, 'user data retrieved', 200 );
+        return sendResponse( $user, 'user data retrieved', 200 );
     }
 
     /**
