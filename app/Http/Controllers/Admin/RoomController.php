@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Amenity;
 use App\Models\User;
+use App\Models\Property;
 use Illuminate\Support\Facades\Auth;
 
 class RoomController extends Controller
@@ -37,8 +38,9 @@ class RoomController extends Controller
     public function create()
  {
         $all_amenities = Amenity::get();
-        $owner_properties = User::find( auth()->user()->id )->properties();
-        dd( $owner_properties );
+        $user = User::find( auth()->user()->id );
+        $owner_properties = Property::with( 'user' )->get();
+
         return view( 'admin.room.create', compact( 'all_amenities', 'owner_properties' ) );
 
     }
