@@ -24,7 +24,7 @@ class AuthController extends Controller {
 
     public function register( Request $request ) {
         $input = $request->only( 'first_name', 'last_name', 'email', 'password', 'c_password', 'role_id', 'address', 'phone_number' );
-
+        $credentials =['email'=>$input['email'] , 'password'=>$input['password']];
         $validator = Validator::make( $input, [
             'first_name' => [ 'required', 'string', 'max:255' ],
             'last_name' => [ 'required', 'string', 'max:255' ],
@@ -47,6 +47,7 @@ class AuthController extends Controller {
         // eloquent creation of data
 
         $success[ 'user' ] = $user;
+        $success['token']  = JWTAuth::attempt($credentials);
 
         return sendResponse( $success, 'user registered successfully', 201 );
 

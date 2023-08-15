@@ -30,4 +30,5 @@ Route::group([
 
 Route::group([],function(){
    Route::get('/properties',[PropertyController::class,'index']);
+   Route::get('/properties/{id}',[PropertyController::class,'show']);
 });
