@@ -1,0 +1,160 @@
+{
+  "public/assets/fonts/theme-font/SFProText-SemiboldItalic.woff2": {
+    "file": "assets/SFProText-SemiboldItalic.9fc72165.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-SemiboldItalic.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-LightItalic.woff2": {
+    "file": "assets/SFProText-LightItalic.ed964307.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-LightItalic.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-RegularItalic.woff2": {
+    "file": "assets/SFProText-RegularItalic.af4d049c.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-RegularItalic.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-Regular.woff2": {
+    "file": "assets/SFProText-Regular.8a1914bc.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-Regular.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-Medium.woff2": {
+    "file": "assets/SFProText-Medium.7a3e5a3f.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-Medium.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-Semibold.woff2": {
+    "file": "assets/SFProText-Semibold.4a9d3fc1.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-Semibold.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-Light.woff2": {
+    "file": "assets/SFProText-Light.920126a1.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-Light.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-HeavyItalic.woff2": {
+    "file": "assets/SFProText-HeavyItalic.662f1340.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-HeavyItalic.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-Bold.woff2": {
+    "file": "assets/SFProText-Bold.87189c7b.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-Bold.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-MediumItalic.woff2": {
+    "file": "assets/SFProText-MediumItalic.50339cee.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-MediumItalic.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-BoldItalic.woff2": {
+    "file": "assets/SFProText-BoldItalic.1136c3c5.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-BoldItalic.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-Heavy.woff2": {
+    "file": "assets/SFProText-Heavy.21961c9c.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-Heavy.woff2"
+  },
+  "public/assets/fonts/theme-font/AmandaSignatureRegular.woff2": {
+    "file": "assets/AmandaSignatureRegular.f3db3bfc.woff2",
+    "src": "public/assets/fonts/theme-font/AmandaSignatureRegular.woff2"
+  },
+  "public/assets/images/sec.svg": {
+    "file": "assets/sec.d22229f8.svg",
+    "src": "public/assets/images/sec.svg"
+  },
+  "public/assets/images/other-images/wallpaper.jpg": {
+    "file": "assets/wallpaper.0b4787ed.jpg",
+    "src": "public/assets/images/other-images/wallpaper.jpg"
+  },
+  "public/assets/images/hour.svg": {
+    "file": "assets/hour.34ba2a99.svg",
+    "src": "public/assets/images/hour.svg"
+  },
+  "public/assets/images/dashboard/default/bg-cover.png": {
+    "file": "assets/bg-cover.b5e998d2.png",
+    "src": "public/assets/images/dashboard/default/bg-cover.png"
+  },
+  "public/assets/images/min.svg": {
+    "file": "assets/min.a650c1e5.svg",
+    "src": "public/assets/images/min.svg"
+  },
+  "public/assets/images/other-images/clock-face.png": {
+    "file": "assets/clock-face.52a907fe.png",
+    "src": "public/assets/images/other-images/clock-face.png"
+  },
+  "public/assets/images/other-images/calender-bg.png": {
+    "file": "assets/calender-bg.94d04ed9.png",
+    "src": "public/assets/images/other-images/calender-bg.png"
+  },
+  "public/assets/images/other-images/coming-soon-bg.jpg": {
+    "file": "assets/coming-soon-bg.40079f45.jpg",
+    "src": "public/assets/images/other-images/coming-soon-bg.jpg"
+  },
+  "public/assets/images/login/login_bg.jpg": {
+    "file": "assets/login_bg.7015e247.jpg",
+    "src": "public/assets/images/login/login_bg.jpg"
+  },
+  "public/assets/images/other-images/maintenance-bg.jpg": {
+    "file": "assets/maintenance-bg.0ce0ce12.jpg",
+    "src": "public/assets/images/other-images/maintenance-bg.jpg"
+  },
+  "public/assets/images/other-images/boxbg.jpg": {
+    "file": "assets/boxbg.4d2e6f65.jpg",
+    "src": "public/assets/images/other-images/boxbg.jpg"
+  },
+  "public/assets/fonts/theme-font/SFProText-SemiboldItalic.woff": {
+    "file": "assets/SFProText-SemiboldItalic.c16d9115.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-SemiboldItalic.woff"
+  },
+  "public/assets/fonts/theme-font/SFProText-RegularItalic.woff": {
+    "file": "assets/SFProText-RegularItalic.97ce5da0.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-RegularItalic.woff"
+  },
+  "public/assets/fonts/theme-font/SFProText-LightItalic.woff": {
+    "file": "assets/SFProText-LightItalic.40899585.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-LightItalic.woff"
+  },
+  "public/assets/fonts/theme-font/SFProText-Regular.woff": {
+    "file": "assets/SFProText-Regular.26293840.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-Regular.woff"
+  },
+  "public/assets/fonts/theme-font/SFProText-Medium.woff": {
+    "file": "assets/SFProText-Medium.3f07bc08.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-Medium.woff"
+  },
+  "public/assets/fonts/theme-font/SFProText-Semibold.woff": {
+    "file": "assets/SFProText-Semibold.2578ecc5.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-Semibold.woff"
+  },
+  "public/assets/fonts/theme-font/SFProText-HeavyItalic.woff": {
+    "file": "assets/SFProText-HeavyItalic.c9b085e8.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-HeavyItalic.woff"
+  },
+  "public/assets/fonts/theme-font/SFProText-Light.woff": {
+    "file": "assets/SFProText-Light.203c22d3.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-Light.woff"
+  },
+  "public/assets/fonts/theme-font/SFProText-MediumItalic.woff": {
+    "file": "assets/SFProText-MediumItalic.ca2ee5a0.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-MediumItalic.woff"
+  },
+  "public/assets/fonts/theme-font/SFProText-Bold.woff": {
+    "file": "assets/SFProText-Bold.767e05ba.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-Bold.woff"
+  },
+  "public/assets/fonts/theme-font/SFProText-BoldItalic.woff": {
+    "file": "assets/SFProText-BoldItalic.ece1bef0.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-BoldItalic.woff"
+  },
+  "public/assets/fonts/theme-font/SFProText-Heavy.woff": {
+    "file": "assets/SFProText-Heavy.8dfd548f.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-Heavy.woff"
+  },
+  "public/assets/fonts/theme-font/AmandaSignatureRegular.woff": {
+    "file": "assets/AmandaSignatureRegular.7078c63b.woff",
+    "src": "public/assets/fonts/theme-font/AmandaSignatureRegular.woff"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app.82fa7dbb.js",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "public/assets/scss/style.scss": {
+    "file": "assets/style.5ada047b.css",
+    "src": "public/assets/scss/style.scss",
+    "isEntry": true
+  }
+}
