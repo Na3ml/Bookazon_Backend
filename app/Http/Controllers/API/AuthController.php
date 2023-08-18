@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UserMail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -18,11 +21,12 @@ class AuthController extends Controller {
     //
 
     public function __construct() {
-        $this->middleware( 'auth:api', [ 'except' => [ 'login', 'register' ] ] );
+        $this->middleware( 'auth:api', [ 'except' => [ 'login', 'register','resetPassword' ] ] );
     }
 
 
     public function register( Request $request ) {
+
         $input = $request->only( 'first_name', 'last_name', 'email', 'password', 'c_password', 'role_id', 'address', 'phone_number' );
         $credentials =['email'=>$input['email'] , 'password'=>$input['password']];
         $validator = Validator::make( $input, [
@@ -48,7 +52,9 @@ class AuthController extends Controller {
 
         $success[ 'user' ] = $user;
         $success['token']  = JWTAuth::attempt($credentials);
-
+        $success['mail'] = Mail::send(view('auth.verify-email'),['sdsdgsd'],function ($message) use ($input){
+            $message->to($input['email'],'fffffff');
+        });
         return sendResponse( $success, 'user registered successfully', 201 );
 
     }
@@ -138,4 +144,5 @@ class AuthController extends Controller {
             'user' => auth()->user()
         ] );
     }
+
 }
