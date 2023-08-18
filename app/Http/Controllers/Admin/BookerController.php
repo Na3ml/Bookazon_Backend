@@ -19,7 +19,7 @@ class BookerController extends Controller
 
     public function index()
  {
-        $users = User::where( 'role_id', 3 )->get();
+        $users = User::where( 'role_id', 3 )->latest()->get();
         return view( 'admin.booker.index', compact( 'users' ) );
 
     }

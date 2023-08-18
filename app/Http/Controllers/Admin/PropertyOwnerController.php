@@ -19,7 +19,7 @@ class PropertyOwnerController extends Controller
 
     public function index()
     {
-        $users = User::where('role_id', 2)->get();
+        $users = User::where('role_id', 2)->latest()->get();
         return view('admin.propertyowner.index', compact('users'));
 
     }
