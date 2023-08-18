@@ -29,7 +29,7 @@ class ResetPasswordController extends Controller {
                 $r_password->token = DB::table('password_resets')->where('email',$email)->update([
                     'token' => $token,
                 ]);
-                $mail = Mail::to('mohamedsabaawy@gmail.com')->send(new UserMail([
+                $mail = Mail::to($email)->send(new UserMail([
                     'password' => $token,
                 ]));
                 return sendResponse('','new password has sent');
@@ -38,7 +38,7 @@ class ResetPasswordController extends Controller {
                 'email' => $email,
                 'token' => $token
             ]);
-            $mail = Mail::to('mohamedsabaawy@gmail.com')->send(new UserMail([
+            $mail = Mail::to($email)->send(new UserMail([
                 'password' => $token,
             ]));
 
