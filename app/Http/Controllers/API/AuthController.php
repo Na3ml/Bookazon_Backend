@@ -21,7 +21,7 @@ class AuthController extends Controller {
     //
 
     public function __construct() {
-        $this->middleware( 'auth:api', [ 'except' => [ 'login', 'register','resetPassword' ] ] );
+        $this->middleware( 'auth:api', [ 'except' => [ 'login', 'register','update' ] ] );
     }
 
 
@@ -52,9 +52,9 @@ class AuthController extends Controller {
 
         $success[ 'user' ] = $user;
         $success['token']  = JWTAuth::attempt($credentials);
-        $success['mail'] = Mail::send(view('auth.verify-email'),['sdsdgsd'],function ($message) use ($input){
-            $message->to($input['email'],'fffffff');
-        });
+//        $success['mail'] = Mail::send(view('auth.verify-email'),['sdsdgsd'],function ($message) use ($input){
+//            $message->to($input['email'],'fffffff');
+//        });
         return sendResponse( $success, 'user registered successfully', 201 );
 
     }
@@ -143,6 +143,19 @@ class AuthController extends Controller {
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => auth()->user()
         ] );
+    }
+
+    public function update(Request $request)
+    {
+        dd($request->all());
+        $request->validate([
+            'first_name' => [ 'required', 'string', 'max:255' ],
+            'last_name' => [ 'required', 'string', 'max:255' ],
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8',
+            'password_confirmation' => 'required|same:password',
+            'phone_number'=>'required|min:11|numeric',
+        ]);
     }
 
 }
