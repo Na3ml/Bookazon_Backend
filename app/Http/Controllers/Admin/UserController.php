@@ -21,7 +21,7 @@ class UserController extends Controller
 
     public function index()
  {
-        $users = User::where( 'role_id', 1 )->get();
+        $users = User::where( 'role_id', 1 )->latest()->get();
         return view( 'admin.superadmin.index', compact( 'users' ) );
 
     }
