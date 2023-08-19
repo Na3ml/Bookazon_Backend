@@ -38,141 +38,170 @@
                                     <thead>
                                         <tr>
                                             <th>Serial</th>
-                                            <th>Property Name</th>
-                                            <th>Property Image</th>
-                                            <th>Property Type</th>
+                                            <th>Room Code Number</th>
+                                            <th>Room Image</th>
+                                            <th>Room Type</th>
                                             <th>Price</th>
-                                            <th>City</th>
-                                            <th>Code</th>
-                                            <th>Status</th>
+                                            <th>Room Video</th>
                                             <th>Action</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-
                                             @php $i=0; @endphp
-                                            @foreach ($rooms as $row)
+                                            @foreach ($rooms as $key => $item)
                                                 @php $i++; @endphp
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>
-                                                <img src="{{ asset('uploads/' . $row->featured_photo) }}" alt=""
-                                                    class="w_200">
-                                            </td>
-                                            <td>{{ $row->name }}</td>
-                                            <td>${{ $row->price }}</td>
-                                            <td class="pt_10 pb_10">
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->room_number }}</td>
+                                                <td>
+                                                    <img src="{{ URL::asset($item->featured_photo) }}" alt=""
+                                                        width="100" height="100">
+                                                </td>
+                                                <td>{{ $item->room_type }}</td>
 
-                                                <button class="btn btn-warning" data-toggle="modal"
-                                                    data-target="#exampleModal{{ $i }}">Detail</button>
+                                                <td>{{ $item->price }}</td>
 
-                                                <a href="{{ route('admin_room_gallery', $row->id) }}"
-                                                    class="btn btn-success">Gallery</a>
+                                                <td>
+                                                    <video width="140" height="140" controls>
+                                                        <source src="{{ URL::asset($item->video_id) }}" type="video/mp4">
+                                                    </video>
+                                                </td>
+                                                <td>
+                                                    <ul class="action">
+                                                        <li> <!-- Vertically centered modal-->
+                                                            <button class="btn btn-primary mx-3" data-bs-toggle="modal"
+                                                                data-bs-target="#exampleModalCenter">Details</button>
+                                                            </i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="edit"> <a
+                                                                href="{{ route('rooms.edit', $item->id) }}">Edit<i
+                                                                    class="icon-pencil-alt"></i></a>
+                                                        </li>
+                                                        <li class="delete">
+                                                            <a href="{{ route('rooms.destroy', $item->id) }}"
+                                                                data-confirm-delete="true">Delete</a><i
+                                                                class="icon-trash"></i>
 
-                                                <a href="{{ route('admin_room_edit', $row->id) }}"
-                                                    class="btn btn-primary">Edit</a>
-                                                <a href="{{ route('admin_room_delete', $row->id) }}" class="btn btn-danger"
-                                                    onClick="return confirm('Are you sure?');">Delete</a>
-                                            </td>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+
+
                                         </tr>
-
-                                        <div class="modal fade" id="exampleModal{{ $i }}" tabindex="-1"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
+                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalCenter" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Room Detail</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">×</span>
-                                                        </button>
+                                                        <h5 class="modal-title">Room Details</h5>
+                                                        <button class="btn-close" type="button" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="form-group row bdb1 pt_10 mb_0">
                                                             <div class="col-md-4"><label class="form-label">Photo</label>
                                                             </div>
                                                             <div class="col-md-8">
-                                                                <img src="{{ asset('uploads/' . $row->featured_photo) }}"
+                                                                <img src="{{ asset($item->featured_photo) }}"
                                                                     alt="" class="w_200">
                                                             </div>
                                                         </div>
                                                         <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Name</label>
+                                                            <div class="col-md-4"><label class="form-label">Room
+                                                                    Number</label>
                                                             </div>
-                                                            <div class="col-md-8">{{ $row->name }}</div>
+                                                            <div class="col-md-8">{{ $item->room_number }}</div>
                                                         </div>
                                                         <div class="form-group row bdb1 pt_10 mb_0">
                                                             <div class="col-md-4"><label
                                                                     class="form-label">Description</label></div>
-                                                            <div class="col-md-8">{!! $row->description !!}</div>
+                                                            <div class="col-md-8">{!! $item->description !!}</div>
                                                         </div>
                                                         <div class="form-group row bdb1 pt_10 mb_0">
                                                             <div class="col-md-4"><label class="form-label">Price (per
                                                                     night)</label></div>
-                                                            <div class="col-md-8">${{ $row->price }}</div>
+                                                            <div class="col-md-8">${{ $item->price }}</div>
                                                         </div>
                                                         <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Total
-                                                                    Rooms</label></div>
-                                                            <div class="col-md-8">{{ $row->total_rooms }}</div>
+                                                            <div class="col-md-4"><label class="form-label">Belonges TO
+                                                                    Property</label></div>
+                                                            <div class="col-md-8">
+                                                                {{ $item->property->property_name }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row bdb1 pt_10 mb_0">
+                                                            <div class="col-md-4"><label class="form-label">Availability
+                                                                    start Date</label></div>
+                                                            <div class="col-md-8">{{ $item->availability_date_start }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row bdb1 pt_10 mb_0">
+                                                            <div class="col-md-4"><label class="form-label">Availability
+                                                                    End Date</label></div>
+                                                            <div class="col-md-8">{{ $item->availability_date_end }}</div>
                                                         </div>
                                                         <div class="form-group row bdb1 pt_10 mb_0">
                                                             <div class="col-md-4"><label class="form-label">Total
                                                                     Amenities</label></div>
                                                             <div class="col-md-8">
                                                                 @php
-                                                                    $arr = explode(',', $row->amenities);
+                                                                    $arr = explode(',', $item->amenities);
                                                                     for ($j = 0; $j < count($arr); $j++) {
                                                                         $temp_row = \App\Models\Amenity::where('id', $arr[$j])->first();
-                                                                        echo $temp_row->name . '<br>';
+                                                                        echo $temp_row->amenities_name . '<br>';
                                                                     }
                                                                 @endphp
                                                             </div>
                                                         </div>
                                                         <div class="form-group row bdb1 pt_10 mb_0">
-                                                            <div class="col-md-4"><label class="form-label">Size</label>
+                                                            <div class="col-md-4"><label class="form-label">Occupancy
+                                                                    Limit</label>
                                                             </div>
-                                                            <div class="col-md-8">{{ $row->size }}</div>
+                                                            <div class="col-md-8">{{ $item->occupancy_limit }}</div>
                                                         </div>
                                                         <div class="form-group row bdb1 pt_10 mb_0">
                                                             <div class="col-md-4"><label class="form-label">Total
                                                                     Beds</label></div>
-                                                            <div class="col-md-8">{{ $row->total_beds }}</div>
+                                                            <div class="col-md-8">{{ $item->total_beds }}</div>
                                                         </div>
                                                         <div class="form-group row bdb1 pt_10 mb_0">
                                                             <div class="col-md-4"><label class="form-label">Total
                                                                     Bathrooms</label></div>
-                                                            <div class="col-md-8">{{ $row->total_bathrooms }}</div>
+                                                            <div class="col-md-8">{{ $item->total_bathrooms }}</div>
                                                         </div>
                                                         <div class="form-group row bdb1 pt_10 mb_0">
                                                             <div class="col-md-4"><label class="form-label">Total
                                                                     Balconies</label></div>
-                                                            <div class="col-md-8">{{ $row->total_balconies }}</div>
+                                                            <div class="col-md-8">{{ $item->total_balconies }}</div>
                                                         </div>
                                                         <div class="form-group row bdb1 pt_10 mb_0">
                                                             <div class="col-md-4"><label class="form-label">Total
                                                                     Guests</label></div>
-                                                            <div class="col-md-8">{{ $row->total_guests }}</div>
+                                                            <div class="col-md-8">{{ $item->total_guests }}</div>
                                                         </div>
                                                         <div class="form-group row bdb1 pt_10 mb_0">
                                                             <div class="col-md-4"><label class="form-label">Video</label>
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="iframe-container1">
-                                                                    <iframe width="560" height="315"
-                                                                        src="https://www.youtube.com/embed/{{ $row->video_id }}"
-                                                                        title="YouTube video player" frameborder="0"
-                                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                                        allowfullscreen></iframe>
+                                                                    <video width="280" height="200" controls>
+                                                                        <source src="{{ URL::asset($item->video_id) }}"
+                                                                            type="video/mp4">
+                                                                    </video>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button"
+                                                                data-bs-dismiss="modal">Close</button>
+
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        @endforeach
+                                            @endforeach
 
                                     </tbody>
                                 </table>
@@ -183,7 +212,6 @@
             </div>
         </div>
         <!-- Zero Configuration  Ends-->
-
     </div>
 @endsection
 

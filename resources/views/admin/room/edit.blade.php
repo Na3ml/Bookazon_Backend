@@ -15,14 +15,14 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-sm-6">
-                    <h3>Add Room</h3>
+                    <h3>Edit Room</h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i data-feather="home"></i></a>
                         </li>
                         <li class="breadcrumb-item">Room</li>
-                        <li class="breadcrumb-item active">all</li>
+                        <li class="breadcrumb-item active">Edit</li>
                     </ol>
                 </div>
             </div>
@@ -35,93 +35,106 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <form class="needs-validation" novalidate="" action="{{ route('rooms.store') }}" method="POST"
-                            enctype="multipart/form-data">
+                        <form class="needs-validation" novalidate="" action="{{ route('rooms.update', $room_data->id) }}"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="row g-3">
-
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="validationCustom02">Photo *</label>
-                                        <input class="form-control" type="file" name="featured_photo"
-                                            id="validationCustom02" type="text" required="">
-                                        <div class="invalid-feedback">Please Select Room Image.</div>
-                                        <div class="valid-feedback">Looks good!</div>
+                                <div class="mb-4">
+                                    <label class="form-label">Existing Featured Photo</label>
+                                    <div>
+                                        <img src="{{ asset($room_data->featured_photo) }}" alt="" class="w_200">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="validationCustomUsername">Price *</label>
-                                        <div class="input-group"><span class="input-group-text">0.00</span>
-                                            <input class="form-control" id="validationCustomUsername" type="number"
-                                                name="price" aria-label="Amount (to the nearest dollar)"
-                                                aria-describedby="inputGroupPrepend" required=""
-                                                value="{{ old('price') }}">
-                                            <div class="invalid-feedback">Please Enter Room Nightly Price.</div>
+                                <div class="mb-4">
+                                    <label class="form-label">Change Featured Photo</label>
+                                    <input class="form-control" type="file" name="featured_photo" id="validationCustom02"
+                                        type="text" required="">
+                                    <div class="invalid-feedback">Please Select Room Image.</div>
+                                    <div class="valid-feedback">Looks good!</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="validationCustomUsername">Price *</label>
+                                    <div class="input-group"><span class="input-group-text">0.00</span>
+                                        <input class="form-control" id="validationCustomUsername" type="number"
+                                            name="price" aria-label="Amount (to the nearest dollar)"
+                                            aria-describedby="inputGroupPrepend" required=""
+                                            value="{{ $room_data->price }}">
+                                        <div class="invalid-feedback">Please Enter Room Nightly Price.</div>
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row g-3">
-                                <div class="col-md-4">
-                                    <label class="form-label" for="validationCustom03">Total Rooms *</label>
-                                    <div class="input-group"><span class="input-group-text">0.00</span>
-                                        <input class="form-control" id="validationCustomUsername" type="number"
-                                            name="total_rooms" aria-label="Amount (to the nearest dollar)"
-                                            aria-describedby="inputGroupPrepend" required=""
-                                            value="{{ old('total_rooms') }}">
-                                        <div class="invalid-feedback">Please Enter Room Number.</div>
-                                    </div>
-                                </div>
+
                                 <div class="col-md-4">
                                     <label class="form-label" for="validationCustom04">Room Type</label>
                                     <select class="form-select" name="room_type" id="validationCustom04" required="">
                                         <option selected="" disabled="" value="">Choose...</option>
-                                        <option value="single">single</option>
-                                        <option value="double">double</option>
-                                        <option value="deluxe">deluxe</option>
-                                        <option value="suite">suite</option>
+
+                                        <option {{ $room_data->room_type == 'single' ? 'selected="selected"' : '' }}
+                                            value="single">
+                                            {{ $room_data->room_type }}</option>
+                                        <option value="double"
+                                            {{ $room_data->room_type == 'double' ? 'selected="selected"' : '' }}>
+                                            double
+                                        </option>
+                                        <option value="deluxe"
+                                            {{ $room_data->room_type == 'deluxe' ? 'selected="selected"' : '' }}>
+                                            deluxe
+                                        </option>
+                                        <option value="suite"
+                                            {{ $room_data->room_type == 'suite' ? 'selected="selected"' : '' }}>
+                                            suite
+                                        </option>
                                     </select>
                                     <div class="invalid-feedback">Please select a valid state.</div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <label class="form-label" for="validationCustom05">Amenities</label>
-
+                                <div class="mb-4">
+                                    <label class="form-label">Amenities</label>
                                     @php $i=0; @endphp
                                     @foreach ($all_amenities as $item)
+                                        @if (in_array($item->id, $existing_amenities))
+                                            @php $checked_type = 'checked'; @endphp
+                                        @else
+                                            @php $checked_type = ''; @endphp
+                                        @endif
+
                                         @php $i++; @endphp
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="{{ $item->id }}"
                                                 id="defaultCheck{{ $i }}" name="arr_amenities[]"
-                                                id="validationCustom05">
+                                                {{ $checked_type }}>
                                             <label class="form-check-label" for="defaultCheck{{ $i }}">
-                                                {{ $item->amenities_name }}
+                                                {{ $item->name }}
                                             </label>
                                         </div>
                                     @endforeach
-                                    <div class="invalid-feedback">Please check Aminities.</div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-9">
                                     <div class="mb-3 row g-3">
-                                        <label class="col-sm-3 col-form-label text-sm-end">Availability Date range</label>
+                                        <label class="col-sm-3 col-form-label text-sm-end">Availability Date
+                                            range</label>
                                         <div class="col-xl-5 col-sm-9">
                                             <input class="datepicker-here form-control digits" type="text"
                                                 data-range="true" data-multiple-dates-separator=" - " data-language="en"
-                                                name="date_range" value="{{ old('date_range') }}" required>
+                                                name="date_range" value="{{ $room_data->date_range }}" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3">
-                                        <label class="form-label" for="validationCustomUsername">Nightly Rate *</label>
+                                        <label class="form-label" for="validationCustomUsername">Nightly Rate
+                                            *</label>
                                         <div class="input-group"><span class="input-group-text">0.00</span>
                                             <input class="form-control" id="validationCustomUsername" type="number"
                                                 name="nightly_rate" aria-label="Amount (to the nearest dollar)"
                                                 aria-describedby="inputGroupPrepend" required=""
-                                                value="{{ old('nightly_rate') }}">
+                                                value="{{ $room_data->nightly_rate }}">
                                             <div class="invalid-feedback">Please Enter Room Nightly Price.</div>
 
                                         </div>
@@ -131,41 +144,48 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="mb-3 row g-3">
-                                        <label class="form-label" for="validationCustom03">Occupancy Limit *</label>
+                                        <label class="form-label" for="validationCustom03">Occupancy Limit
+                                            *</label>
                                         <div class="input-group"><span class="input-group-text">0.00</span>
                                             <input class="form-control" id="validationCustomUsername" type="number"
                                                 name="occupancy_limit" aria-label="Amount (to the nearest dollar)"
                                                 aria-describedby="inputGroupPrepend" required=""
-                                                value="{{ old('occupancy_limit') }}">
+                                                value="{{ $room_data->occupancy_limit }}">
                                             <div class="invalid-feedback">Please Enter Occupancy Limit.</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3 row g-3">
-                                        <label class="form-label" for="validationCustom03">Additional fees*</label>
+                                        <label class="form-label" for="validationCustom03">Additional
+                                            fees*</label>
                                         <div class="input-group"><span class="input-group-text">0.00</span>
                                             <input class="form-control" id="validationCustomUsername" type="number"
                                                 name=" Additional_fees" aria-label="Amount (to the nearest dollar)"
                                                 aria-describedby="inputGroupPrepend" required=""
-                                                value="{{ old('Additional_fees') }}">
+                                                value="{{ $room_data->Additional_fees }}">
                                             <div class="invalid-feedback">Please Enter Additional fees .</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3 row g-3">
-                                        <label class="form-label" for="validationCustom04">Attach To Property</label>
+                                        <label class="form-label" for="validationCustom04">Attach To
+                                            Property</label>
                                         <select class="form-select" name="property_id" id="validationCustom04"
                                             required="">
-                                            <option selected="" disabled="" value="">Choose...</option>
+                                            <option selected="" disabled="" value="">Choose...
+                                            </option>
 
-                                            @foreach ($owner_properties as $property)
-                                                <option value="{{ $property->id }}">{{ $property->property_name }}
-                                                </option>
-                                            @endforeach
+                                            @if ($owner_properties->count())
+                                                @foreach ($owner_properties as $property)
+                                                    <option value="{{ $property->id }}"
+                                                        {{ $property->id == $room_data->property_id ? 'selected="selected"' : '' }}>
+                                                        {{ $property->property_name }}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
-                                        <div class="invalid-feedback">Please select a valid state.</div>
+                                        <div class="invalid-feedback">Please select a valid Property.</div>
                                     </div>
                                 </div>
                             </div>
@@ -177,31 +197,33 @@
                                             <input class="form-control" id="validationCustomUsername" type="number"
                                                 name=" total_beds" aria-label="Amount (to the nearest dollar)"
                                                 aria-describedby="inputGroupPrepend" required=""
-                                                value="{{ old('total_beds') }}">
+                                                value="{{ $room_data->total_beds }}">
                                             <div class="invalid-feedback">Please Enter Total Beds .</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3 row g-3">
-                                        <label class="form-label" for="validationCustom03">Total Bathrooms*</label>
+                                        <label class="form-label" for="validationCustom03">Total
+                                            Bathrooms*</label>
                                         <div class="input-group"><span class="input-group-text">0.00</span>
                                             <input class="form-control" id="validationCustomUsername" type="number"
                                                 name=" total_bathrooms" aria-label="Amount (to the nearest dollar)"
                                                 aria-describedby="inputGroupPrepend" required=""
-                                                value="{{ old('total_bathrooms') }}">
+                                                value="{{ $room_data->total_bathrooms }}">
                                             <div class="invalid-feedback">Please Enter Total Bathrooms .</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="mb-3 row g-3">
-                                        <label class="form-label" for="validationCustom03">Total Balconies*</label>
+                                        <label class="form-label" for="validationCustom03">Total
+                                            Balconies*</label>
                                         <div class="input-group"><span class="input-group-text">0.00</span>
                                             <input class="form-control" id="validationCustomUsername" type="number"
                                                 name=" total_balconies" aria-label="Amount (to the nearest dollar)"
                                                 aria-describedby="inputGroupPrepend" required=""
-                                                value="{{ old('total_balconies') }}">
+                                                value="{{ $room_data->total_balconies }}">
                                             <div class="invalid-feedback">Please Enter Additional fees .</div>
                                         </div>
                                     </div>
@@ -213,7 +235,7 @@
                                             <input class="form-control" id="validationCustomUsername" type="number"
                                                 name=" total_guests" aria-label="Amount (to the nearest dollar)"
                                                 aria-describedby="inputGroupPrepend" required=""
-                                                value="{{ old('total_guests') }}">
+                                                value="{{ $room_data->total_guests }}">
                                             <div class="invalid-feedback">Please Enter Total guests .</div>
                                         </div>
                                     </div>
@@ -222,17 +244,25 @@
 
                             <div class="col-md-12">
                                 <label class="form-label" for="validationCustomUsername">description</label>
-                                <textarea id="editor1" name="description" cols="30" rows="10" required></textarea>
+                                <textarea id="editor1" name="description" cols="30" rows="10" required>{{ $room_data->description }}</textarea>
 
-                                <div class="invalid-feedback">Please check Aminities.</div>
+                                <div class="invalid-feedback">Please Enter description.</div>
                             </div>
                             <div id="html_container"></div>
 
                             <div class="col-md-12">
+                                <div class="mb-4">
+                                    <label class="form-label">Video Preview</label>
+                                    <div class="iframe-container1">
+                                        <video width="140" height="140" controls>
+                                            <source src="{{ URL::asset($room_data->video_id) }}" type="video/mp4">
+                                        </video>
+                                    </div>
+                                </div>
                                 <div class="mb-3 row g-3">
                                     <label class="form-label" for="validationCustom02">Video *</label>
                                     <input class="form-control" type="file" name="video_id" id="validationCustom02"
-                                        type="text" required="">
+                                        value="{{ $room_data->video_id }}">
                                     <div class="invalid-feedback">Please Select Room Video.</div>
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
@@ -241,7 +271,7 @@
 
 
                             <div class="mb-3 text-center m-t-5">
-                                <button class="btn btn-primary w-25" type="submit">Save</button>
+                                <button class="btn btn-primary w-25" type="submit">Update</button>
                             </div>
                         </form>
                     </div>

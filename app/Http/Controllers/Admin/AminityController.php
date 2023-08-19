@@ -42,8 +42,13 @@ class AminityController extends Controller {
 
         ];
         Amenity::insert( $data );
-        Alert::success( 'Aminties', 'Aminties Added Successfully' );
-        return Redirect()->route( 'aminities.index' );
+        $notification = array(
+            'message' => 'Aminties Added Successfully',
+            'alert-type' => 'success'
+        );
+
+        return Redirect()->route( 'aminities.index' )->with( $notification );
+        ;
     }
 
     /**

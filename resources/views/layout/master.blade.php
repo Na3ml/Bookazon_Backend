@@ -5,6 +5,7 @@
     @include('layout.head')
     <!-- comman css-->
     @include('layout.css')
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     @include('sweetalert::alert')
 
 </head>
@@ -77,7 +78,28 @@
                     </div>
                     {{-- scripts --}}
                     @include('layout.script')
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
                     @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
+
+                    <script>
+                        @if (Session::has('message'))
+                            var type = "{{ Session::get('alert-type', 'info') }}"
+                            switch (type) {
+                                case 'info':
+                                    toastr.info(" {{ Session::get('message') }} ");
+                                    break;
+                                case 'success':
+                                    toastr.success(" {{ Session::get('message') }} ");
+                                    break;
+                                case 'warning':
+                                    toastr.warning(" {{ Session::get('message') }} ");
+                                    break;
+                                case 'error':
+                                    toastr.error(" {{ Session::get('message') }} ");
+                                    break;
+                            }
+                        @endif
+                    </script>
 
                     {{-- end scripts --}}
 
