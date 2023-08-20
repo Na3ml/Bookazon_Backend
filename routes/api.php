@@ -27,8 +27,9 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
-    Route::get('/update', [AuthController::class, 'update']);
+    Route::post('/update', [AuthController::class, 'update']);
     Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']);
+    Route::post('/check-token', [ResetPasswordController::class, 'checkToken']);
     Route::post('/update-password', [ResetPasswordController::class, 'updatePassword']);
 //    Route::get('/properties', [AuthController::class, 'userProfile']);
 });

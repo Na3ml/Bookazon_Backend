@@ -50,6 +50,14 @@ class ResetPasswordController extends Controller {
         return sendError('','please enter valid email');
     }
 
+    public function checkToken(Request $request){
+        $user = DB::table('password_resets')->where('token',$request->token)->get();
+        if (count($user)>0){
+            return sendResponse($user,"success");
+        }
+        return sendError('','please enter valid pin');
+    }
+
     public function updatePassword(Request $request)
     {
         $request->validate([
