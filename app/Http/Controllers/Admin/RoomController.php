@@ -114,9 +114,12 @@ class RoomController extends Controller
         $room->created_at = Carbon::now();
         $room->save();
 
-        Alert::success( 'Rooms', 'Room Inserted Successfully' );
+        $notification = array(
+            'message' => 'Room Inserted Successfully',
+            'alert-type' => 'success'
+        );
 
-        return redirect()->route( 'rooms.index' );
+        return redirect()->route( 'rooms.index' )->with( $notification );
     }
 
     /**
@@ -235,9 +238,12 @@ class RoomController extends Controller
         $obj->created_at = Carbon::now();
         $obj->update();
 
-        Alert::success( 'Rooms', 'Room is updated successfully.' );
+        $notification = array(
+            'message' => 'Room  is Updated Successfully',
+            'alert-type' => 'success'
+        );
 
-        return redirect()->route( 'rooms.index' );
+        return redirect()->route( 'rooms.index' )->with( $notification );
 
     }
 
@@ -266,9 +272,12 @@ class RoomController extends Controller
 
         $room->delete();
 
-        Alert::success( 'Room has been deleted!', 'Deleting Action' );
+        $notification = array(
+            'message' => 'Room has been Deleted!',
+            'alert-type' => 'error'
+        );
 
-        return redirect()->route( 'rooms.index' );
+        return redirect()->route( 'rooms.index' )->with( $notification );
     }
 
 }

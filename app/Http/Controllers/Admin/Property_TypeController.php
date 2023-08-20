@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PTypes;
 use App\Http\Requests\PropertType\StorePropertTypeRequest;
-use Image;
+use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\File;
 
@@ -51,8 +51,12 @@ class Property_TypeController extends Controller {
         }
 
         PTypes::insert( $data );
-        Alert::success( 'Property Type', 'Property Type Added Successfully' );
-        return Redirect()->route( 'propertytype.index' );
+        $notification = array(
+            'message' => 'Property Type Type Added Successfully',
+            'alert-type' => 'success'
+        );
+
+        return Redirect()->route( 'propertytype.index' )->with( $notification );
     }
 
     /**
@@ -101,8 +105,11 @@ class Property_TypeController extends Controller {
         }
         $type = PTypes::where( 'id', $id );
         $type->update( $data );
-        Alert::success( 'Property Type', 'Property Type updated Successfully' );
-        return Redirect()->route( 'propertytype.index' );
+        $notification = array(
+            'message' => 'Property Type Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return Redirect()->route( 'propertytype.index' )->with( $notification );
     }
 
     /**
@@ -120,9 +127,12 @@ class Property_TypeController extends Controller {
             unlink( $pathTodelete3 );
         }
         $type->delete();
-        alert()->error( 'Property Type been deleted!', 'Deleting Action' );
 
-        // Alert::toast( 'Property Type been deleted!', 'success' );
-        return back();
+        $notification = array(
+            'message' => 'Property Type has been Deleted!',
+            'alert-type' => 'error'
+        );
+
+        return back()->with( $notification );
     }
 }

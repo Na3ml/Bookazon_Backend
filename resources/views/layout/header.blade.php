@@ -86,8 +86,8 @@
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0"><i data-feather="truck"></i></div>
                                 <div class="flex-grow-1">
-                                    <p><a href="/">Delivery processing </a><span
-                                            class="pull-right">6 hr</span></p>
+                                    <p><a href="/">Delivery processing </a><span class="pull-right">6 hr</span>
+                                    </p>
                                 </div>
                             </div>
                         </li>
@@ -104,8 +104,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0"><i data-feather="file-text"></i></div>
                                 <div class="flex-grow-1">
-                                    <p><a href="/">Tickets Generated</a><span
-                                            class="pull-right">1 hr</span></p>
+                                    <p><a href="/">Tickets Generated</a><span class="pull-right">1 hr</span></p>
                                 </div>
                             </div>
                         </li>
@@ -113,8 +112,8 @@
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0"><i data-feather="send"></i></div>
                                 <div class="flex-grow-1">
-                                    <p><a href="/">Delivery Complete</a><span
-                                            class="pull-right">45 min</span></p>
+                                    <p><a href="/">Delivery Complete</a><span class="pull-right">45 min</span>
+                                    </p>
                                 </div>
                             </div>
                         </li>
@@ -179,14 +178,14 @@
                 <li class="profile-nav onhover-dropdown">
                     <div class="account-user"><i data-feather="user"></i></div>
                     <ul class="profile-dropdown onhover-show-div">
-                        <li><a href="/"><i data-feather="user"></i><span>Account</span></a>
+                        <li><a href="{{ route('admin.profile') }}"><i data-feather="user"></i><span>Profile</span></a>
                         </li>
                         <li><a href="/"><i data-feather="mail"></i><span>Inbox</span></a>
                         </li>
-                        <li><a href="/"><i
-                                    data-feather="settings"></i><span>Settings</span></a></li>
-                        <li><a href="javascript:{}" onclick="document.getElementById('logout').submit()"><i data-feather="log-in"> </i><span>Log out</span></a></li>
-                        <form action="{{route('logout')}}" method="post" id="logout" hidden>
+                        <li><a href="/"><i data-feather="settings"></i><span>Settings</span></a></li>
+                        <li><a href="javascript:{}" onclick="document.getElementById('logout').submit()"><i
+                                    data-feather="log-in"> </i><span>Log out</span></a></li>
+                        <form action="{{ route('logout') }}" method="post" id="logout" hidden>
                             @csrf
                         </form>
                     </ul>
