@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable implements JWTSubject {
     use HasApiTokens, HasFactory, Notifiable;
@@ -52,6 +53,17 @@ class User extends Authenticatable implements JWTSubject {
     public function getJWTCustomClaims() {
         return [];
     }
+
+    public function getProfilePictureAttribute($value)
+    {
+        return asset('image').'/'.$value;
+    }
+//    public function profilePicture(): Attribute
+//    {
+//        return Attribute::make(
+//            get: fn() => asset('image/').$this->profile_picture
+//        );
+//    }
 
 }
 

@@ -147,15 +147,29 @@ class AuthController extends Controller {
 
     public function update(Request $request)
     {
-        dd($request->all());
-        $request->validate([
-            'first_name' => [ 'required', 'string', 'max:255' ],
-            'last_name' => [ 'required', 'string', 'max:255' ],
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
-            'password_confirmation' => 'required|same:password',
-            'phone_number'=>'required|min:11|numeric',
+//        $request->validate([
+//            'first_name' => [ 'required', 'string', 'max:255' ],
+//            'last_name' => [ 'required', 'string', 'max:255' ],
+//            'password' => 'required|min:8',
+//            'password_confirmation' => 'required|same:password',
+//            'phone_number'=>'required|min:11|numeric',
+//        ]);
+
+        $user = JWTAuth::parseToken()->authenticate();
+        $password = isset($request->password) ? bcrypt($request->password) : $user->password;
+        $update = User::find($user->id)->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+            'profile_picture' => $request->profile_picture->store('image','public_path'),
+            'gender' => $request->gender,
+            'password' => $password,
         ]);
+
+        if ($update){
+            return sendResponse($update,'sds');
+        }
     }
 
 }
