@@ -154,6 +154,7 @@ class PropertyController extends Controller {
     public function edit( $owner, $id ) {
         $owner = $owner;
         $property = Property::findOrFail( $id );
+        dd($property->property_thumbnail);
         $type = $property->amenities_id ;
         $property_ami = explode( ',', $type );
         $propertytype = PTypes::latest()->get();

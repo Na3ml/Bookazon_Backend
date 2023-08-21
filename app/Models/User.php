@@ -14,6 +14,7 @@ class User extends Authenticatable implements JWTSubject {
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'users';
+    protected $appends = ['full_name'];
     public $timestamps = true;
     protected $fillable = array( 'first_name', 'last_name', 'password', 'email', 'phone_number', 'address', 'gender', 'role_id', 'profile_picture', 'status' );
 
@@ -57,6 +58,16 @@ class User extends Authenticatable implements JWTSubject {
     public function getProfilePictureAttribute($value)
     {
         return asset('image').'/'.$value;
+    }
+
+    public function getFirstNameAttribute($value)
+    {
+        return ucwords($value);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 //    public function profilePicture(): Attribute
 //    {

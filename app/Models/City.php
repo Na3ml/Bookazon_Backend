@@ -18,4 +18,8 @@ class City extends Model
     {
         return $this->belongsTo(State::class);
     }
+
+//    public function rooms(){
+//        return $this->hasManyThrough()
+//    }
 }

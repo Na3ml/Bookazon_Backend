@@ -64,7 +64,11 @@ class Property extends Model
     */
 
     public function getAminitiesAttribute( $value )
- {
+    {
         return $this->attributes[ 'amenities_id' ] = json_decode( $value );
+    }
+    public function getPropertyThumbnailAttribute( $value )
+    {
+        return asset('/').$value;
     }
 }
