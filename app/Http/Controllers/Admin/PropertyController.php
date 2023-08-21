@@ -126,10 +126,12 @@ class PropertyController extends Controller {
             }
 
             /// End Facilities  ////
+            $notification = array(
+                'message' => 'Property Inserted Successfully',
+                'alert-type' => 'success'
+            );
 
-            Alert::success( 'Properties', 'Property Inserted Successfully' );
-
-            return redirect()->route( 'property.index', $owner );
+            return redirect()->route( 'property.index', $owner )->with( $notification );
         }
     }
 
@@ -182,9 +184,19 @@ class PropertyController extends Controller {
             $amenites = implode( ',', $amen );
             // dd( $amenites );
             $pcode = IdGenerator::generate( [ 'table' => 'properties', 'field' => 'property_code', 'length' => 5, 'prefix' => '12' ] );
+            $oldImage = $request->old_img;
+
+            $image = $request->file( 'property_thambnail' );
+            $name_gen = hexdec( uniqid() ).'.'.$image->getClientOriginalExtension();
+            Image::make( $image )->resize( 370, 250 )->save( 'dashboard/upload/property/thambnail/'.$name_gen );
+            $save_url = 'dashboard/upload/property/thambnail/'.$name_gen;
+
+            if ( file_exists( $oldImage ) ) {
+                unlink( $oldImage );
+            }
 
             Property::findOrFail( $id )->update( [
-
+                'property_thumbnail' => $save_url,
                 'ptype_id' => $request->ptype_id,
                 'amenities_id' => $amenites,
                 'property_name' => $request->property_name,
@@ -208,9 +220,12 @@ class PropertyController extends Controller {
 
             ] );
 
-            Alert::success( 'Properties', 'Property Updated Successfully' );
+            $notification = array(
+                'message' => 'Property Updated Successfully',
+                'alert-type' => 'success'
+            );
 
-            return redirect()->route( 'property.index', $owner );
+            return redirect()->route( 'property.index', $owner )->with( $notification );
         }
     }
 
@@ -231,11 +246,13 @@ class PropertyController extends Controller {
             unlink( $pathTodelete3 );
         }
         $property->delete();
-        alert()->error( 'Property been deleted!', 'Deleting Action' );
 
-        // Alert::toast( 'Property Type been deleted!', 'success' );
+        $notification = array(
+            'message' => 'Property has been deleted!!',
+            'alert-type' => 'error'
+        );
 
-        return redirect()->route( 'property.index', $owner );
+        return redirect()->route( 'property.index', $owner )->with( $notification );
     }
 
     public function UpdatePropertyFacilities( Request $request ) {

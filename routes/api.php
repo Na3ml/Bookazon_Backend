@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\PropertyController;
 use App\Http\Controllers\API\ResetPasswordController;
+use App\Http\Controllers\API\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,7 @@ Route::group([
 Route::group([],function(){
    Route::get('/properties',[PropertyController::class,'index']);
    Route::get('/properties/{id}',[PropertyController::class,'show']);
+});
+Route::group([],function(){
+   Route::post('/home/search',[HomeController::class,'search']);
 });

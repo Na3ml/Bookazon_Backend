@@ -28,7 +28,10 @@ Route::get('/', function () {
 
 Route::prefix('admin/dashboard')->middleware('auth:admin')->group(function () {
     Route::view('/', 'dashboards.default_dashboard')->name('dashboard');
+    Route::get('/admin/profile', [UserController::class,'Adminprofile'])->name('admin.profile');
+    Route::post('/admin/profile/update', [UserController::class,'AdminProfileStore'])->name('admin.profile.store');
     Route::resource('admin',UserController::class);
+    
     Route::resource('propertyowner',PropertyOwnerController::class);
     Route::resource('booker',BookerController::class);
     Route::resource('{owner}/property',PropertyController::class);

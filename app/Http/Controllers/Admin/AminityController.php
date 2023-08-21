@@ -82,8 +82,12 @@ class AminityController extends Controller {
 
         $Amenity = Amenity::where( 'id', $id );
         $Amenity->update( $data );
-        Alert::success( 'Amenity', 'Amenity updated Successfully' );
-        return Redirect()->route( 'aminities.index' );
+        $notification = array(
+            'message' => 'Amenity updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return Redirect()->route( 'aminities.index' )->with( $notification );
     }
 
     /**
@@ -95,9 +99,11 @@ class AminityController extends Controller {
         $Amenity = Amenity::findOrFail( $id );
 
         $Amenity->delete();
-        alert()->error( 'Amenity been deleted!', 'Deleting Action' );
 
-        // Alert::toast( 'Property Type been deleted!', 'success' );
-        return back();
+        $notification = array(
+            'message' => 'Amenity has been deleted!!',
+            'alert-type' => 'error'
+        );
+        return back()->with( $notification );
     }
 }
