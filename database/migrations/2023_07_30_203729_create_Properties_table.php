@@ -23,7 +23,7 @@ class CreatePropertiesTable extends Migration {
 			$table->string('city', 255);
 			$table->string('Additional_fees');
 			$table->timestamp('availability_date_start');
- 			$table->timestamp('availability_date_end');
+ 			$table->timestamp('availability_date_end')->nullable();
 			$table->string('longitude', 255)->nullable();
 			$table->string('latitude', 255)->nullable();
 			$table->string('hot', 255)->nullable();
