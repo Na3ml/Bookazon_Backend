@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Property;
 
-class Room extends Model 
+class Room extends Model
  {
 
     protected $table = 'rooms';
@@ -17,4 +17,8 @@ class Room extends Model
         return $this->belongsTo( Property::class, 'property_id', 'id' );
 
     }
+
+//    public function city(){
+//        return $this->hasOneThrough();
+//    }
 }

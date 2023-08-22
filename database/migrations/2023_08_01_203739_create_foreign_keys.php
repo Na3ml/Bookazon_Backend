@@ -23,22 +23,22 @@ class CreateForeignKeys extends Migration {
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });
-    
+
     Schema::table('rooms', function (Blueprint $table) {
-        $table->foreign('property_id')->references('id')->on('Properties')
+        $table->foreign('room_id')->references('id')->on('rooms')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });
 
-   
+
 
     Schema::table('facilities', function (Blueprint $table) {
         $table->foreign('property_id')->references('id')->on('Properties')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });
-        
-        
+
+
     Schema::table('rate_property', function (Blueprint $table) {
         $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('cascade')
@@ -69,7 +69,7 @@ class CreateForeignKeys extends Migration {
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });
-        
+
     Schema::table('contact_us', function (Blueprint $table) {
         $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('cascade')
@@ -128,7 +128,7 @@ class CreateForeignKeys extends Migration {
 		Schema::table('chat_messages', function(Blueprint $table) {
 			$table->dropForeign('chat_messages_receiver_id_foreign');
 		});
-		
+
 		Schema::table('contact_us', function(Blueprint $table) {
 			$table->dropForeign('contact_us_user_id_foreign');
 		});

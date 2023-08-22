@@ -10,7 +10,7 @@ class CreateOrdersTable extends Migration {
 		Schema::create('orders', function(Blueprint $table) {
 			$table->increments('id');
 			$table->timestamps();
-			$table->integer('propertiy_id')->unsigned();
+			$table->integer('room_id')->unsigned();
 			$table->integer('user_id')->unsigned();
 			$table->bigInteger('order_no');
 			$table->datetime('booking_date');

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\RoomResource;
+use App\Models\City;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Room;
 use App\Models\Property;
+use function inclued\sendResponse;
 
 class HomeController extends Controller
 {
@@ -48,6 +52,16 @@ class HomeController extends Controller
 
     public function newSearch(Request $request)
     {
-        dd($request->all());
+//        dd($request->check_in);
+        $ids = Order::where('check_in_date',$request->check_in)->orWhere('checko_out_date',$request->check_in)->orWhere('check_in_date',$request->check_out)
+            ->pluck('room_id');
+        $city = City::find($request->city);
+        $rooms = $city->rooms;
+//        dd($rooms);
+        $rooms = $rooms->whereNotIn('id',$ids);
+//        dd($rooms);
+        return sendResponse(RoomResource::collection($rooms),'');
+//        $id = $ids->where('check_in_date',$request->check_in);
+//        dd($rooms);
     }
 }
