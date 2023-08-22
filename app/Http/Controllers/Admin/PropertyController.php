@@ -26,7 +26,6 @@ class PropertyController extends Controller {
     */
 
     public function index( $owner ) {
-//        dd($owner);
         $properties = Property::latest()->get();
         $title = 'Delete Property!';
         $text = 'Are you sure you want to delete?';
