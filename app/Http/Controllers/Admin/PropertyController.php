@@ -26,6 +26,7 @@ class PropertyController extends Controller {
     */
 
     public function index( $owner ) {
+//        dd($owner);
         $properties = Property::latest()->get();
         $title = 'Delete Property!';
         $text = 'Are you sure you want to delete?';
@@ -56,6 +57,7 @@ class PropertyController extends Controller {
     public function store( StoreProperty $request, $owner ) {
 
         if ( $owner ) {
+//            dd($request->amenities_id);
             $amen = $request->amenities_id;
 
             $amenites = implode( ',', $amen );
@@ -88,7 +90,7 @@ class PropertyController extends Controller {
                 'longitude' => $request->longitude,
                 'featured' => $request->featured,
                 'hot' => $request->hot,
-                'user_id' => auth()->user()->id,
+                'user_id' => $owner,
                 'property_thumbnail' => $thambnail_Path,
                 'created_at' => Carbon::now(),
 

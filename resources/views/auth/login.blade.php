@@ -11,6 +11,9 @@
                                 @csrf
                                 <h4 class="text-center">Sign in to account</h4>
                                 <p class="text-center">Enter your email & password to login</p>
+                                @if(isset($error))
+                                    <h3 class="alert alert-danger">{{$error}}</h3>
+                                @endif
                                 <div class="form-group">
                                     <label class="col-form-label">Email Address</label>
                                     <input class="form-control" type="email" name="email" required placeholder="Test@gmail.com">

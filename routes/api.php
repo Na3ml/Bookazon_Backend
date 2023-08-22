@@ -40,4 +40,5 @@ Route::group([],function(){
 });
 Route::group([],function(){
    Route::post('/home/search',[HomeController::class,'search']);
+   Route::post('/search',[HomeController::class,'newSearch']);
 });

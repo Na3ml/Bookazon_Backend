@@ -45,4 +45,9 @@ class HomeController extends Controller
         }
         return response()->json(['data' => $data]);
     }
+
+    public function newSearch(Request $request)
+    {
+        dd($request->all());
+    }
 }
