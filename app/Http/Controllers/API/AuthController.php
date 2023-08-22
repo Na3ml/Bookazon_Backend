@@ -164,7 +164,7 @@ class AuthController extends Controller {
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
             'address' => $request->address,
-            'profile_picture' => $request->profile_picture->store('image','public_path'),
+            'profile_picture' => $request->profile_picture->store('image/them/','public_path'),
             'gender' => $request->gender,
             'password' => $password,
             

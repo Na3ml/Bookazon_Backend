@@ -26,7 +26,7 @@ class HomeController extends Controller
                     ->whereBetween('orders.checko_out_date', [request()->check_in, request()->check_out])
                     ->get()->toArray()
             );
-            
+
             //get ids of all booked rooms so we can filter them
             $booked_rooms_ids = collect($booked_rooms)->pluck('room_id');
 
@@ -56,5 +56,10 @@ class HomeController extends Controller
             $data['success'] = false;
         }
         return response()->json(['data' => $data]);
+    }
+
+    public function newSearch(Request $request)
+    {
+        dd($request->all());
     }
 }

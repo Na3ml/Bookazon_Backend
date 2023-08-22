@@ -39,6 +39,7 @@ class AuthController extends Controller
         if ( Auth::guard( 'admin' )->attempt( $user ) ) {
             return redirect()->route( 'dashboard' );
         }
+        return redirect()->back()->with('error','please enter valid data');
 
     }
 
