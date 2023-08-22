@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/prism.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/vector-map.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/select2.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/date-picker.css') }}">
 @endsection
 
 @section('main_content')
@@ -174,6 +175,7 @@
 
                                 <div class="col-sm-6">
                                     <div class="mb-3">
+
                                         <label class="form-label">Multiple Image </label>
                                         <input type="file" name="multi_img[]" class="form-control" id="multiImg"
                                             multiple="">
@@ -183,131 +185,139 @@
                                         @error('multi_img')
                                             <div class="invalid font-danger">{{ $message }}</div>
                                         @enderror
-
+                                    </div><!-- Col -->
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Availability Date
+                                            range</label>
+                                        <input class="datepicker-here form-control digits" type="text"
+                                            data-range="true" data-multiple-dates-separator=" - " data-language="en"
+                                            name="date_range" value="{{ old('date_range') }}" required>
                                     </div>
                                 </div><!-- Col -->
+                            </div><!-- Row -->
 
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
 
-                                            <label class="form-label">Latitude</label>
-                                            <input type="text" name="latitude" class="form-control"
-                                                value="{{ old('latitude') }}">
-                                            <a href="https://www.latlong.net/convert-address-to-lat-long.html"
-                                                target="_blank">Go here to get Latitude from address</a>
-                                        </div>
-                                        @error('latitude')
-                                            <div class="invalid font-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div><!-- Col -->
-                                    <div class="col-sm-6">
-                                        <div class="mb-3">
-
-                                            <label class="form-label">Longitude</label>
-                                            <input type="text" name="longitude" class="form-control"
-                                                value="{{ old('longitude') }}">
-                                            <a href="https://www.latlong.net/convert-address-to-lat-long.html"
-                                                target="_blank">Go here to get Longitude from address</a>
-                                        </div>
-                                        @error('longitude')
-                                            <div class="invalid font-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div><!-- Col -->
-                                </div><!-- Row -->
-
-                                <div class="row add_item">
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label for="facility_name" class="form-label">Facilities </label>
-                                            <select name="facility_name[]" id="facility_name" class="form-control">
-                                                <option value="">Select Facility</option>
-                                                <option value="Hospital">Hospital</option>
-                                                <option value="SuperMarket">Super Market</option>
-                                                <option value="School">School</option>
-                                                <option value="Entertainment">Entertainment</option>
-                                                <option value="Pharmacy">Pharmacy</option>
-                                                <option value="Airport">Airport</option>
-                                                <option value="Railways">Railways</option>
-                                                <option value="Bus Stop">Bus Stop</option>
-                                                <option value="Beach">Beach</option>
-                                                <option value="Mall">Mall</option>
-                                                <option value="Bank">Bank</option>
-                                            </select>
-                                        </div>
+                                        <label class="form-label">Latitude</label>
+                                        <input type="text" name="latitude" class="form-control"
+                                            value="{{ old('latitude') }}">
+                                        <a href="https://www.latlong.net/convert-address-to-lat-long.html"
+                                            target="_blank">Go here to get Latitude from address</a>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label for="distance" class="form-label"> Distance </label>
-                                            <input type="text" name="distance[]" id="distance" class="form-control"
-                                                placeholder="Distance (Km)">
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-4" style="padding-top: 30px;">
-                                        <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> Add
-                                            More..</a>
-                                    </div>
-                                    @error('facility_name')
+                                    @error('latitude')
                                         <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
-                                </div> <!---end row-->
+                                </div><!-- Col -->
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
 
-                                <!--========== Start of add multiple class with ajax ==============-->
-                                <div style="visibility: hidden">
-                                    <div class="whole_extra_item_add" id="whole_extra_item_add">
-                                        <div class="whole_extra_item_delete" id="whole_extra_item_delete">
-                                            <div class="container mt-2">
-                                                <div class="row">
+                                        <label class="form-label">Longitude</label>
+                                        <input type="text" name="longitude" class="form-control"
+                                            value="{{ old('longitude') }}">
+                                        <a href="https://www.latlong.net/convert-address-to-lat-long.html"
+                                            target="_blank">Go here to get Longitude from address</a>
+                                    </div>
+                                    @error('longitude')
+                                        <div class="invalid font-danger">{{ $message }}</div>
+                                    @enderror
+                                </div><!-- Col -->
+                            </div><!-- Row -->
 
-                                                    <div class="form-group col-md-4">
-                                                        <label for="facility_name">Facilities</label>
-                                                        <select name="facility_name[]" id="facility_name"
-                                                            class="form-control">
-                                                            <option value="">Select Facility</option>
-                                                            <option value="Hospital">Hospital</option>
-                                                            <option value="SuperMarket">Super Market</option>
-                                                            <option value="School">School</option>
-                                                            <option value="Entertainment">Entertainment</option>
-                                                            <option value="Pharmacy">Pharmacy</option>
-                                                            <option value="Airport">Airport</option>
-                                                            <option value="Railways">Railways</option>
-                                                            <option value="Bus Stop">Bus Stop</option>
-                                                            <option value="Beach">Beach</option>
-                                                            <option value="Mall">Mall</option>
-                                                            <option value="Bank">Bank</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-md-4">
-                                                        <label for="distance">Distance</label>
-                                                        <input type="text" name="distance[]" id="distance"
-                                                            class="form-control" placeholder="Distance (Km)">
-                                                    </div>
-                                                    <div class="form-group col-md-4" style="padding-top: 20px">
-                                                        <span class="btn btn-success btn-sm addeventmore"><i
-                                                                class="fa fa-plus-circle">Add</i></span>
-                                                        <span class="btn btn-danger btn-sm removeeventmore"><i
-                                                                class="fa fa-minus-circle">Remove</i></span>
-                                                    </div>
+                            <div class="row add_item">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="facility_name" class="form-label">Facilities </label>
+                                        <select name="facility_name[]" id="facility_name" class="form-control">
+                                            <option value="">Select Facility</option>
+                                            <option value="Hospital">Hospital</option>
+                                            <option value="SuperMarket">Super Market</option>
+                                            <option value="School">School</option>
+                                            <option value="Entertainment">Entertainment</option>
+                                            <option value="Pharmacy">Pharmacy</option>
+                                            <option value="Airport">Airport</option>
+                                            <option value="Railways">Railways</option>
+                                            <option value="Bus Stop">Bus Stop</option>
+                                            <option value="Beach">Beach</option>
+                                            <option value="Mall">Mall</option>
+                                            <option value="Bank">Bank</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="distance" class="form-label"> Distance </label>
+                                        <input type="text" name="distance[]" id="distance" class="form-control"
+                                            placeholder="Distance (Km)">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4" style="padding-top: 30px;">
+                                    <a class="btn btn-success addeventmore"><i class="fa fa-plus-circle"></i> Add
+                                        More..</a>
+                                </div>
+                                @error('facility_name')
+                                    <div class="invalid font-danger">{{ $message }}</div>
+                                @enderror
+                            </div> <!---end row-->
+
+                            <!--========== Start of add multiple class with ajax ==============-->
+                            <div style="visibility: hidden">
+                                <div class="whole_extra_item_add" id="whole_extra_item_add">
+                                    <div class="whole_extra_item_delete" id="whole_extra_item_delete">
+                                        <div class="container mt-2">
+                                            <div class="row">
+
+                                                <div class="form-group col-md-4">
+                                                    <label for="facility_name">Facilities</label>
+                                                    <select name="facility_name[]" id="facility_name"
+                                                        class="form-control">
+                                                        <option value="">Select Facility</option>
+                                                        <option value="Hospital">Hospital</option>
+                                                        <option value="SuperMarket">Super Market</option>
+                                                        <option value="School">School</option>
+                                                        <option value="Entertainment">Entertainment</option>
+                                                        <option value="Pharmacy">Pharmacy</option>
+                                                        <option value="Airport">Airport</option>
+                                                        <option value="Railways">Railways</option>
+                                                        <option value="Bus Stop">Bus Stop</option>
+                                                        <option value="Beach">Beach</option>
+                                                        <option value="Mall">Mall</option>
+                                                        <option value="Bank">Bank</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="distance">Distance</label>
+                                                    <input type="text" name="distance[]" id="distance"
+                                                        class="form-control" placeholder="Distance (Km)">
+                                                </div>
+                                                <div class="form-group col-md-4" style="padding-top: 20px">
+                                                    <span class="btn btn-success btn-sm addeventmore"><i
+                                                            class="fa fa-plus-circle">Add</i></span>
+                                                    <span class="btn btn-danger btn-sm removeeventmore"><i
+                                                            class="fa fa-minus-circle">Remove</i></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
-                                <div class="col-md-12">
-                                    <label class="form-label">description</label>
-                                    <textarea id="editor1" name="description" cols="30" rows="10"></textarea>
-                                    @error('description')
-                                        <div class="invalid font-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div id="html_container"></div>
                             </div>
+
+
+
+
+
+
+                            <div class="col-md-12">
+                                <label class="form-label">description</label>
+                                <textarea id="editor1" name="description" cols="30" rows="10"></textarea>
+                                @error('description')
+                                    <div class="invalid font-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div id="html_container"></div>
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -480,4 +490,7 @@
     <script src="{{ asset('assets/js/editor/ckeditor/styles.js') }}"></script>
     <script src="{{ asset('assets/js/editor/ckeditor/ckeditor.custom.js') }}"></script>
     <script src="{{ asset('assets/js/tooltip-init.js') }}"></script>
+    <script src="{{ asset('assets/js/datepicker/date-picker/datepicker.js') }}"></script>
+    <script src="{{ asset('assets/js/datepicker/date-picker/datepicker.en.js') }}"></script>
+    <script src="{{ asset('assets/js/datepicker/date-picker/datepicker.custom.js') }}"></script>
 @endsection

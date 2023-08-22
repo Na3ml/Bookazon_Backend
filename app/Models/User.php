@@ -22,6 +22,11 @@ class User extends Authenticatable implements JWTSubject {
         return $this->hasMany( Property::class, 'user_id' );
     }
 
+    public function providers()
+ {
+        return $this->hasMany( Provider::class, 'user_id', 'id' );
+    }
+
     /**
     * The attributes that should be hidden for serialization.
     *
@@ -54,16 +59,16 @@ class User extends Authenticatable implements JWTSubject {
         return [];
     }
 
-    public function getProfilePictureAttribute($value)
-    {
-        return asset('image').'/'.$value;
+    public function getProfilePictureAttribute( $value )
+ {
+        return asset( 'image' ).'/'.$value;
     }
-//    public function profilePicture(): Attribute
-//    {
-//        return Attribute::make(
-//            get: fn() => asset('image/').$this->profile_picture
-//        );
-//    }
+    //    public function profilePicture(): Attribute
+    // {
+    //        return Attribute::make(
+    //            get: fn() => asset( 'image/' ).$this->profile_picture
+    // );
+    //    }
 
 }
 

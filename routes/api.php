@@ -6,6 +6,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\PropertyController;
 use App\Http\Controllers\API\ResetPasswordController;
 use App\Http\Controllers\API\HomeController;
+use App\Http\Controllers\API\SocialAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::group([
     Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']);
     Route::post('/check-token', [ResetPasswordController::class, 'checkToken']);
     Route::post('/update-password', [ResetPasswordController::class, 'updatePassword']);
+    
 //    Route::get('/properties', [AuthController::class, 'userProfile']);
 });
 
@@ -38,6 +40,9 @@ Route::group([],function(){
    Route::get('/properties',[PropertyController::class,'index']);
    Route::get('/properties/{id}',[PropertyController::class,'show']);
 });
+
 Route::group([],function(){
    Route::post('/home/search',[HomeController::class,'search']);
+   Route::get('/login/{provider}', [SocialAuth::class,'redirectToProvider']);
+    Route::get('/login/{provider}/callback', [SocialAuth::class,'handleProviderCallback'])->name('auth.socialite.callback');
 });

@@ -15,4 +15,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/dashboard/upload
+public/dashboard/
