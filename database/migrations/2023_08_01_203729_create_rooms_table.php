@@ -17,7 +17,7 @@ class CreateRoomsTable extends Migration {
 			$table->string('amenities', 255);
 			$table->date('availability_date_start');
  			$table->date('availability_date_end');
-			$table->integer('occupancy_limit')->unsigned()->nullable();
+			$table->text('occupancy_limit')->nullable();
 			$table->string('Additional_fees');
             $table->text('total_beds')->nullable();
             $table->text('total_bathrooms')->nullable();

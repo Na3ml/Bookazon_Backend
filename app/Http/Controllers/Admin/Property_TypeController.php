@@ -9,11 +9,13 @@ use App\Http\Requests\PropertType\StorePropertTypeRequest;
 use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\File;
+use App\Traits\GeneralTrait;
 
 class Property_TypeController extends Controller {
     /**
     * Display a listing of the resource.
     */
+    use GeneralTrait;
 
     public function index() {
         //
@@ -43,11 +45,10 @@ class Property_TypeController extends Controller {
             'type_name'=>$request->type_name,
 
         ];
-        $image_icon = $request->type_icon;
-        if ( $request->hasFile( 'type_icon' ) ) {
-            $TypeIcon = uniqid() . '.' . $image_icon->getClientOriginalExtension();
-            Image::make( $image_icon )->resize( 500, 300 )->save( 'dashboard/Properties/Type/' . $TypeIcon );
-            $data[ 'type_icon' ] = 'dashboard/Properties/Type/' . $TypeIcon;
+
+        if ( $request->has( 'type_icon' ) ) {
+            $type_image = $this->uploadImage( 'property_Type_uploads', $request->type_icon );
+            $data[ 'type_icon' ] =  $type_image;
         }
 
         PTypes::insert( $data );
@@ -88,20 +89,11 @@ class Property_TypeController extends Controller {
             'type_name'=>$request->type_name,
 
         ];
-        $image_icon = $request->type_icon;
-        if ( $request->hasFile( 'type_icon' ) ) {
-            $TypeIcon = uniqid() . '.' . $image_icon->getClientOriginalExtension();
-            Image::make( $image_icon )->resize( 500, 300 )->save( 'dashboard/Properties/Type/' . $TypeIcon );
-            $data[ 'type_icon' ] = 'dashboard/Properties/Type/' . $TypeIcon;
 
-            $oldimage = $request->oldimage;
-            $pathTodelete = public_path( $oldimage );
-            // dd( $pathTodelete );
-            if ( file_exists( $pathTodelete ) ) {
-                unlink( $pathTodelete );
-            } else {
-                dd( 'File does not exists.' );
-            }
+        if ( $request->has( 'type_icon' ) ) {
+            $type_image = $this->uploadImage( 'property_Type_uploads', $request->type_icon );
+            $data[ 'type_icon' ] =  $type_image;
+
         }
         $type = PTypes::where( 'id', $id );
         $type->update( $data );
@@ -120,7 +112,7 @@ class Property_TypeController extends Controller {
         //
         $type = PTypes::findOrFail( $id );
 
-        $pathTodelete3 = public_path( $type->type_icon );
+        $pathTodelete3 = url( $type->type_icon );
         // dd( $pathTodelete3 );
         if ( File::exists( $pathTodelete3 ) ) {
             // File::delete( $image_path );

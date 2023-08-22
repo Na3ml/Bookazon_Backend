@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Validation\Rule;
 use App\Models\Role;
+use GuzzleHttp\Exception\ClientException;
+use Laravel\Socialite\Facades\Socialite;
 use function inclued\sendError;
 use function inclued\sendResponse;
 
@@ -165,11 +167,14 @@ class AuthController extends Controller {
             'profile_picture' => $request->profile_picture->store('image/them/','public_path'),
             'gender' => $request->gender,
             'password' => $password,
+            
         ]);
 
         if ($update){
             return sendResponse($update,'sds');
         }
     }
+
+  
 
 }

@@ -14,13 +14,18 @@ class User extends Authenticatable implements JWTSubject {
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table = 'users';
-    protected $appends = ['full_name'];
+    protected $appends = [ 'full_name' ];
     public $timestamps = true;
     protected $fillable = array( 'first_name', 'last_name', 'password', 'email', 'phone_number', 'address', 'gender', 'role_id', 'profile_picture', 'status' );
 
     public function properties()
  {
         return $this->hasMany( Property::class, 'user_id' );
+    }
+
+    public function providers()
+ {
+        return $this->hasMany( Provider::class, 'user_id', 'id' );
     }
 
     /**
@@ -55,26 +60,26 @@ class User extends Authenticatable implements JWTSubject {
         return [];
     }
 
-    public function getProfilePictureAttribute($value)
-    {
-        return asset('image').'/'.$value;
+    public function getProfilePictureAttribute( $value )
+ {
+        return asset( 'image' ).'/'.$value;
     }
 
-    public function getFirstNameAttribute($value)
-    {
-        return ucwords($value);
+    public function getFirstNameAttribute( $value )
+ {
+        return ucwords( $value );
     }
 
     public function getFullNameAttribute()
-    {
+ {
         return "{$this->first_name} {$this->last_name}";
     }
-//    public function profilePicture(): Attribute
-//    {
-//        return Attribute::make(
-//            get: fn() => asset('image/').$this->profile_picture
-//        );
-//    }
+    //    public function profilePicture(): Attribute
+    // {
+    //        return Attribute::make(
+    //            get: fn() => asset( 'image/' ).$this->profile_picture
+    // );
+    //    }
 
 }
 

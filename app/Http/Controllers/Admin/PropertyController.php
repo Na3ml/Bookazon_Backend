@@ -17,6 +17,7 @@ use App\Models\Country;
 use App\Models\Facility;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\File;
+use App\Traits\GeneralTrait;
 
 class PropertyController extends Controller {
     /**
@@ -24,6 +25,7 @@ class PropertyController extends Controller {
     *
     * @return Response
     */
+    use GeneralTrait;
 
     public function index( $owner ) {
         $properties = Property::latest()->get();
@@ -56,19 +58,23 @@ class PropertyController extends Controller {
     public function store( StoreProperty $request, $owner ) {
 
         if ( $owner ) {
-//            dd($request->amenities_id);
+            //            dd( $request->amenities_id );
             $amen = $request->amenities_id;
 
             $amenites = implode( ',', $amen );
 
+            $date_range = $request->input( 'date_range' );
+            $dates = explode( ' - ', $date_range );
+            $availability_date_start = $dates[ 0 ];
+            $availability_date_end = $dates[ 1 ];
+            $new_start_date = date( 'Y-m-d', strtotime( $availability_date_start ) );
+            $new_end_date = date( 'Y-m-d', strtotime( $availability_date_end ) );
+
             $pcode = IdGenerator::generate( [ 'table' => 'properties', 'field' => 'property_code', 'length' => 5, 'prefix' => '11' ] );
-
-            // dd( $image );
-            $imageName = hexdec( uniqid() ).'.'.$request->property_thambnail->extension();
-
-            Image::make( $request->property_thambnail )->resize( 770, 520 )->save( 'dashboard/upload/property/thambnail/'.$imageName );
-            $thambnail_Path = 'dashboard/upload/property/thambnail/'.$imageName;
-
+            $image = '';
+            if ( $request->has( 'property_thambnail' ) ) {
+                $image = $this->uploadImage( 'property_Thambinal_uploads', $request->property_thambnail );
+            }
             $property_id = Property::insertGetId( [
 
                 'ptype_id' => $request->ptype_id,
@@ -79,6 +85,8 @@ class PropertyController extends Controller {
                 'property_status' => $request->property_status,
                 'Additional_fees'=>$request->Additional_fees,
                 'price' => $request->price,
+                'availability_date_start' => $new_start_date,
+                'availability_date_end' => $new_end_date,
                 'description' => $request->description,
                 'property_size' => $request->property_size,
                 'address' => $request->address,
@@ -90,27 +98,26 @@ class PropertyController extends Controller {
                 'featured' => $request->featured,
                 'hot' => $request->hot,
                 'user_id' => $owner,
-                'property_thumbnail' => $thambnail_Path,
+                'property_thumbnail' => $image,
                 'created_at' => Carbon::now(),
 
             ] );
-
+            // dd( $property_id );
             $images = $request->file( 'multi_img' );
-            foreach ( $images as $img ) {
+            if ( $request->hasfile( 'multi_img' ) ) {
+                foreach ( $images as $img ) {
+                    $multiImages = $this->uploadImage( 'property_MultiImage_uploads', $img );
 
-                $make_name = hexdec( uniqid() ).'.'.$img->getClientOriginalExtension();
-                Image::make( $img )->resize( 770, 520 )->save( 'dashboard/upload/property/multi_image/'.$make_name );
-                $uploadPath = 'dashboard/upload/property/multi_image/'.$make_name;
+                    Photo::insert( [
 
-                Photo::insert( [
+                        'property_id' => $property_id,
+                        'photo' => $multiImages,
+                        'created_at' => Carbon::now(),
 
-                    'property_id' => $property_id,
-                    'photo' => $uploadPath,
-                    'created_at' => Carbon::now(),
-
-                ] );
-
+                    ] );
+                }
             }
+
             // End Foreac
 
             $facilities = Count( $request->facility_name );
@@ -157,9 +164,9 @@ class PropertyController extends Controller {
     public function edit( $owner, $id ) {
         $owner = $owner;
         $property = Property::findOrFail( $id );
-        dd($property->property_thumbnail);
+        dd( $property->property_thumbnail );
         $type = $property->amenities_id ;
-        $property_ami = explode( ',', $type );
+        $property_ami = explode( ', ', $type );
         $propertytype = PTypes::latest()->get();
         $amenities = Amenity::latest()->get();
         $multiImage = Photo::where( 'property_id', $id )->get();
@@ -182,22 +189,17 @@ class PropertyController extends Controller {
         if ( $owner ) {
 
             $amen = $request->amenities_id;
-            $amenites = implode( ',', $amen );
+            $amenites = implode( ', ', $amen );
             // dd( $amenites );
             $pcode = IdGenerator::generate( [ 'table' => 'properties', 'field' => 'property_code', 'length' => 5, 'prefix' => '12' ] );
             $oldImage = $request->old_img;
 
-            $image = $request->file( 'property_thambnail' );
-            $name_gen = hexdec( uniqid() ).'.'.$image->getClientOriginalExtension();
-            Image::make( $image )->resize( 370, 250 )->save( 'dashboard/upload/property/thambnail/'.$name_gen );
-            $save_url = 'dashboard/upload/property/thambnail/'.$name_gen;
-
-            if ( file_exists( $oldImage ) ) {
-                unlink( $oldImage );
+            if ( $request->has( 'property_thambnail' ) ) {
+                $image = $this->uploadImage( 'property_Thambinal_uploads', $request->property_thambnail );
             }
 
             Property::findOrFail( $id )->update( [
-                'property_thumbnail' => $save_url,
+                'property_thumbnail' =>$image,
                 'ptype_id' => $request->ptype_id,
                 'amenities_id' => $amenites,
                 'property_name' => $request->property_name,
@@ -240,7 +242,7 @@ class PropertyController extends Controller {
     public function destroy( $owner, $id ) {
         $property = Property::findOrFail( $id );
 
-        $pathTodelete3 = public_path( $property->property_thumbnail );
+        $pathTodelete3 = url( $property->property_thumbnail );
         // dd( $pathTodelete3 );
         if ( File::exists( $pathTodelete3 ) ) {
             // File::delete( $image_path );
