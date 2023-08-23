@@ -5,16 +5,16 @@
             <div class="col-12 p-0">
                 <div class="login-card">
                     <div>
-                        <div><a class="logo" href="{{ route('dashboard') }}"><img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo2.png') }}" alt="looginpage"></a></div>
+                        <div><a class="logo" href="{{ route('dashboard') }}"><img class="img-fluid for-light" style="height: 70px" src="{{ asset('assets/images/logo/logo2.jpg') }}" alt="looginpage"></a></div>
                         <div class="login-main">
                             <form class="theme-form" action="{{url('/login')}}" method="post">
                                 @csrf
                                 <h4 class="text-center">Sign in to account</h4>
                                 <p class="text-center">Enter your email & password to login</p>
-                                @if(isset($error))
-                                    <h3 class="alert alert-danger">{{$error}}</h3>
+                                @if(Session::has('err'))
+                                    <h5 class="alert alert-danger">{{Session::get('err')}}</h5>
                                 @endif
-                                <div class="form-group">
+                               <div class="form-group">
                                     <label class="col-form-label">Email Address</label>
                                     <input class="form-control" type="email" name="email" required placeholder="Test@gmail.com">
                                 </div>

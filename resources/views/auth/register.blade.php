@@ -6,7 +6,7 @@
             <div class="col-12 p-0">
                 <div class="login-card">
                     <div>
-                        <div><a class="logo text-center" href="{{ route('dashboard') }}"><img class="img-fluid for-light" src="{{ asset('assets/images/logo/logo2.png') }}" alt="looginpage"></a></div>
+                        <div><a class="logo text-center" href="{{ route('dashboard') }}"><img class="img-fluid for-light" style="height: 70px" src="{{ asset('assets/images/logo/logo2.jpg') }}" alt="looginpage"></a></div>
                         <div class="login-main">
                             <form class="theme-form" method="post" action="{{url('/register')}}">
                                 @csrf
@@ -52,7 +52,7 @@
                                         <li><a href="https://www.instagram.com" target="_blank"><i data-feather="instagram"></i></a></li>
                                     </ul>
                                 </div>
-                                <p class="mt-4 mb-0 text-center">Already have an account?<a class="ms-2" href="login.html">Sign in</a></p>
+                                <p class="mt-4 mb-0 text-center">Already have an account?<a class="ms-2" href="{{route('login')}}">Sign in</a></p>
                             </form>
                         </div>
                     </div>

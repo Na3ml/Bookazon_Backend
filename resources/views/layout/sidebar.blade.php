@@ -1,7 +1,7 @@
 <div class="sidebar-wrapper">
     <div>
         <div class="logo-wrapper"><a href="{{ route('dashboard') }}"><img class="img-fluid for-light"
-                    src="{{ asset('assets/images/logo/logo.png') }}" alt=""></a>
+                  style="height: 20px;"  src="{{ asset('assets/images/logo/logo.jpg') }}" alt=""></a>
             <div class="back-btn"><i data-feather="grid"></i></div>
             <div class="toggle-sidebar icon-box-sidebar"><i class="status_toggle middle sidebar-toggle"
                     data-feather="grid"> </i></div>
@@ -31,7 +31,7 @@
                     </li>
                     <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
                             href="javascript:void(0)"><i data-feather="airplay"></i><span class="">Property
-                                Owner</span></a>
+                                Owners</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('propertyowner.index') }}">Manage</a></li>
                             {{--                            <li><a href="">Chart</a></li> --}}
@@ -39,7 +39,7 @@
                     </li>
                     <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
                             href="javascript:void(0)"><i data-feather="airplay"></i><span
-                                class="">Booker</span></a>
+                                class="">Bookers</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('booker.index') }}">Manage</a></li>
                             {{--                            <li><a href="">Chart</a></li> --}}
@@ -47,7 +47,7 @@
                     </li>
                     <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
                             href="javascript:void(0)"><i data-feather="airplay"></i><span
-                                class="">Property_Type</span></a>
+                                class="">Property_Types</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('propertytype.index') }}">Manage</a></li>
                             {{--                            <li><a href="">Chart</a></li> --}}
@@ -55,7 +55,7 @@
                     </li>
                     <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
                             href="javascript:void(0)"><i data-feather="airplay"></i><span
-                                class="">Aminity</span></a>
+                                class="">Amenities</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('aminities.index') }}">Manage</a></li>
                             {{--                            <li><a href="">Chart</a></li> --}}

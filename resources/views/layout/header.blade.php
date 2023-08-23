@@ -17,41 +17,41 @@
         <div class="header-logo-wrapper col-auto p-0">
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>
             <div class="logo-header-main"><a href="{{ route('dashboard') }}"><img class="img-fluid for-light"
-                        src="{{ asset('assets/images/logo/logo2.png') }}" alt=""><img class="img-fluid for-dark"
+                        src="{{ asset('assets/images/logo/logo2.jpg') }}" alt=""><img class="img-fluid for-dark"
                         src="{{ asset('assets/images/logo/logo.png') }}" alt=""></a>
             </div>
         </div>
         <div class="left-header col horizontal-wrapper ps-0">
             <div class="left-menu-header">
                 <ul class="header-left">
-                    <li class="onhover-dropdown"><span class="f-w-600">Bookazon</span><span><i class="middle"
-                                data-feather="chevron-down"></i></span>
-                        <ul class="onhover-show-div left-dropdown">
-                            <li class="flyout-right"><a href="javascript:void(0)">Email</a>
-                                <ul>
-                                    <li> <a href="/">Mail Inbox</a></li>
-                                    <li> <a href="/">Read Mail</a></li>
-                                    <li> <a href="/">Compose</a></li>
-                                </ul>
-                            </li>
-                            <li class="flyout-right"><a href="javascript:void(0)">Chat</a>
-                                <ul>
-                                    <li> <a href="/">Chat App</a></li>
-                                    <li> <a href="/">Video Chat</a></li>
-                                </ul>
-                            </li>
-                            <li class="flyout-right"><a href="javascript:void(0)">Users</a>
-                                <ul>
-                                    <li> <a href="/">User Profile</a></li>
-                                    <li> <a href="/">Users Edit</a></li>
-                                    <li> <a href="/">User Cards</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/">Bookmarks</a></li>
-                            <li><a href="/">Contacts</a></li>
-                            <li><a href="/">Social App</a></li>
-                        </ul>
-                    </li>
+{{--                    <li class="onhover-dropdown"><span class="f-w-600">Bookazon</span><span><i class="middle"--}}
+{{--                                data-feather="chevron-down"></i></span>--}}
+{{--                        <ul class="onhover-show-div left-dropdown">--}}
+{{--                            <li class="flyout-right"><a href="javascript:void(0)">Email</a>--}}
+{{--                                <ul>--}}
+{{--                                    <li> <a href="/">Mail Inbox</a></li>--}}
+{{--                                    <li> <a href="/">Read Mail</a></li>--}}
+{{--                                    <li> <a href="/">Compose</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li class="flyout-right"><a href="javascript:void(0)">Chat</a>--}}
+{{--                                <ul>--}}
+{{--                                    <li> <a href="/">Chat App</a></li>--}}
+{{--                                    <li> <a href="/">Video Chat</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li class="flyout-right"><a href="javascript:void(0)">Users</a>--}}
+{{--                                <ul>--}}
+{{--                                    <li> <a href="/">User Profile</a></li>--}}
+{{--                                    <li> <a href="/">Users Edit</a></li>--}}
+{{--                                    <li> <a href="/">User Cards</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                            <li><a href="/">Bookmarks</a></li>--}}
+{{--                            <li><a href="/">Contacts</a></li>--}}
+{{--                            <li><a href="/">Social App</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
 
                 </ul>
             </div>
@@ -67,122 +67,122 @@
                         </div>
                     </div>
                 </li>
-                <li class="serchinput">
-                    <div class="serchbox"><i data-feather="search"></i></div>
-                    <div class="form-group search-form">
-                        <input type="text" placeholder="Search here...">
-                    </div>
-                </li>
+{{--                <li class="serchinput">--}}
+{{--                    <div class="serchbox"><i data-feather="search"></i></div>--}}
+{{--                    <div class="form-group search-form">--}}
+{{--                        <input type="text" placeholder="Search here...">--}}
+{{--                    </div>--}}
+{{--                </li>--}}
                 <li>
                     <div class="mode"><i class="fa fa-moon-o"></i></div>
                 </li>
-                <li class="onhover-dropdown">
-                    <div class="notification-box"><i data-feather="bell"></i></div>
-                    <ul class="notification-dropdown onhover-show-div">
-                        <li><i data-feather="bell"> </i>
-                            <h6 class="f-18 mb-0">Notitications</h6>
-                        </li>
-                        <li>
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0"><i data-feather="truck"></i></div>
-                                <div class="flex-grow-1">
-                                    <p><a href="/">Delivery processing </a><span class="pull-right">6 hr</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0"><i data-feather="shopping-cart"></i></div>
-                                <div class="flex-grow-1">
-                                    <p><a href="/">Order Complete</a><span class="pull-right">3
-                                            hr</span></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0"><i data-feather="file-text"></i></div>
-                                <div class="flex-grow-1">
-                                    <p><a href="/">Tickets Generated</a><span class="pull-right">1 hr</span></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0"><i data-feather="send"></i></div>
-                                <div class="flex-grow-1">
-                                    <p><a href="/">Delivery Complete</a><span class="pull-right">45 min</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a class="btn btn-primary" href="javascript:void(0)">Check all notification</a></li>
-                    </ul>
-                </li>
-                <li class="onhover-dropdown">
-                    <div class="message"><i data-feather="message-square"></i></div>
-                    <ul class="message-dropdown onhover-show-div">
-                        <li><i data-feather="message-square"> </i>
-                            <h6 class="f-18 mb-0">Messages</h6>
-                        </li>
-                        <li>
-                            <div class="d-flex align-items-start">
-                                <div class="message-img bg-light-primary"><img
-                                        src="{{ asset('assets/images/user/3.jpg') }}" alt=""></div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mb-0"> <a href="/">Emay Walter</a></h5>
-                                    <p>Do you want to go see movie?</p>
-                                </div>
-                                <div class="notification-right"><i data-feather="x"></i></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="d-flex align-items-start">
-                                <div class="message-img bg-light-primary"><img
-                                        src="{{ asset('assets/images/user/6.jpg') }}" alt=""></div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mb-0"> <a href="/">Jason Borne</a></h5>
-                                    <p>Thank you for rating us.</p>
-                                </div>
-                                <div class="notification-right"><i data-feather="x"></i></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="d-flex align-items-start">
-                                <div class="message-img bg-light-primary"><img
-                                        src="{{ asset('assets/images/user/10.jpg') }}" alt=""></div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mb-0"> <a href="/">Sarah Loren</a></h5>
-                                    <p>What`s the project report update?</p>
-                                </div>
-                                <div class="notification-right"><i data-feather="x"></i></div>
-                            </div>
-                        </li>
-                        <li><a class="btn btn-primary" href="/">Check Messages</a></li>
-                    </ul>
-                </li>
+{{--                <li class="onhover-dropdown">--}}
+{{--                    <div class="notification-box"><i data-feather="bell"></i></div>--}}
+{{--                    <ul class="notification-dropdown onhover-show-div">--}}
+{{--                        <li><i data-feather="bell"> </i>--}}
+{{--                            <h6 class="f-18 mb-0">Notitications</h6>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <div class="d-flex align-items-center">--}}
+{{--                                <div class="flex-shrink-0"><i data-feather="truck"></i></div>--}}
+{{--                                <div class="flex-grow-1">--}}
+{{--                                    <p><a href="/">Delivery processing </a><span class="pull-right">6 hr</span>--}}
+{{--                                    </p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <div class="d-flex align-items-center">--}}
+{{--                                <div class="flex-shrink-0"><i data-feather="shopping-cart"></i></div>--}}
+{{--                                <div class="flex-grow-1">--}}
+{{--                                    <p><a href="/">Order Complete</a><span class="pull-right">3--}}
+{{--                                            hr</span></p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <div class="d-flex align-items-center">--}}
+{{--                                <div class="flex-shrink-0"><i data-feather="file-text"></i></div>--}}
+{{--                                <div class="flex-grow-1">--}}
+{{--                                    <p><a href="/">Tickets Generated</a><span class="pull-right">1 hr</span></p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <div class="d-flex align-items-center">--}}
+{{--                                <div class="flex-shrink-0"><i data-feather="send"></i></div>--}}
+{{--                                <div class="flex-grow-1">--}}
+{{--                                    <p><a href="/">Delivery Complete</a><span class="pull-right">45 min</span>--}}
+{{--                                    </p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
+{{--                        <li><a class="btn btn-primary" href="javascript:void(0)">Check all notification</a></li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+{{--                <li class="onhover-dropdown">--}}
+{{--                    <div class="message"><i data-feather="message-square"></i></div>--}}
+{{--                    <ul class="message-dropdown onhover-show-div">--}}
+{{--                        <li><i data-feather="message-square"> </i>--}}
+{{--                            <h6 class="f-18 mb-0">Messages</h6>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <div class="d-flex align-items-start">--}}
+{{--                                <div class="message-img bg-light-primary"><img--}}
+{{--                                        src="{{ asset('assets/images/user/3.jpg') }}" alt=""></div>--}}
+{{--                                <div class="flex-grow-1">--}}
+{{--                                    <h5 class="mb-0"> <a href="/">Emay Walter</a></h5>--}}
+{{--                                    <p>Do you want to go see movie?</p>--}}
+{{--                                </div>--}}
+{{--                                <div class="notification-right"><i data-feather="x"></i></div>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <div class="d-flex align-items-start">--}}
+{{--                                <div class="message-img bg-light-primary"><img--}}
+{{--                                        src="{{ asset('assets/images/user/6.jpg') }}" alt=""></div>--}}
+{{--                                <div class="flex-grow-1">--}}
+{{--                                    <h5 class="mb-0"> <a href="/">Jason Borne</a></h5>--}}
+{{--                                    <p>Thank you for rating us.</p>--}}
+{{--                                </div>--}}
+{{--                                <div class="notification-right"><i data-feather="x"></i></div>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <div class="d-flex align-items-start">--}}
+{{--                                <div class="message-img bg-light-primary"><img--}}
+{{--                                        src="{{ asset('assets/images/user/10.jpg') }}" alt=""></div>--}}
+{{--                                <div class="flex-grow-1">--}}
+{{--                                    <h5 class="mb-0"> <a href="/">Sarah Loren</a></h5>--}}
+{{--                                    <p>What`s the project report update?</p>--}}
+{{--                                </div>--}}
+{{--                                <div class="notification-right"><i data-feather="x"></i></div>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
+{{--                        <li><a class="btn btn-primary" href="/">Check Messages</a></li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
                 <li class="maximize"><a href="#!" onclick="javascript:toggleFullScreen()"><i
                             data-feather="maximize-2"></i></a></li>
-                <li class="language-nav">
-                    <div class="translate_wrapper">
-                        <div class="current_lang">
-                            <div class="lang"><i data-feather="globe"></i></div>
-                        </div>
-                        <div class="more_lang">
+{{--                <li class="language-nav">--}}
+{{--                    <div class="translate_wrapper">--}}
+{{--                        <div class="current_lang">--}}
+{{--                            <div class="lang"><i data-feather="globe"></i></div>--}}
+{{--                        </div>--}}
+{{--                        <div class="more_lang">--}}
 
 
-                        </div>
-                    </div>
-                </li>
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </li>--}}
                 <li class="profile-nav onhover-dropdown">
                     <div class="account-user"><i data-feather="user"></i></div>
                     <ul class="profile-dropdown onhover-show-div">
                         <li><a href="{{ route('admin.profile') }}"><i data-feather="user"></i><span>Profile</span></a>
                         </li>
-                        <li><a href="/"><i data-feather="mail"></i><span>Inbox</span></a>
-                        </li>
-                        <li><a href="/"><i data-feather="settings"></i><span>Settings</span></a></li>
+{{--                        <li><a href="/"><i data-feather="mail"></i><span>Inbox</span></a>--}}
+{{--                        </li>--}}
+{{--                        <li><a href="/"><i data-feather="settings"></i><span>Settings</span></a></li>--}}
                         <li><a href="javascript:{}" onclick="document.getElementById('logout').submit()"><i
                                     data-feather="log-in"> </i><span>Log out</span></a></li>
                         <form action="{{ route('logout') }}" method="post" id="logout" hidden>
