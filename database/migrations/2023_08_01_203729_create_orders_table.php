@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration {
 			$table->bigInteger('order_no');
 			$table->datetime('booking_date');
 			$table->datetime('check_in_date');
-			$table->datetime('checko_out_date');
+			$table->datetime('check_out_date');
 			$table->string('transaction_id', 100);
 			$table->float('paid_amount');
 			$table->string('status', 50);
