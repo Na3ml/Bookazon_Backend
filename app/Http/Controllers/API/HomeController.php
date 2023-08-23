@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Room;
 use App\Models\Property;
+use function inclued\sendError;
+use function inclued\sendResponse;
 
 class HomeController extends Controller
 {
