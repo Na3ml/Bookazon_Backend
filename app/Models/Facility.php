@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Facility extends Model 
+class Facility extends Model
  {
 
     protected $table = 'facilities';
@@ -14,6 +14,10 @@ class Facility extends Model
     public function setFacilityNameAttribute( $value )
  {
         $this->attributes[ 'facility_name' ] = json_encode( $value );
+    }
+
+    public function property(){
+        $this->belongsTo(Property::class);
     }
 
     /**

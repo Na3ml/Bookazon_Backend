@@ -17,26 +17,23 @@ use function inclued\sendError;
 use function inclued\sendResponse;
 
 class HomeController extends Controller
-{
+ {
     //
+<<<<<<< HEAD
     public function search()
     {
         try {
             $data['success'] = true;
+=======
+>>>>>>> 7338c63cfd5605463560cc793d1d16ca2af4f423
 
-            //get the booked rooms where check_out is not between request()->check_in and request()->check_out
-            $booked_rooms = array_merge(
-                Room::join('orders', 'rooms.id', '=', 'orders.room_id')
-                    ->whereBetween('orders.check_in_date', [request()->check_in, request()->check_out])
-                    ->get()->toArray(),
-                Room::join('orders', 'rooms.id', '=', 'orders.room_id')
-                    ->whereBetween('orders.checko_out_date', [request()->check_in, request()->check_out])
-                    ->get()->toArray()
-            );
+    public function newSearch( Request $request )
+ {
 
-            //get ids of all booked rooms so we can filter them
-            $booked_rooms_ids = collect($booked_rooms)->pluck('room_id');
+        $ids = Order::where( 'check_in_date', $request->check_in )->orWhere( 'check_out_date', $request->check_in )->orWhere( 'check_in_date', $request->check_out )
+        ->pluck( 'room_id' );
 
+<<<<<<< HEAD
             // dd($booked_rooms_ids);
             //get available rooms
             $available_rooms = Room::when(request()->guest != null, function ($query) {
@@ -123,5 +120,24 @@ class HomeController extends Controller
             return sendResponse($order, 'please confirm your request');
         }
         return sendError('', 'error');
+=======
+        if ( $request->has( 'city' ) ) {
+            $city = City::with( 'rooms' )->where( 'name', 'like', '%'.$request->city.'%' )->first();
+        }
+
+        $rooms = $city->rooms;
+        // dd( $rooms );
+        $rooms = $rooms->whereNotIn( 'id', $ids )->where( 'total_guests', '>=', $request->total_guests );
+        if ( count( $rooms ) > 0 ) {
+            return sendResponse( RoomResource::collection( $rooms ), 'good' );
+        }
+        return sendError( '', 'sorry no more room available , please try again' );
+    }
+
+    public function book( Request $request ) {
+        $user = User::find( JWTAuth::parseToken()->authenticate()->id );
+        return $user;
+        dd( $request->all() );
+>>>>>>> 7338c63cfd5605463560cc793d1d16ca2af4f423
     }
 }

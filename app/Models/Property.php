@@ -26,6 +26,7 @@ class Property extends Model
         return $this->belongsTo(PTypes::class, 'ptype_id', 'id');
     }
 
+
     public function rooms()
     {
         return $this->hasMany(Room::class);
@@ -34,6 +35,11 @@ class Property extends Model
     public function facilities()
     {
         return $this->hasMany(Facility::Class);
+    }
+
+    public function facilities()
+    {
+        return $this->hasMany( Facility::class );
     }
 
     public function sluggable(): array

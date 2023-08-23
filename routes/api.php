@@ -6,6 +6,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\PropertyController;
 use App\Http\Controllers\API\ResetPasswordController;
 use App\Http\Controllers\API\HomeController;
+use App\Http\Controllers\API\RoomController;
 use App\Http\Controllers\API\SocialAuth;
 
 /*
@@ -39,6 +40,8 @@ Route::group([
 Route::group([],function(){
    Route::get('/properties',[PropertyController::class,'index']);
    Route::get('/properties/{id}',[PropertyController::class,'show']);
+   Route::get('/rooms',[RoomController::class,'index']);
+   Route::get('/room/{id}',[RoomController::class,'show']);
 });
 
 Route::group([],function(){
