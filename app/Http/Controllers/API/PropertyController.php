@@ -28,7 +28,7 @@ class PropertyController extends Controller {
     */
 
     public function index() {
-        $properties = Property::with(['user','type'])->paginate(10);
+        $properties = Property::with(['type','facilities'])->paginate(10);
         if ($properties)
             return sendResponse($properties,'all properties');
         return sendError('','not found');
