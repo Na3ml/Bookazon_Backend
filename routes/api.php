@@ -32,7 +32,7 @@ Route::group([
     Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']);
     Route::post('/check-token', [ResetPasswordController::class, 'checkToken']);
     Route::post('/update-password', [ResetPasswordController::class, 'updatePassword']);
-    
+
 //    Route::get('/properties', [AuthController::class, 'userProfile']);
 });
 
@@ -42,7 +42,7 @@ Route::group([],function(){
 });
 
 Route::group([],function(){
-   Route::post('/home/search',[HomeController::class,'search']);
+   Route::post('/home/search',[HomeController::class,'newSearch']);
    Route::get('/login/{provider}', [SocialAuth::class,'redirectToProvider']);
     Route::get('/login/{provider}/callback', [SocialAuth::class,'handleProviderCallback'])->name('auth.socialite.callback');
 });

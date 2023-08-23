@@ -65,11 +65,19 @@ class HomeController extends Controller
     public function newSearch(Request $request)
     {
 //        dd($request->check_in);
-        $ids = Order::where('check_in_date',$request->check_in)->orWhere('checko_out_date',$request->check_in)->orWhere('check_in_date',$request->check_out)
-            ->pluck('room_id');
-        $city = City::find($request->city);
+//        $ids = Order::where('check_in_date',$request->check_in)->orWhere('check_out_date',$request->check_in)->orWhere('check_in_date',$request->check_out)
+//            ->pluck('room_id');
+
+        if($request->has('city')){
+            $city_id = City::where('name', 'like', '%'.$request->city.'%')->pluck('id');
+        }
+
+
+
+        $city = City::find($city_id);
+//        dd($city);
         $rooms = $city->rooms;
-//        dd($rooms);
+        dd($rooms);
         $rooms = $rooms->whereNotIn('id',$ids);
 //        dd($rooms);
         return sendResponse(RoomResource::collection($rooms),'');
