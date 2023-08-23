@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Amenity;
 use App\Models\User;
+use App\Models\Property;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -42,10 +43,11 @@ class RoomController extends Controller
     public function create()
  {
         $all_amenities = Amenity::get();
-        $user = User::find( auth()->user()->id );
-        $owner_properties = Auth::user()->properties;
 
-        //   dd( $owner_properties );
+
+        $owner_properties = Property::with('user')->latest()->get();
+
+//           dd( $owner_properties );
 
         return view( 'admin.room.create', compact( 'all_amenities', 'owner_properties' ) );
 

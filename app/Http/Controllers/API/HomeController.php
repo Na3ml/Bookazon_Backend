@@ -16,71 +16,28 @@ use function inclued\sendResponse;
 class HomeController extends Controller
 {
     //
-     public function search()
-    {
-        try {
-            $data['success'] = true;
 
-            //get the booked rooms where check_out is not between request()->check_in and request()->check_out
-            $booked_rooms = array_merge(
-                Room::join('orders', 'rooms.id', '=', 'orders.room_id')
-                    ->whereBetween('orders.check_in_date', [request()->check_in, request()->check_out])
-                    ->get()->toArray(),
-                Room::join('orders', 'rooms.id', '=', 'orders.room_id')
-                    ->whereBetween('orders.checko_out_date', [request()->check_in, request()->check_out])
-                    ->get()->toArray()
-            );
-
-            //get ids of all booked rooms so we can filter them
-            $booked_rooms_ids = collect($booked_rooms)->pluck('room_id');
-
-            // dd($booked_rooms_ids);
-            //get available rooms
-            $available_rooms = Room::when(request()->guest != null, function ($query) {
-                return $query->where('total_guests', '>=', request()->guest);
-            })->select('id')->whereNotIn('id', $booked_rooms_ids)->get();
-            // dd($available_rooms);
-            //get the hotels that meet the criteria]
-            $city_name = request()->city;
-            $city  = City::where('name',$city_name )->get();
-            // dd($city);
-            foreach($city as $item){
-                $pro = $item->rooms;
-            }
-            foreach($pro as $pr){
-                $prop = $pr->property;
-            }
-            dd($prop);
-
-            $data =  Property::join('rooms', 'properties.id', '=', 'rooms.property_id')->when(request()->address != null, function ($query,$city) {
-                  return $query->where('city',$city );})->whereIn('rooms.id', $available_rooms)->paginate(6);
-
-
-        } catch (\Throwable $th) {
-            $data['success'] = false;
-        }
-        return response()->json(['data' => $data]);
-    }
 
     public function newSearch(Request $request)
     {
 //        dd($request->check_in);
-//        $ids = Order::where('check_in_date',$request->check_in)->orWhere('check_out_date',$request->check_in)->orWhere('check_in_date',$request->check_out)
-//            ->pluck('room_id');
+        $ids = Order::where('check_in_date',$request->check_in)->orWhere('check_out_date',$request->check_in)->orWhere('check_in_date',$request->check_out)
+            ->pluck('room_id');
 
         if($request->has('city')){
-            $city_id = City::where('name', 'like', '%'.$request->city.'%')->pluck('id');
+            $city_id = City::where('name', 'like', '%'.$request->city.'%')->pluck('id','name')->first();
         }
-
-
-
-        $city = City::find($city_id);
-//        dd($city);
-        $rooms = $city->rooms;
-        dd($rooms);
-        $rooms = $rooms->whereNotIn('id',$ids);
+//        dd($city_id);
+        $rooms = City::where('id',$city_id)->with('rooms')->latest()->get();
 //        dd($rooms);
-        return sendResponse(RoomResource::collection($rooms),'');
+        $rooms = $rooms->whereNotIn('id',$ids)->where('total_guests', '<=', $request->guests);
+//        dd($rooms);
+
+
+
+
+
+       return sendResponse(RoomResource::collection($rooms),'');
 //        $id = $ids->where('check_in_date',$request->check_in);
 //        dd($rooms);
     }

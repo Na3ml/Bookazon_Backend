@@ -25,9 +25,15 @@ class Property extends Model
         return $this->belongsTo( PTypes::class, 'ptype_id', 'id' );
     }
 
+
     public function rooms()
  {
         return $this->hasMany( Room::class );
+    }
+
+    public function facilities()
+    {
+        return $this->hasMany( Facility::class );
     }
 
     public function sluggable(): array
