@@ -47,7 +47,7 @@
                     </li>
                     <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
                             href="javascript:void(0)"><i data-feather="airplay"></i><span
-                                class="">Property_Types</span></a>
+                                class="">Property Types</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('propertytype.index') }}">Manage</a></li>
                             {{--                            <li><a href="">Chart</a></li> --}}

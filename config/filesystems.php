@@ -62,6 +62,13 @@ return [
             'throw' => false,
 
         ],
+        'admin_profile_uploads' => [
+            'driver' => 'local',
+            'root' => public_path( 'image' ),
+            'visibility' => 'public',
+            'throw' => false,
+
+        ],
 
         'public' => [
             'driver' => 'local',

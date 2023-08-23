@@ -135,9 +135,9 @@
 
 
                             <div>
-                                <img class="wd-100 rounded-circle"
-                                    src="{{ !empty($profileData->profile_picture) ? url('dashboard/upload/admin_images/' . $profileData->profile_picture) : url('dashboard/upload/no_image.jpg') }}"
-                                    alt="profile">
+                                <img class="rounded-circle"
+                                    src="{{ !empty($profileData->profile_picture) ? url( $profileData->profile_picture) : url('dashboard/upload/no_image.jpg') }}"
+                                    alt="profile" style="width: 100px;height: 100px;">
                                 <span
                                     class="h4 ms-3 ">{{ $profileData->first_name . ' ' . $profileData->last_name }}</span>
                             </div>
