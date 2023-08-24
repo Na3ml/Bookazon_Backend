@@ -15,7 +15,7 @@ class RoomController extends Controller {
     public function index() {
         $room = Room::with( 'property' )->paginate( 10 );
         if ( $room )
-        return sendResponse( $room, 'all Rooms' );
+        return sendResponse( RoomResource::collection( $room ), 'all Rooms' );
         return sendError( '', 'not found' );
     }
     /**

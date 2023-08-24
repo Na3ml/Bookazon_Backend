@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
+use App\Traits\GeneralTrait;
 
 class RoomController extends Controller
  {
-
+    use GeneralTrait;
     /**
     * Display a listing of the resource.
     *
@@ -44,10 +45,9 @@ class RoomController extends Controller
  {
         $all_amenities = Amenity::get();
 
+        $owner_properties = Property::with( 'user' )->latest()->get();
 
-        $owner_properties = Property::with('user')->latest()->get();
-
-//           dd( $owner_properties );
+        //           dd( $owner_properties );
 
         return view( 'admin.room.create', compact( 'all_amenities', 'owner_properties' ) );
 
@@ -84,21 +84,21 @@ class RoomController extends Controller
         $new_end_date = date( 'Y-m-d', strtotime( $availability_date_end ) );
         //   dd( [ $new_start_date, $new_end_date ] );
         //Image Uplaod
-        $ext = $request->file( 'featured_photo' )->extension();
-        $final_name = time().'.'.$ext;
-        $request->file( 'featured_photo' )->move( public_path( 'dashboard/upload/room/image' ), $final_name );
-        $image_Path = 'dashboard/upload/room/image/'.$final_name;
+        if ( $request->has( 'featured_photo' ) ) {
+            $image = $this->uploadImage( 'room_image_uploads', $request->featured_photo );
+        }
         //Video Upload
-        $video_name = time().'_'.$request->video_id->getClientOriginalName();
-        $request->file( 'video_id' )->move( public_path( 'dashboard/upload/room/video' ), $video_name );
-        $file_Path = 'dashboard/upload/room/video/'.$video_name;
+
+        if ( $request->has( 'video_id' ) ) {
+            $video = $this->uploadVideo( 'room_video_uploads', $request->video_id );
+        }
         //Room Number Code Auto Generated
         $room_number = IdGenerator::generate( [ 'table' => 'rooms', 'field' => 'room_number', 'length' => 6, 'prefix' => 'R22' ] );
         //   dd( $room_number );
         $room = new Room();
         $room->amenities = $amenites;
         $room->room_number = $room_number;
-        $room->description = $request->description;
+        $room->description = strip_tags( $request->description );
         $room->nightly_rate = $request->nightly_rate;
         $room->price = $request->price;
         $room->room_type = $request->room_type;
@@ -110,9 +110,9 @@ class RoomController extends Controller
         $room->total_bathrooms = $request->total_bathrooms;
         $room->total_balconies = $request->total_balconies;
         $room->total_guests = $request->total_guests;
-        $room->featured_photo = $image_Path;
+        $room->featured_photo = $image;
         $room->property_id  = $request->property_id;
-        $room->video_id = $file_Path;
+        $room->video_id = $video;
         $room->created_at = Carbon::now();
         $room->save();
 
@@ -192,27 +192,21 @@ class RoomController extends Controller
 
         $room_number = IdGenerator::generate( [ 'table' => 'rooms', 'field' => 'room_number', 'length' => 6, 'prefix' => 'R22' ] );
 
-        if ( $request->hasFile( 'featured_photo' ) ) {
+        if ( $request->has( 'featured_photo' ) ) {
             $request->validate( [
                 'featured_photo' => 'image|mimes:jpg,jpeg,png,gif'
             ] );
-            unlink( $obj->featured_photo );
-            $ext = $request->file( 'featured_photo' )->extension();
-            $final_name = time().'.'.$ext;
-            $request->file( 'featured_photo' )->move( 'dashboard/upload/room/image/', $final_name );
-            $obj->featured_photo = 'dashboard/upload/room/image/'.$final_name;
+            //         unlink( url( $obj->featured_photo ) );
+            $obj->featured_photo = $this->uploadImage( 'room_image_uploads', $request->featured_photo );
         }
-        if ( $request->hasFile( 'video_id' ) ) {
+        //Video Upload
+
+        if ( $request->has( 'video_id' ) ) {
             $request->validate( [
                 'video_id' => 'mimes:mp4,mov,ogg | max:20000'
             ] );
-            unlink( $obj->video_id );
-            $path = $request->file( 'video_id' )->storeAs(
-                'dashboard/upload/room/video',
-                $request->file( 'video_id' )->getClientOriginalName() . '.' . $request->file( 'video_id' )->getClientOriginalExtension()
-            );
-
-            $obj->video_id = 'dashboard/upload/room/video/'.$path;
+            //         unlink( $obj->video_id );
+            $obj->video_id = $this->uploadVideo( 'room_video_uploads', $request->video_id );
         }
         $date_range = $request->input( 'date_range' );
         $dates = explode( ' - ', $date_range );

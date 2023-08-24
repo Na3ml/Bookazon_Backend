@@ -19,6 +19,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\File;
 use function inclued\sendError;
 use function inclued\sendResponse;
+use App\Http\Resources\PropertyRsource;
 
 class PropertyController extends Controller {
     /**
@@ -28,10 +29,10 @@ class PropertyController extends Controller {
     */
 
     public function index() {
-        $properties = Property::with(['type','facilities'])->paginate(10);
-        if ($properties)
-            return sendResponse($properties,'all properties');
-        return sendError('','not found');
+        $properties = Property::with( [ 'type', 'facilities' ] )->paginate( 10 );
+        if ( $properties )
+        return sendResponse( PropertyRsource::collection( $properties ), 'all properties' );
+        return sendError( '', 'not found' );
     }
     /**
     * Display the specified resource.
@@ -41,10 +42,10 @@ class PropertyController extends Controller {
     */
 
     public function show( $id ) {
-        $property = Property::with(['user','type','rooms'])->find($id);
-        if ($property)
-            return sendResponse($property,'good');
-        return sendError('','no data');
+        $property = Property::with( [ 'user', 'type', 'rooms' ] )->find( $id );
+        if ( $property )
+        return sendResponse( new PropertyRsource( $property ), 'good' );
+        return sendError( '', 'no data' );
 
     }
 
