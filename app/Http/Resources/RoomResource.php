@@ -33,7 +33,8 @@ class RoomResource extends JsonResource {
         for ( $j = 0; $j<count( $arr );
         $j++ ) {
             $temp_row = Amenity::where( 'id', $arr[ $j ] )->first();
-            $amenities[] = $temp_row->amenities_name;
+            $amenities['name'] = $temp_row->amenities_name;
+            $amenities['id'] = $temp_row->id;
         }
         // $Country = Country::where( 'id', $this->country )->pluck( 'name' );
         // $State = State::where( 'id', $this->state )->pluck( 'name' );
@@ -56,11 +57,12 @@ class RoomResource extends JsonResource {
             'total_bathrooms'=>$this->total_bathrooms,
             'total_balconies'=>$this->total_balconies,
             'total_guests'=>$this->total_guests,
-            'featured_photo'=>$this->featured_photo,
+            'featured_photo'=>asset('/').$this->featured_photo,
             'property_id'=>$this->property_id,
-            'video_id'=>$this->video_id,
-
-            'property'=>$this->property,
+            'video_id'=>asset('/').$this->video_id,
+//            'property'=>PropertyResource::make($this->property),
+            'created_at'=>date('Y-m-d',strtotime($this->created_at)),
+            'updated_at'=>date('Y-m-d',strtotime($this->updated_at)),
 
         ];
     }

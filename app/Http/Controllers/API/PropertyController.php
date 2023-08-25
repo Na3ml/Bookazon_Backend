@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PropertyResource;
 use App\Models\Amenity;
 use App\Models\User;
 use App\Models\Property;
@@ -28,9 +29,9 @@ class PropertyController extends Controller {
     */
 
     public function index() {
-        $properties = Property::with(['type','facilities'])->paginate(10);
+        $properties = Property::with(['type','facilities','rooms'])->paginate(10);
         if ($properties)
-            return sendResponse($properties,'all properties');
+            return sendResponse(PropertyResource::collection($properties),'all properties');
         return sendError('','not found');
     }
     /**
@@ -41,9 +42,9 @@ class PropertyController extends Controller {
     */
 
     public function show( $id ) {
-        $property = Property::with(['user','type','rooms'])->find($id);
+        $property = Property::with(['user','type','rooms','facilities'])->find($id);
         if ($property)
-            return sendResponse($property,'good');
+            return sendResponse(PropertyResource::make($property),'good');
         return sendError('','no data');
 
     }

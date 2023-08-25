@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PropertyResource;
 use App\Http\Resources\RoomResource;
 use App\Models\City;
 use App\Models\Order;
@@ -68,19 +69,26 @@ class HomeController extends Controller
 
     public function newSearch(Request $request)
     {
+        $request->validate([
+           'city'=> 'required',
+           'check_out'=> 'required',
+           'check_in'=> 'required',
+           'total_guests'=> 'required',
+        ]);
         $ids = Order::where('check_in_date', $request->check_in)->orWhere('check_out_date', $request->check_in)->orWhere('check_in_date', $request->check_out)
             ->orWhere([
                 ['check_out_date', '<=', $request->check_out],
                 ['check_in_date', '>=', $request->check_in],
-            ])->pluck('room_id');
+            ])->pluck('room_id'); // get not available rooms
 
         if ($request->has('city')) {
-            $city = City::with('rooms')->where('name', 'like', '%' . $request->city . '%')->first();
+            $city = City::where('name', 'like', '%' . $request->city . '%')->first();  //get city
         }
-        $rooms = $city->rooms;
-        $rooms = $rooms->whereNotIn('id', $ids)->where('total_guests', $request->total_guests);
-        if (count($rooms) > 0) {
-            return sendResponse(RoomResource::collection($rooms), 'good');
+        $rooms = Room::whereNotIn('id', $ids)->where('total_guests', $request->total_guests)->pluck('property_id'); //get all available room and pluck property_ids
+        $rooms = $rooms->unique(); //unique
+        $properties = Property::with(['rooms','type','facilities'])->where('city',$city->id)->whereIn('id',$rooms)->get();
+        if (count($properties) > 0) {
+            return sendResponse(PropertyResource::collection($properties), 'good');
         }
         return sendError('', 'sorry no more room available , please try again');
     }
@@ -105,7 +113,6 @@ class HomeController extends Controller
         $price = $days * $room->price;
         $addition = $room->Additional_fees;
         $total = $price + $addition;
-//        dd($room->id);
         $order = Order::create([
             'user_id' => $user->id,
             'room_id' => $room->id,
