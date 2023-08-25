@@ -10,9 +10,11 @@ use Intervention\Image\Facades\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\GeneralTrait;
 
 class UserController extends Controller
  {
+     use GeneralTrait;
 
     /**
     * Display a listing of the resource.
@@ -148,15 +150,11 @@ class UserController extends Controller
         $data->phone_number = $request->phone_number;
         $data->address = $request->address;
 
-        if ( $request->file( 'photo' ) ) {
-            $file = $request->file( 'photo' );
-            @unlink( public_path( 'dashboard/upload/admin_images/'.$data->profile_picture ) );
-            $filename = hexdec( uniqid() ).'.'.$file->getClientOriginalExtension();
-
-            Image::make( $file )->resize( 250, 250 )->save( 'dashboard/upload/admin_images/'.$filename );
-            $data[ 'profile_picture' ] = $filename;
-
+        if ( $request->has( 'photo' ) ) {
+            $image = $this->uploadImage( 'admin_profile_uploads', $request->photo );
         }
+        $data->profile_picture = $image;
+//
 
         /// Match The Old Password
 

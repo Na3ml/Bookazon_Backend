@@ -333,16 +333,16 @@
                             </div>
                     </div>
 
-                    <iframe
-                        width="600"
-                        height="450"
-                        style="border:0"
-                        loading="lazy"
-                        allowfullscreen
-                        referrerpolicy="no-referrer-when-downgrade"
-                        src="https://www.google.com/maps/embed/v1/place?key=
-    &q=Space+Needle,Seattle+WA">
-                    </iframe>
+{{--                    <iframe--}}
+{{--                        width="600"--}}
+{{--                        height="450"--}}
+{{--                        style="border:0"--}}
+{{--                        loading="lazy"--}}
+{{--                        allowfullscreen--}}
+{{--                        referrerpolicy="no-referrer-when-downgrade"--}}
+{{--                        src="https://www.google.com/maps/embed/v1/place?key=--}}
+{{--    &q=Space+Needle,Seattle+WA">--}}
+{{--                    </iframe>--}}
 
                     <div class="mb-3 text-center m-t-5">
                         <button class="btn btn-primary w-25" type="submit">Save</button>

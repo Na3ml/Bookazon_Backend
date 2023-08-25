@@ -11,15 +11,12 @@
                                 @csrf
                                 <h4 class="text-center">Sign in to account</h4>
                                 <p class="text-center">Enter your email & password to login</p>
-<<<<<<< HEAD
+
                                 @if(Session::has('err'))
                                     <h5 class="alert alert-danger">{{Session::get('err')}}</h5>
                                 @endif
                                <div class="form-group">
-=======
 
-                                <div class="form-group">
->>>>>>> 7338c63cfd5605463560cc793d1d16ca2af4f423
                                     <label class="col-form-label">Email Address</label>
                                     <input class="form-control" type="email" name="email" required placeholder="Test@gmail.com">
                                 </div>

@@ -3,13 +3,13 @@
     "file": "assets/SFProText-SemiboldItalic.9fc72165.woff2",
     "src": "public/assets/fonts/theme-font/SFProText-SemiboldItalic.woff2"
   },
-  "public/assets/fonts/theme-font/SFProText-LightItalic.woff2": {
-    "file": "assets/SFProText-LightItalic.ed964307.woff2",
-    "src": "public/assets/fonts/theme-font/SFProText-LightItalic.woff2"
-  },
   "public/assets/fonts/theme-font/SFProText-RegularItalic.woff2": {
     "file": "assets/SFProText-RegularItalic.af4d049c.woff2",
     "src": "public/assets/fonts/theme-font/SFProText-RegularItalic.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-LightItalic.woff2": {
+    "file": "assets/SFProText-LightItalic.ed964307.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-LightItalic.woff2"
   },
   "public/assets/fonts/theme-font/SFProText-Regular.woff2": {
     "file": "assets/SFProText-Regular.8a1914bc.woff2",
@@ -19,13 +19,13 @@
     "file": "assets/SFProText-Medium.7a3e5a3f.woff2",
     "src": "public/assets/fonts/theme-font/SFProText-Medium.woff2"
   },
-  "public/assets/fonts/theme-font/SFProText-Semibold.woff2": {
-    "file": "assets/SFProText-Semibold.4a9d3fc1.woff2",
-    "src": "public/assets/fonts/theme-font/SFProText-Semibold.woff2"
-  },
   "public/assets/fonts/theme-font/SFProText-MediumItalic.woff2": {
     "file": "assets/SFProText-MediumItalic.50339cee.woff2",
     "src": "public/assets/fonts/theme-font/SFProText-MediumItalic.woff2"
+  },
+  "public/assets/fonts/theme-font/SFProText-Semibold.woff2": {
+    "file": "assets/SFProText-Semibold.4a9d3fc1.woff2",
+    "src": "public/assets/fonts/theme-font/SFProText-Semibold.woff2"
   },
   "public/assets/fonts/theme-font/SFProText-HeavyItalic.woff2": {
     "file": "assets/SFProText-HeavyItalic.662f1340.woff2",
@@ -131,13 +131,13 @@
     "file": "assets/SFProText-Light.203c22d3.woff",
     "src": "public/assets/fonts/theme-font/SFProText-Light.woff"
   },
-  "public/assets/fonts/theme-font/SFProText-Bold.woff": {
-    "file": "assets/SFProText-Bold.767e05ba.woff",
-    "src": "public/assets/fonts/theme-font/SFProText-Bold.woff"
-  },
   "public/assets/fonts/theme-font/SFProText-BoldItalic.woff": {
     "file": "assets/SFProText-BoldItalic.ece1bef0.woff",
     "src": "public/assets/fonts/theme-font/SFProText-BoldItalic.woff"
+  },
+  "public/assets/fonts/theme-font/SFProText-Bold.woff": {
+    "file": "assets/SFProText-Bold.767e05ba.woff",
+    "src": "public/assets/fonts/theme-font/SFProText-Bold.woff"
   },
   "public/assets/fonts/theme-font/SFProText-Heavy.woff": {
     "file": "assets/SFProText-Heavy.8dfd548f.woff",

@@ -8,6 +8,7 @@ use App\Http\Controllers\API\ResetPasswordController;
 use App\Http\Controllers\API\HomeController;
 use App\Http\Controllers\API\RoomController;
 use App\Http\Controllers\API\SocialAuth;
+use App\Http\Controllers\API\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,9 @@ Route::group([
     Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']);
     Route::post('/check-token', [ResetPasswordController::class, 'checkToken']);
     Route::post('/update-password', [ResetPasswordController::class, 'updatePassword']);
+    Route::get('favorites', [FavoriteController::class, 'index']);
+    Route::post('favorites/create', [FavoriteController::class, 'store']);
+    Route::post('favorites/destroy', [FavoriteController::class, 'destroy']);
 
 //    Route::get('/properties', [AuthController::class, 'userProfile']);
 });
