@@ -77,9 +77,4 @@ class Property extends Model
     {
         return $this->attributes['amenities_id'] = json_decode($value);
     }
-
-    public function getPropertyThumbnailAttribute($value)
-    {
-        return url('dashboard/upload/property/thambnail') . '/' . $value;
-    }
 }
