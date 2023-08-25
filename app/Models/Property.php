@@ -33,6 +33,12 @@ class Property extends Model
     }
 
 
+    public function facilities()
+    {
+        return $this->hasMany(Facility::class);
+    }
+
+
 
     public function sluggable(): array
     {
