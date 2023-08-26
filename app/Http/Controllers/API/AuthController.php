@@ -156,18 +156,22 @@ class AuthController extends Controller {
 //            'password_confirmation' => 'required|same:password',
 //            'phone_number'=>'required|min:11|numeric',
 //        ]);
-
         $user = JWTAuth::parseToken()->authenticate();
+        $profile =$user->profile_picture ;
+        if($request->profile_picture ){
+            $profile =  $request->profile_picture->store('image/them','public_path');
+        }
+
         $password = isset($request->password) ? bcrypt($request->password) : $user->password;
         $update = User::find($user->id)->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
             'address' => $request->address,
-            'profile_picture' => $request->profile_picture->store('image/them/','public_path'),
+            'profile_picture' => $profile,
             'gender' => $request->gender,
             'password' => $password,
-            
+
         ]);
 
         if ($update){
@@ -175,6 +179,6 @@ class AuthController extends Controller {
         }
     }
 
-  
+
 
 }

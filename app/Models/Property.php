@@ -33,11 +33,12 @@ class Property extends Model
     }
 
 
-
     public function facilities()
     {
-        return $this->hasMany( Facility::class );
+        return $this->hasMany(Facility::class);
     }
+
+
 
     public function sluggable(): array
     {
@@ -75,10 +76,5 @@ class Property extends Model
     public function getAminitiesAttribute($value)
     {
         return $this->attributes['amenities_id'] = json_decode($value);
-    }
-
-    public function getPropertyThumbnailAttribute($value)
-    {
-        return url('dashboard/upload/property/thambnail') . '/' . $value;
     }
 }
