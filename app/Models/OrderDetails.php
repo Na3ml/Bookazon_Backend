@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Favorite extends Model
+class OrderDetails extends Model
 {
     use HasFactory;
-
+    protected  $table = 'orders_details';
     protected $fillable = [
-        'property_id',
-        'user_id'
+    'InvoiceID',
+        'InvoiceURL',
+        'order_id',
+        'user_id',
+        'price'
     ];
-
-    public function properties()
-    {
-        return $this->belongsTo(Property::class, 'property_id');
-    }
 }

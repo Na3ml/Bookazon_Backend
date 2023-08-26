@@ -46,4 +46,7 @@ return [
         'client_secret' => env( 'GOOGLE_CLIENT_SECRET' ),
         'redirect' => env( 'APP_URL' ).'/api/login/google/callback',
     ],
+    'stripe'=>[
+        'secret'=>env('STRIPE_SECRET')
+    ]
 ];
