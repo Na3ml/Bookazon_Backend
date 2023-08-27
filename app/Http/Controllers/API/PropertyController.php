@@ -4,18 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PropertyResource;
-use App\Models\Amenity;
-use App\Models\User;
 use App\Models\Property;
-use App\Models\PTypes;
-use Intervention\Image\Facades\Image;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use App\Http\Requests\Property\StoreProperty;
-
-use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Support\Facades\File;
 use function inclued\sendError;
 use function inclued\sendResponse;
 
