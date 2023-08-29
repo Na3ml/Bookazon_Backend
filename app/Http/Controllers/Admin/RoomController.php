@@ -91,9 +91,9 @@ class RoomController extends Controller
         }
         //Video Upload
 
-        if ( $request->has( 'video_id' ) ) {
-            $video = $this->uploadVideo( 'room_video_uploads', $request->video_id );
-        }
+        // if ( $request->has( 'video_id' ) ) {
+        //     $video = $this->uploadVideo( 'room_video_uploads', $request->video_id );
+        // }
         //Room Number Code Auto Generated
         $room_number = IdGenerator::generate( [ 'table' => 'rooms', 'field' => 'room_number', 'length' => 6, 'prefix' => 'R22' ] );
         //   dd( $room_number );
@@ -114,7 +114,7 @@ class RoomController extends Controller
         $room->total_guests = $request->total_guests;
         $room->featured_photo = $image;
         $room->property_id  = $request->property_id;
-        $room->video_id = $video;
+        // $room->video_id = $video;
         $room->created_at = Carbon::now();
         $room->save();
 
@@ -196,13 +196,13 @@ class RoomController extends Controller
         }
         //Video Upload
 
-        if ( $request->has( 'video_id' ) ) {
-            $request->validate( [
-                'video_id' => 'mimes:mp4,mov,ogg | max:20000'
-            ] );
-            //         unlink( $obj->video_id );
-            $obj->video_id = $this->uploadVideo( 'room_video_uploads', $request->video_id );
-        }
+        // if ( $request->has( 'video_id' ) ) {
+        //     $request->validate( [
+        //         'video_id' => 'mimes:mp4,mov,ogg | max:20000'
+        // ] );
+        //     //         unlink( $obj->video_id );
+        //     $obj->video_id = $this->uploadVideo( 'room_video_uploads', $request->video_id );
+        // }
 
         $date_range = $request->input( 'date_range' );
         $dates = explode( ' - ', $date_range );
@@ -226,7 +226,7 @@ class RoomController extends Controller
         $obj->total_balconies = $request->total_balconies;
         $obj->total_guests = $request->total_guests;
         $obj->property_id  = $request->property_id;
-        $obj->video_id = $request->video_id;
+        // $obj->video_id = $request->video_id;
         $obj->created_at = Carbon::now();
         $obj->update();
 
