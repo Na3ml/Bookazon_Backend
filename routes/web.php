@@ -31,11 +31,10 @@ Route::prefix('admin/dashboard')->middleware('auth:admin')->group(function () {
     Route::get('/admin/profile', [UserController::class,'Adminprofile'])->name('admin.profile');
     Route::post('/admin/profile/update', [UserController::class,'AdminProfileStore'])->name('admin.profile.store');
     Route::resource('admin',UserController::class);
-    
+
     Route::resource('propertyowner',PropertyOwnerController::class);
     Route::resource('booker',BookerController::class);
     Route::resource('{owner}/property',PropertyController::class);
-    Route::post('/{owner}/update/property/thambnail/', [PropertyController::class,'UpdatePropertyThambnail'])->name('update.property.thambnail');
     Route::post('/{owner}/update/property/facilities/', [PropertyController::class,'UpdatePropertyFacilities'])->name('update.property.facilities');
     Route::post('/{owner}/update/property/multiimage/', [PropertyController::class,'UpdatePropertyMultiimage'])->name('update.property.multiimage');
     Route::resource('/rooms', RoomController::class);

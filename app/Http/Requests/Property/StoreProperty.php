@@ -32,6 +32,8 @@ class StoreProperty extends FormRequest {
             'country' => 'required',
             'state' => 'required',
             'city' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
             'Additional_fees' => 'required',
             'longitude' => 'required',
             'latitude' => 'required',

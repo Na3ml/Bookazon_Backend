@@ -81,4 +81,7 @@ class Property extends Model
     {
         return url('dashboard/upload/property/thambnail') . '/' . $value;
     }
+
+
+
 }
