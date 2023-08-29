@@ -18,17 +18,13 @@ class Room extends Model
 
     }
 
-//    public function city(){
-//        return $this->hasOneThrough();
-//    }
+    public function getFeaturedPhotoAttribute( $value )
+ {
+        return url( 'dashboard/upload/room/image' ).'/'.$value;
+    }
 
-//    public function getFeaturedPhotoAttribute( $value )
-//    {
-//        return url( 'dashboard/upload/room/image' ).'/'.$value;
-//    }
-//
-//    public function getVideoIdAttribute( $value )
-//    {
-//        return url( 'dashboard/upload/room/video' ).'/'.$value;
-//    }
+    public function getVideoIdAttribute( $value )
+ {
+        return url( 'dashboard/upload/room/video' ).'/'.$value;
+    }
 }

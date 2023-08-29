@@ -113,11 +113,14 @@
                                             <label for="exampleInputEmail1" class="form-label">Photo </label>
                                             <input class="form-control" name="photo" type="file" id="image">
                                         </div>
+                                        @error('photo')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label"> </label>
                                             <img id="showImage" class="wd-80 rounded-circle"
-                                                src="{{ !empty($profileData->profile_picture) ? url('dashboard/upload/admin_images/' . $profileData->profile_picture) : url('dashboard/upload/no_image.jpg') }}"
-                                                alt="profile">
+                                                src="{{ !empty($profileData->profile_picture) ? $profileData->profile_picture : url('dashboard/upload/no_image.jpg') }}"
+                                                alt="profile" style="width: 100px;height: 100px;">
                                         </div>
                                         <button class="btn btn-success pull-right" type="submit">Finish!</button>
                                     </div>
@@ -128,7 +131,7 @@
                 </div>
             </div>
             <!-- left wrapper start -->
-            <div class="d-none d-md-block col-md-4 col-xl-4 left-wrapper">
+            <div class="col-md-4 col-xl-4 left-wrapper">
                 <div class="card rounded">
                     <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-2">
@@ -136,7 +139,7 @@
 
                             <div>
                                 <img class="rounded-circle"
-                                    src="{{ !empty($profileData->profile_picture) ? url( $profileData->profile_picture) : url('dashboard/upload/no_image.jpg') }}"
+                                    src="{{ !empty($profileData->profile_picture) ? url($profileData->profile_picture) : url('dashboard/upload/no_image.jpg') }}"
                                     alt="profile" style="width: 100px;height: 100px;">
                                 <span
                                     class="h4 ms-3 ">{{ $profileData->first_name . ' ' . $profileData->last_name }}</span>

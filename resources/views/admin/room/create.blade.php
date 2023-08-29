@@ -228,7 +228,7 @@
                             </div>
                             <div id="html_container"></div>
 
-                            <div class="col-md-12">
+                            {{-- <div class="col-md-12">
                                 <div class="mb-3 row g-3">
                                     <label class="form-label" for="validationCustom02">Video *</label>
                                     <input class="form-control" type="file" name="video_id" id="validationCustom02"
@@ -236,7 +236,7 @@
                                     <div class="invalid-feedback">Please Select Room Video.</div>
                                     <div class="valid-feedback">Looks good!</div>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
 
