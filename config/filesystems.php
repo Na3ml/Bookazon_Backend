@@ -27,7 +27,6 @@ return [
     | Supported Drivers: 'local', 'ftp', 'sftp', 's3'
     |
     */
-
     'disks' => [
 
         'local' => [
@@ -67,6 +66,12 @@ return [
             'root' => public_path( 'image' ),
             'visibility' => 'public',
             'throw' => false,
+        ],
+        'room_image_uploads' => [
+            'driver' => 'local',
+            'root' => public_path( 'dashboard/upload/room/image' ),
+            'visibility' => 'public',
+            'throw' => false,
 
         ],
         'room_image_uploads' => [
@@ -83,7 +88,27 @@ return [
             'throw' => false,
 
         ],
+        'room_image_uploads' => [
+            'driver' => 'local',
+            'root' => public_path( 'dashboard/upload/room/image' ),
+            'visibility' => 'public',
+            'throw' => false,
 
+        ],
+        'room_video_uploads' => [
+            'driver' => 'local',
+            'root' => public_path( 'dashboard/upload/room/video' ),
+            'visibility' => 'public',
+            'throw' => false,
+
+        ],
+        'room_video_uploads' => [
+            'driver' => 'local',
+            'root' => public_path( 'dashboard/upload/room/video' ),
+            'visibility' => 'public',
+            'throw' => false,
+
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path( 'app/public' ),
@@ -105,7 +130,6 @@ return [
         ],
 
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Symbolic Links

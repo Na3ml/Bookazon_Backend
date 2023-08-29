@@ -24,7 +24,7 @@ trait GeneralTrait
  {
         $video->store( '/', $folder );
         $filename = $video->hashName();
-//        $path = 'video/' . $folder . '/' . $filename;
+        //        $path = 'video/' . $folder . '/' . $filename;
         return $filename;
     }
 }

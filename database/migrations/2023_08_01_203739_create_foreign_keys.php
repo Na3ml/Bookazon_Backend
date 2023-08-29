@@ -24,11 +24,11 @@ class CreateForeignKeys extends Migration {
                     ->onUpdate('cascade');
     });
 
-    Schema::table('rooms', function (Blueprint $table) {
-        $table->foreign('room_id')->references('id')->on('rooms')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
-    });
+    // Schema::table('rooms', function (Blueprint $table) {
+    //     $table->foreign('room_id')->references('id')->on('rooms')
+    //                 ->onDelete('cascade')
+    //                 ->onUpdate('cascade');
+    // });
 
 
 
@@ -50,7 +50,7 @@ class CreateForeignKeys extends Migration {
                     ->onUpdate('cascade');
     });
     Schema::table('orders', function (Blueprint $table) {
-        $table->foreign('propertiy_id')->references('id')->on('Properties')
+        $table->foreign('room_id')->references('id')->on('Properties')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });

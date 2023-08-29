@@ -11,7 +11,7 @@ class CreatePropertiesTable extends Migration {
 			$table->increments('id');
 			$table->string('slug')->unique();
 			$table->char('property_name', 255);
-			$table->integer('property_code');
+			$table->char('property_code');
 			$table->integer('property_status');
 			$table->float('price');
 			$table->text('description');

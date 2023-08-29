@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Property;
 use App\Models\PTypes;
 use Intervention\Image\Facades\Image;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\Property\StoreProperty;
@@ -70,7 +70,7 @@ class PropertyController extends Controller {
             $new_start_date = date( 'Y-m-d', strtotime( $availability_date_start ) );
             $new_end_date = date( 'Y-m-d', strtotime( $availability_date_end ) );
 
-            $pcode = IdGenerator::generate( [ 'table' => 'properties', 'field' => 'property_code', 'length' => 5, 'prefix' => '11' ] );
+            $pcode = Str::random( 16 );
             $image = '';
             if ( $request->has( 'property_thambnail' ) ) {
                 $image = $this->uploadImage( 'property_Thambinal_uploads', $request->property_thambnail );
@@ -87,7 +87,7 @@ class PropertyController extends Controller {
                 'price' => $request->price,
                 'availability_date_start' => $new_start_date,
                 'availability_date_end' => $new_end_date,
-                'description' => $request->description,
+                'description' => strip_tags( $request->description ),
                 'property_size' => $request->property_size,
                 'address' => $request->address,
                 'city' => $request->city,
@@ -164,7 +164,7 @@ class PropertyController extends Controller {
     public function edit( $owner, $id ) {
         $owner = $owner;
         $property = Property::findOrFail( $id );
-//        dd( $property->property_thumbnail );
+        //        dd( $property->property_thumbnail );
         $type = $property->amenities_id ;
         $property_ami = explode( ', ', $type );
         $propertytype = PTypes::latest()->get();
@@ -191,7 +191,7 @@ class PropertyController extends Controller {
             $amen = $request->amenities_id;
             $amenites = implode( ', ', $amen );
             // dd( $amenites );
-            $pcode = IdGenerator::generate( [ 'table' => 'properties', 'field' => 'property_code', 'length' => 5, 'prefix' => '12' ] );
+            $pcode = Str::random( 16 );
             $oldImage = $request->old_img;
 
             if ( $request->has( 'property_thambnail' ) ) {

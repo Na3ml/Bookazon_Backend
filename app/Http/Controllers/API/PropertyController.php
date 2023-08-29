@@ -3,20 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Amenity;
-use App\Models\User;
+use App\Http\Resources\PropertyResource;
 use App\Models\Property;
-use App\Models\PTypes;
-use Intervention\Image\Facades\Image;
-use Haruncpi\LaravelIdGenerator\IdGenerator;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use App\Http\Requests\Property\StoreProperty;
-use App\Models\Photo;
-use App\Models\Country;
-use App\Models\Facility;
-use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Support\Facades\File;
 use function inclued\sendError;
 use function inclued\sendResponse;
 
@@ -28,10 +16,10 @@ class PropertyController extends Controller {
     */
 
     public function index() {
-        $properties = Property::with(['type','facilities'])->paginate(10);
-        if ($properties)
-            return sendResponse($properties,'all properties');
-        return sendError('','not found');
+        $properties = Property::with( [ 'type', 'facilities', 'rooms' ] )->paginate( 10 );
+        if ( $properties )
+        return sendResponse( PropertyResource::collection( $properties ), 'all properties' );
+        return sendError( '', 'not found' );
     }
     /**
     * Display the specified resource.
@@ -41,10 +29,10 @@ class PropertyController extends Controller {
     */
 
     public function show( $id ) {
-        $property = Property::with(['user','type','rooms'])->find($id);
-        if ($property)
-            return sendResponse($property,'good');
-        return sendError('','no data');
+        $property = Property::with( [ 'user', 'type', 'rooms', 'facilities' ] )->find( $id );
+        if ( $property )
+        return sendResponse( PropertyResource::make( $property ), 'good' );
+        return sendError( '', 'no data' );
 
     }
 
