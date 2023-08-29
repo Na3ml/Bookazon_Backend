@@ -11,6 +11,10 @@ class Photo extends Model
     public $timestamps = true;
     protected $fillable = array( 'photo', 'property_id' );
 
+    public function property() {
+        $this->belongsTo( Property::class, 'property_id', 'id' );
+    }
+
     public function getPhotoAttribute( $value )
  {
         return url( 'dashboard/upload/property/multi_image' ) . '/' . $value;

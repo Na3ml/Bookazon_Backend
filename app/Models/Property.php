@@ -79,4 +79,9 @@ class Property extends Model
         return url( 'dashboard/upload/property/thambnail' ) . '/' . $value;
     }
 
+    public function photos()
+ {
+        return $this->hasMany( Photo::class );
+    }
+
 }
