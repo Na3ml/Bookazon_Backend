@@ -27,4 +27,9 @@ class Room extends Model
  {
         return url( 'dashboard/upload/room/video' ).'/'.$value;
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PropertyResource;
+use App\Http\Resources\PropertyRsource;
 use App\Http\Resources\RoomResource;
 use App\Models\City;
 use App\Models\Order;
@@ -42,7 +42,7 @@ class HomeController extends Controller
         $rooms = $rooms->unique(); //unique
         $properties = Property::with(['rooms','type','facilities'])->where('city',$city->id)->whereIn('id',$rooms)->get();
         if (count($properties) > 0) {
-            return sendResponse(PropertyResource::collection($properties), 'good');
+            return sendResponse(PropertyRsource::collection($properties), 'good');
         }
         return sendError('', 'sorry no more room available , please try again');
     }

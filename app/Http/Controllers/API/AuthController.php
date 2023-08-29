@@ -76,7 +76,7 @@ class AuthController extends Controller {
         try {
             // this authenticates the user details with the database and generates a token
             if ( ! $token = JWTAuth::attempt( $input ) ) {
-                return sendError( [], 'invalid login credentials', 400 );
+                return sendError( [], 'invalid login credentials', 401 );
             }
         } catch ( JWTException $e ) {
             return sendError( [], $e->getMessage(), 500 );
@@ -159,7 +159,7 @@ class AuthController extends Controller {
         $user = JWTAuth::parseToken()->authenticate();
         $profile =$user->profile_picture ;
         if($request->profile_picture ){
-            $profile =  $request->profile_picture->store('image/them','public_path');
+            $profile =  $request->profile_picture->store('image/','public_path');
         }
         // $user = JWTAuth::parseToken()->authenticate();
         // dd($user);

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -15,6 +18,19 @@ class OrderController extends Controller
    */
   public function index()
   {
+        $owner = Auth::user();
+        $owner_properties = $owner->properties;
+        foreach ($owner_properties as $owner_property){
+            $rooms = $owner_property->rooms;
+            foreach ($rooms as $room){
+                $orders = $room->orders;
+            }
+        }
+
+//        dd($orders);
+
+      //
+      return view( 'admin.order.index' ,compact('orders'));
 
   }
 

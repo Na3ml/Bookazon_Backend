@@ -82,12 +82,17 @@ class User extends Authenticatable implements JWTSubject
     {
         return "{$this->first_name} {$this->last_name}";
     }
-    //    public function profilePicture(): Attribute
-    // {
-    //        return Attribute::make(
-    //            get: fn() => asset( 'image/' ).$this->profile_picture
-    // );
-    //    }
+        public function profilePicture(): Attribute
+     {
+            return Attribute::make(
+                get: fn() => asset( 'image/' ).$this->profile_picture
+     );
+        }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
 
 }
 
