@@ -55,7 +55,6 @@ class PropertyResource extends JsonResource {
             'Owner'=>$this->user,
             'Multi_Images'=>$this->photos,
             'rooms'=>$this->rooms,
-
         ];
     }
 }
