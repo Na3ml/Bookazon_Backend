@@ -13,12 +13,12 @@ class CreateForeignKeys extends Migration {
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });
-    Schema::table('Properties', function (Blueprint $table) {
+    Schema::table('properties', function (Blueprint $table) {
         $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });
-    Schema::table('Properties', function (Blueprint $table) {
+    Schema::table('properties', function (Blueprint $table) {
         $table->foreign('ptype_id')->references('id')->on('property_types')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
@@ -33,7 +33,7 @@ class CreateForeignKeys extends Migration {
 
 
     Schema::table('facilities', function (Blueprint $table) {
-        $table->foreign('property_id')->references('id')->on('Properties')
+        $table->foreign('property_id')->references('id')->on('properties')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });
@@ -45,12 +45,12 @@ class CreateForeignKeys extends Migration {
                     ->onUpdate('cascade');
     });
     Schema::table('rate_property', function (Blueprint $table) {
-        $table->foreign('proprty_id')->references('id')->on('Properties')
+        $table->foreign('proprty_id')->references('id')->on('properties')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });
     Schema::table('orders', function (Blueprint $table) {
-        $table->foreign('room_id')->references('id')->on('Properties')
+        $table->foreign('room_id')->references('id')->on('properties')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });
@@ -76,7 +76,7 @@ class CreateForeignKeys extends Migration {
                     ->onUpdate('cascade');
     });
     Schema::table('videos', function (Blueprint $table) {
-        $table->foreign('property_id')->references('id')->on('Properties')
+        $table->foreign('property_id')->references('id')->on('properties')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });
@@ -86,7 +86,7 @@ class CreateForeignKeys extends Migration {
                     ->onUpdate('cascade');
     });
     Schema::table('wishlists', function (Blueprint $table) {
-        $table->foreign('property_id')->references('id')->on('Properties')
+        $table->foreign('property_id')->references('id')->on('properties')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
     });
