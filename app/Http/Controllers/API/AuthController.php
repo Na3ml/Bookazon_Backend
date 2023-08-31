@@ -23,7 +23,7 @@ class AuthController extends Controller {
     //
 
     public function __construct() {
-        $this->middleware( 'auth:api', [ 'except' => [ 'login', 'register','update' ] ] );
+        $this->middleware( 'auth:api', [ 'except' => [ 'login', 'register' ] ] );
     }
 
 
@@ -129,6 +129,7 @@ class AuthController extends Controller {
     */
 
     public function userProfile() {
+        header('Access-Control-Allow-Origin : *');
         return response()->json( auth()->user() );
     }
     /**
@@ -156,6 +157,8 @@ class AuthController extends Controller {
 //            'password_confirmation' => 'required|same:password',
 //            'phone_number'=>'required|min:11|numeric',
 //        ]);
+
+        return sendResponse(auth()->user(),'good');
         $user = JWTAuth::parseToken()->authenticate();
         $profile =$user->profile_picture ;
         if($request->profile_picture ){

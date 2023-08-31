@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class FavoriteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware( 'auth:api');
+    }
+
     //
     public function index() {
         $favorites = Favorite::with('properties')->get();
@@ -21,35 +26,17 @@ class FavoriteController extends Controller
     }
 
     public function store( Request $request ) {
-
-        $validator = validator::make( $request->all(), [
+        $request->validate([
             'property_id' => 'required|exists:properties,id',
-        ] );
-
-
-        if ( $validator->fails() ) {
-            return sendError( '',$validator );
-        }
-
+        ]);
         $property = Property::find( $request->post( 'property_id' ) );
-
         if ( $property->property_status != 1 ) {
             return sendError( '','not allow add it',  422 );
         }
 
-        $isExist = Favorite::where('property_id', $request->property_id  )->where('user_id', Auth::id())->first();
+        $user = Auth::user()->favorites()->toggle($property->id);
 
-        if ($isExist) {
-            $isExist->delete();
-            return sendResponse(  $property ,'successfully remove it');
-        }
-
-        $favorite = Favorite::create( [
-            'property_id' => $request->property_id,
-            'user_id' => \auth()->user()->id,
-        ] );
-
-        return sendResponse( $favorite,'successfully added it' );
+        return sendResponse( '','successfully added it' );
     }
 
     public function destroy( Request $request ) {

@@ -33,6 +33,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(Room::class,'orders','user_id','room_id');
     }
 
+    public function favorites(){
+        return $this->belongsToMany(Property::class,'favorites');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -68,10 +72,10 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function getProfilePictureAttribute($value)
-    {
-        return asset('image') . '/' . $value;
-    }
+//    public function getProfilePictureAttribute($value)
+//    {
+//        return asset('/') . $value;
+//    }
 
     public function getFirstNameAttribute($value)
     {
@@ -82,12 +86,6 @@ class User extends Authenticatable implements JWTSubject
     {
         return "{$this->first_name} {$this->last_name}";
     }
-    //    public function profilePicture(): Attribute
-    // {
-    //        return Attribute::make(
-    //            get: fn() => asset( 'image/' ).$this->profile_picture
-    // );
-    //    }
 
 }
 

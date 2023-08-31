@@ -39,6 +39,12 @@ class Property extends Model
     }
 
 
+    public function users()
+    {
+        return $this->belongsToMany(Favorite::class,'favorites');
+    }
+
+
 
     public function sluggable(): array
     {

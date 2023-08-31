@@ -96,50 +96,50 @@ class CreateForeignKeys extends Migration {
 	public function down()
 	{
 		Schema::table('photos', function(Blueprint $table) {
-			$table->dropForeign('photos_property_id_foreign');
+			$table->dropForeign(['photos_property_id_foreign']);
 		});
 		Schema::table('Properties', function(Blueprint $table) {
-			$table->dropForeign('Properties_user_id_foreign');
+			$table->dropForeign(['Properties_user_id_foreign']);
 		});
 		Schema::table('rooms', function(Blueprint $table) {
-			$table->dropForeign('rooms_property_id_foreign');
+			$table->dropForeign(['rooms_property_id_foreign']);
 		});
 		Schema::table('amenities', function(Blueprint $table) {
-			$table->dropForeign('amenities_property_id_foreign');
+			$table->dropForeign(['amenities_property_id_foreign']);
 		});
 		Schema::table('property_types', function(Blueprint $table) {
-			$table->dropForeign('property_types_property_id_foreign');
+			$table->dropForeign(['property_types_property_id_foreign']);
 		});
 		Schema::table('rate_property', function(Blueprint $table) {
-			$table->dropForeign('rate_property_user_id_foreign');
+			$table->dropForeign(['rate_property_user_id_foreign']);
 		});
 		Schema::table('rate_property', function(Blueprint $table) {
-			$table->dropForeign('rate_property_proprty_id_foreign');
+			$table->dropForeign(['rate_property_proprty_id_foreign']);
 		});
 		Schema::table('orders', function(Blueprint $table) {
-			$table->dropForeign('orders_propertiy_id_foreign');
+			$table->dropForeign(['orders_property_id_foreign']);
 		});
 		Schema::table('orders', function(Blueprint $table) {
-			$table->dropForeign('orders_user_id_foreign');
+			$table->dropForeign(['orders_user_id_foreign']);
 		});
 		Schema::table('chat_messages', function(Blueprint $table) {
-			$table->dropForeign('chat_messages_sender_id_foreign');
+			$table->dropForeign(['chat_messages_sender_id_foreign']);
 		});
 		Schema::table('chat_messages', function(Blueprint $table) {
-			$table->dropForeign('chat_messages_receiver_id_foreign');
+			$table->dropForeign(['chat_messages_receiver_id_foreign']);
 		});
 
 		Schema::table('contact_us', function(Blueprint $table) {
-			$table->dropForeign('contact_us_user_id_foreign');
+			$table->dropForeign(['contact_us_user_id_foreign']);
 		});
 		Schema::table('videos', function(Blueprint $table) {
-			$table->dropForeign('videos_property_id_foreign');
+			$table->dropForeign(['videos_property_id_foreign']);
 		});
 		Schema::table('wishlists', function(Blueprint $table) {
-			$table->dropForeign('wishlists_user_id_foreign');
+			$table->dropForeign(['wishlists_user_id_foreign']);
 		});
 		Schema::table('wishlists', function(Blueprint $table) {
-			$table->dropForeign('wishlists_property_id_foreign');
+			$table->dropForeign(['wishlists_property_id_foreign']);
 		});
 	}
 }
