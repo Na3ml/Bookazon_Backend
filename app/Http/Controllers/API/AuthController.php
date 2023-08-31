@@ -158,12 +158,10 @@ class AuthController extends Controller {
 //            'password_confirmation' => 'required|same:password',
 //            'phone_number'=>'required|min:11|numeric',
 //        ]);
-
-        return sendResponse(auth()->user(),'good');
         $user = JWTAuth::parseToken()->authenticate();
         $profile =$user->profile_picture ;
         if($request->profile_picture ){
-            $profile_pic =  $request->profile_picture->store('image/','public_path');
+            $profile =  $request->profile_picture->store('image/','public_path');
         }
         // $user = JWTAuth::parseToken()->authenticate();
         // dd($user);
@@ -174,7 +172,7 @@ class AuthController extends Controller {
             'phone_number' => isset($request->phone_number) ? $request->phone_number : $user->phone_number,
             'email' => isset($request->email ) ? $request->email  : $user->email,
             'address' => isset($request->address) ? $request->address : $user->address,
-            'profile_picture' =>  isset($request->profile_picture) ? $profile_pic : $profile,
+            'profile_picture' => $profile,
             'role_id'=>3,
             'gender' => $request->gender,
             'password' => isset($request->password) ? $password : $user->password,
