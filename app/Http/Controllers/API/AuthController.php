@@ -90,7 +90,6 @@ class AuthController extends Controller {
     }
 
     public function getUser() {
-        return Auth::user();
         try {
             $user = JWTAuth::parseToken()->authenticate();
             if ( !$user ) {
@@ -130,7 +129,7 @@ class AuthController extends Controller {
     */
 
     public function userProfile() {
-        header('Access-Control-Allow-Origin : *');
+//        header('Access-Control-Allow-Origin : *');
         return response()->json( auth()->user() );
     }
     /**
