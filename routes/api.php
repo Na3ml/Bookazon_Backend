@@ -55,6 +55,8 @@ Route::group([],function(){
 Route::group([],function(){
    Route::post('/home/search',[HomeController::class,'newSearch']);
    Route::post('/home/book',[HomeController::class,'book'])->middleware('auth:api');
+   Route::post('/home/book-room',[HomeController::class,'bookRoom'])->middleware('auth:api');
+   Route::post('/home/filter-rooms',[HomeController::class,'filterRooms']);
    Route::get('/login/{provider}', [SocialAuth::class,'redirectToProvider']);
     Route::get('/login/{provider}/callback', [SocialAuth::class,'handleProviderCallback'])->name('auth.socialite.callback');
 });
