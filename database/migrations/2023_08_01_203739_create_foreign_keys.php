@@ -98,8 +98,8 @@ class CreateForeignKeys extends Migration {
 		Schema::table('photos', function(Blueprint $table) {
 			$table->dropForeign(['photos_property_id_foreign']);
 		});
-		Schema::table('Properties', function(Blueprint $table) {
-			$table->dropForeign(['Properties_user_id_foreign']);
+		Schema::table('properties', function(Blueprint $table) {
+			$table->dropForeign(['properties_user_id_foreign']);
 		});
 		Schema::table('rooms', function(Blueprint $table) {
 			$table->dropForeign(['rooms_property_id_foreign']);
