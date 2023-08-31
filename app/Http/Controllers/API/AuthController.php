@@ -76,7 +76,7 @@ class AuthController extends Controller {
         try {
             // this authenticates the user details with the database and generates a token
             if ( ! $token = JWTAuth::attempt( $input ) ) {
-                return sendError( [], 'invalid login credentials', 400 );
+                return sendError( [], 'invalid login credentials', 401 );
             }
         } catch ( JWTException $e ) {
             return sendError( [], $e->getMessage(), 500 );
@@ -162,23 +162,26 @@ class AuthController extends Controller {
         $user = JWTAuth::parseToken()->authenticate();
         $profile =$user->profile_picture ;
         if($request->profile_picture ){
-            $profile =  $request->profile_picture->store('image/them','public_path');
+            $profile_pic =  $request->profile_picture->store('image/','public_path');
         }
-
+        // $user = JWTAuth::parseToken()->authenticate();
+        // dd($user);
         $password = isset($request->password) ? bcrypt($request->password) : $user->password;
         $update = User::find($user->id)->update([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'phone_number' => $request->phone_number,
-            'address' => $request->address,
-            'profile_picture' => $profile,
+            'first_name' => isset($request->first_name) ? $request->first_name : $user->first_name,
+            'last_name' => isset($request->last_name) ? $request->last_name : $user->last_name,
+            'phone_number' => isset($request->phone_number) ? $request->phone_number : $user->phone_number,
+            'email' => isset($request->email ) ? $request->email  : $user->email,
+            'address' => isset($request->address) ? $request->address : $user->address,
+            'profile_picture' =>  isset($request->profile_picture) ? $profile_pic : $profile,
+            'role_id'=>3,
             'gender' => $request->gender,
-            'password' => $password,
+            'password' => isset($request->password) ? $password : $user->password,
 
         ]);
 
         if ($update){
-            return sendResponse($update,'sds');
+            return sendResponse($update,'User Data Updated Successfully');
         }
     }
 

@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Favorite extends Model
+class Payment extends Model
  {
     use HasFactory;
-
+    protected $table = 'payments';
     protected $fillable = [
-        'property_id',
-        'user_id'
+        'order_id',
+        'amount',
+        'currency',
+        'source',
+        'description',
+        'stripe_id',
     ];
-
-    public function properties()
- {
-        return $this->belongsTo( Property::class, 'property_id' );
-    }
 }

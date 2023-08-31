@@ -4,23 +4,12 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\Amenity;
 use App\Models\Country;
-use App\Models\City;
 use App\Models\State;
-use App\Models\User;
+use App\Models\City;
+use App\Models\Amenity;
 
 class PropertyResource extends JsonResource {
-    protected $property_status;
-
-    public function propertyStatus() {
-        if ( $this->property_status == 1 ) {
-            return 'Active';
-        } else {
-            return 'InActive';
-        }
-
-    }
     /**
     * Transform the resource into an array.
     *
@@ -33,42 +22,39 @@ class PropertyResource extends JsonResource {
         for ( $j = 0; $j<count( $arr );
         $j++ ) {
             $temp_row = Amenity::where( 'id', $arr[ $j ] )->first();
-            $amenities['name'] = $temp_row->amenities_name;
-            $amenities['id'] = $temp_row->id;
+            $amenities[] = $temp_row->amenities_name;
         }
-        // $Country = Country::where( 'id', $this->country )->pluck( 'name' );
-        // $State = State::where( 'id', $this->state )->pluck( 'name' );
-        // $City = City::where( 'id', $this->city )->pluck( 'name' );
-        // $Owner = User::where( 'id', $this->user_id )->pluck( [ 'first_name', 'last_name' ] );
+        $Country = Country::where( 'id', $this->country )->pluck( 'name' );
+        $State = State::where( 'id', $this->state )->pluck( 'name' );
+        $City = City::where( 'id', $this->city )->pluck( 'name' );
 
         return [
-            'property_id'=>$this->id,
-            'ptype' => $this->type,
-            'amenities' => $amenities,
-            'facilities' => $this->facilities,
-            'property_name' => $this->property_name,
-            'slug' => $this->property_name,
-            'property_code' => $this->property_code,
-            'property_status' => $this->property_status,
-            'Additional_fees'=>$this->Additional_fees,
-            'price' => $this->price,
-            'availability_date_start' => $this->availability_date_start,
-            'availability_date_end' => $this->availability_date_end,
-            'description' => $this->description,
-            'property_size' => $this->property_size,
-            'address' => $this->address,
-            'city' => $this->city,
-            'state' => $this->state,
-            'country'=>$this->country,
-            'latitude' => $this->latitude,
-            'longitude' => $this->longitude,
-            'featured' => $this->featured,
-            'hot' => $this->hot,
-            'property_thumbnail' => asset('/').$this->property_thumbnail,
-            'created_at' =>date('Y-m-d',strtotime($this->created_at)) ,
-//            'updated_at' =>date('Y-m-d',strtotime($this->updated_at)) ,
-            'rooms' =>RoomResource::collection($this->rooms) ,
 
+            'Unique_ID'=>$this->id,
+            'slug '=>$this->slug,
+            'property_name'=>$this->property_name,
+            'property_code'=>$this->property_code,
+            'price'=>$this->price.' '.'LE',
+            'description'=>strip_tags( $this->description ),
+            'main_image'=>$this->property_thumbnail,
+            'property_size'=>$this->property_size,
+            'address'=>$this->address,
+            'country'=>$Country,
+            'state'=> $State,
+            'city'=>$City,
+            'availability_date_start' => date( 'Y-m-d', strtotime( $this->availability_date_start ) ),
+            'availability_date_end' => date( 'Y-m-d', strtotime( $this->availability_date_end ) ),
+            'Additional_fees'=>$this->Additional_fees,
+            'Additional_fees'=>$this->Additional_fees,
+            'longitude'=>$this->longitude,
+            'total_bathrooms'=>$this->total_bathrooms,
+            'latitude'=>$this->latitude,
+            'Property_Type'=>$this->type,
+            'Facilities'=>$this->facilities,
+            'Amenities'=>$amenities,
+            'Owner'=>$this->user,
+            'Multi_Images'=>$this->photos,
+            'rooms'=>$this->rooms,
         ];
     }
 }

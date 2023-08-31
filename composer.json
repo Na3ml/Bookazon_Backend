@@ -18,8 +18,11 @@
         "laravel/socialite": "^5.8",
         "laravel/tinker": "^2.8",
         "mcamara/laravel-localization": "^1.8",
+        "myfatoorah/laravel-package": "^2.1",
         "realrashid/sweet-alert": "^7.1",
-        "tymon/jwt-auth": "^2.0"
+        "stripe/stripe-php": "^12.0",
+        "tymon/jwt-auth": "^2.0",
+      "ext-http": "*"
     },
     "require-dev": {
         "dipeshsukhia/laravel-country-state-city-data": "^2.0",

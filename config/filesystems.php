@@ -74,6 +74,34 @@ return [
             'throw' => false,
 
         ],
+        'room_image_uploads' => [
+            'driver' => 'local',
+            'root' => public_path( 'dashboard/upload/room/image' ),
+            'visibility' => 'public',
+            'throw' => false,
+
+        ],
+        'room_video_uploads' => [
+            'driver' => 'local',
+            'root' => public_path( 'dashboard/upload/room/video' ),
+            'visibility' => 'public',
+            'throw' => false,
+
+        ],
+        'room_image_uploads' => [
+            'driver' => 'local',
+            'root' => public_path( 'dashboard/upload/room/image' ),
+            'visibility' => 'public',
+            'throw' => false,
+
+        ],
+        'room_video_uploads' => [
+            'driver' => 'local',
+            'root' => public_path( 'dashboard/upload/room/video' ),
+            'visibility' => 'public',
+            'throw' => false,
+
+        ],
         'room_video_uploads' => [
             'driver' => 'local',
             'root' => public_path( 'dashboard/upload/room/video' ),

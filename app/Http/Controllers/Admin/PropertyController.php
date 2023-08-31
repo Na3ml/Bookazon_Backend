@@ -70,7 +70,7 @@ class PropertyController extends Controller {
             $new_start_date = date( 'Y-m-d', strtotime( $availability_date_start ) );
             $new_end_date = date( 'Y-m-d', strtotime( $availability_date_end ) );
 
-            $pcode = Str::random(16);
+            $pcode = Str::random( 16 );
             $image = '';
             if ( $request->has( 'property_thambnail' ) ) {
                 $image = $this->uploadImage( 'property_Thambinal_uploads', $request->property_thambnail );
@@ -164,7 +164,7 @@ class PropertyController extends Controller {
     public function edit( $owner, $id ) {
         $owner = $owner;
         $property = Property::findOrFail( $id );
-        // dd( $property->property_thumbnail );
+        //        dd( $property->property_thumbnail );
         $type = $property->amenities_id ;
         $property_ami = explode( ', ', $type );
         $propertytype = PTypes::latest()->get();
@@ -191,7 +191,7 @@ class PropertyController extends Controller {
             $amen = $request->amenities_id;
             $amenites = implode( ', ', $amen );
             // dd( $amenites );
-            $pcode = Str::random(16);
+            $pcode = Str::random( 16 );
             $oldImage = $request->old_img;
 
             if ( $request->has( 'property_thambnail' ) ) {

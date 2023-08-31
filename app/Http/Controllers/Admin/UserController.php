@@ -12,9 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\GeneralTrait;
 
-class UserController extends Controller
- {
-     use GeneralTrait;
+class UserController extends Controller {
+    use GeneralTrait;
 
     /**
     * Display a listing of the resource.
@@ -22,8 +21,7 @@ class UserController extends Controller
     * @return Response
     */
 
-    public function index()
- {
+    public function index() {
         $users = User::where( 'role_id', 1 )->latest()->get();
         return view( 'admin.superadmin.index', compact( 'users' ) );
 
@@ -35,8 +33,7 @@ class UserController extends Controller
     * @return Response
     */
 
-    public function create()
- {
+    public function create() {
         return view( 'admin.superadmin.create' );
     }
 
@@ -46,8 +43,7 @@ class UserController extends Controller
     * @return Response
     */
 
-    public function store( RegisterRequest $request )
- {
+    public function store( RegisterRequest $request ) {
         $user = User::create( [
             'first_name'=>$request->first_name,
             'last_name'=>$request->last_name,
@@ -69,8 +65,7 @@ class UserController extends Controller
     * @return Response
     */
 
-    public function show( $id )
- {
+    public function show( $id ) {
     }
 
     /**
@@ -80,8 +75,7 @@ class UserController extends Controller
     * @return Response
     */
 
-    public function edit( $id )
- {
+    public function edit( $id ) {
         //      dd( $user );
         $user = User::findOrFail( $id );
         return view( 'admin.superadmin.edit', compact( 'user' ) );
@@ -94,8 +88,7 @@ class UserController extends Controller
     * @return Response
     */
 
-    public function update( AdminEditRequest $request, $id )
- {
+    public function update( AdminEditRequest $request, $id ) {
         //      dd( $request->all() );
         //      $request->validate( [
         //         'email'=>'required|unique:users,email,'.$id,
@@ -119,8 +112,7 @@ class UserController extends Controller
     * @return Response
     */
 
-    public function destroy( $id )
- {
+    public function destroy( $id ) {
         $user = User::find( $id );
         $user->delete();
         return redirect()->back();
@@ -138,7 +130,8 @@ class UserController extends Controller
         // Validation
         $request->validate( [
             'old_password' => 'required',
-            'new_password' => 'required|confirmed'
+            'new_password' => 'required|confirmed',
+            'photo'=>'required|mimes:jpeg,png,jpg,gif|max:2048'
 
         ] );
 
@@ -154,7 +147,7 @@ class UserController extends Controller
             $image = $this->uploadImage( 'admin_profile_uploads', $request->photo );
         }
         $data->profile_picture = $image;
-//
+        //
 
         /// Match The Old Password
 

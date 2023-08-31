@@ -1,7 +1,7 @@
 <div class="sidebar-wrapper">
     <div>
-        <div class="logo-wrapper"><a href="{{ route('dashboard') }}"><img class="img-fluid for-light"
-                  style="height: 20px;"  src="{{ asset('assets/images/logo/logo.jpg') }}" alt=""></a>
+        <div class="logo-wrapper"><a href="{{ route('dashboard') }}"><img class="img-fluid for-light" style="height: 20px;"
+                    src="{{ asset('assets/images/logo/logo.jpg') }}" alt=""></a>
             <div class="back-btn"><i data-feather="grid"></i></div>
             <div class="toggle-sidebar icon-box-sidebar"><i class="status_toggle middle sidebar-toggle"
                     data-feather="grid"> </i></div>
@@ -21,6 +21,14 @@
                         <h6>Pinned</h6>
                     </li>
                     <hr>
+                    <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
+                            href="javascript:void(0)"><i data-feather="airplay"></i><span class="">
+                                Statistics</span></a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('statistics') }}">Manage</a></li>
+                            {{--                            <li><a href="">Chart</a></li> --}}
+                        </ul>
+                    </li>
                     <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
                             href="javascript:void(0)"><i data-feather="airplay"></i><span class="">Super
                                 Admin</span></a>
@@ -46,8 +54,8 @@
                         </ul>
                     </li>
                     <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
-                            href="javascript:void(0)"><i data-feather="airplay"></i><span
-                                class="">Property Types</span></a>
+                            href="javascript:void(0)"><i data-feather="airplay"></i><span class="">Property
+                                Types</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('propertytype.index') }}">Manage</a></li>
                             {{--                            <li><a href="">Chart</a></li> --}}
@@ -66,6 +74,15 @@
                                 class="">Rooms</span></a>
                         <ul class="sidebar-submenu">
                             <li><a href="{{ route('rooms.index') }}">Manage</a></li>
+                            {{--                            <li><a href="">Chart</a></li> --}}
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
+                            href="javascript:void(0)"><i data-feather="airplay"></i><span
+                                class="">Orders</span></a>
+                        <ul class="sidebar-submenu">
+                            <li><a href="{{ route('orders.index') }}">Manage</a></li>
                             {{--                            <li><a href="">Chart</a></li> --}}
                         </ul>
                     </li>

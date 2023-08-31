@@ -36,19 +36,27 @@
                     {{--                <div class="card-header pb-0"> --}}
                     {{--                    <h4>Create Property</h4> --}}
                     {{--                </div> --}}
-
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <div class="card-body">
                         <form class="needs-validation" novalidate="" action="{{ route('property.store', $owner) }}"
-                              method="post" enctype="multipart/form-data">
+                            method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-3">
                                     <label class="form-label">Property Name</label>
                                     <input type="text" name="property_name" class="form-control"
-                                           value="{{ old('property_name') }}">
+                                        value="{{ old('property_name') }}">
                                     @error('property_name')
-                                    <div class="invalid font-danger">{{ $message }}</div>
+                                        <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -62,38 +70,38 @@
 
                                     </select>
                                     @error('property_status')
-                                    <div class="invalid font-danger">{{ $message }}</div>
+                                        <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-3">
                                     <label class="form-label">Property price</label>
                                     <input class="form-control" type="number" name="price" required
-                                           value="{{ old('price') }}">
+                                        value="{{ old('price') }}">
                                     @error('price')
-                                    <div class="invalid font-danger">{{ $message }}</div>
+                                        <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-3">
                                     <label class="form-label">Additional fees</label>
                                     <input class="form-control" type="text" name="Additional_fees" required
-                                           value="{{ old('Additional_fees') }}">
+                                        value="{{ old('Additional_fees') }}">
                                     @error('Additional_fees')
-                                    <div class="invalid font-danger">{{ $message }}</div>
+                                        <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-3">
                                     <label class="form-label">Property size</label>
                                     <input type="text" name="property_size" class="form-control"
-                                           value="{{ old('property_size') }}">
+                                        value="{{ old('property_size') }}">
                                     @error('property_size')
-                                    <div class="invalid font-danger">{{ $message }}</div>
+                                        <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-5">
                                     <label class="form-label">Address</label>
                                     <input type="text" name="address" class="form-control" value="{{ old('address') }}">
                                     @error('address')
-                                    <div class="invalid font-danger">{{ $message }}</div>
+                                        <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-4 mb-3">
@@ -107,7 +115,7 @@
                                         @endforeach
                                     </select>
                                     @error('country')
-                                    <div class="invalid font-danger">{{ $message }}</div>
+                                        <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-4 mb-3">
@@ -115,7 +123,7 @@
                                     <select id="state-dd" class="form-select" name="state" required>
                                     </select>
                                     @error('state')
-                                    <div class="invalid font-danger">{{ $message }}</div>
+                                        <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-4 mb-3">
@@ -124,7 +132,7 @@
                                     <select id="city-dd" class="form-select" name="city" required>
                                     </select>
                                     @error('city')
-                                    <div class="invalid font-danger">{{ $message }}</div>
+                                        <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
@@ -139,7 +147,7 @@
                                             @endforeach
                                         </select>
                                         @error('ptype_id')
-                                        <div class="invalid font-danger">{{ $message }}</div>
+                                            <div class="invalid font-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div><!-- Col -->
@@ -148,7 +156,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Property Amenities </label>
                                         <select name="amenities_id[]" class="js-example-basic-multiple form-select"
-                                                multiple="multiple" data-width="100%">
+                                            multiple="multiple" data-width="100%">
 
                                             @foreach ($amenities as $ameni)
                                                 <option value="{{ $ameni->id }}">{{ $ameni->amenities_name }}</option>
@@ -156,7 +164,7 @@
 
                                         </select>
                                         @error('amenities_id')
-                                        <div class="invalid font-danger">{{ $message }}</div>
+                                            <div class="invalid font-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div><!-- Col -->
@@ -169,7 +177,7 @@
                                         <img src="" id="mainThmb">
                                     </div>
                                     @error('property_thambnail')
-                                    <div class="invalid font-danger">{{ $message }}</div>
+                                        <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
                                 </div><!-- Col -->
 
@@ -178,12 +186,12 @@
 
                                         <label class="form-label">Multiple Image </label>
                                         <input type="file" name="multi_img[]" class="form-control" id="multiImg"
-                                               multiple="">
+                                            multiple="">
 
                                         <div class="row" id="preview_img"></div>
 
                                         @error('multi_img')
-                                        <div class="invalid font-danger">{{ $message }}</div>
+                                            <div class="invalid font-danger">{{ $message }}</div>
                                         @enderror
                                     </div><!-- Col -->
                                 </div>
@@ -192,8 +200,8 @@
                                         <label class="form-label">Availability Date
                                             range</label>
                                         <input class="datepicker-here form-control digits" type="text"
-                                               data-range="true" data-multiple-dates-separator=" - " data-language="en"
-                                               name="date_range" value="{{ old('date_range') }}" required>
+                                            data-range="true" data-multiple-dates-separator=" - " data-language="en"
+                                            name="date_range" value="{{ old('date_range') }}" required>
                                     </div>
                                 </div><!-- Col -->
                             </div><!-- Row -->
@@ -204,12 +212,12 @@
 
                                         <label class="form-label">Latitude</label>
                                         <input type="text" name="latitude" class="form-control"
-                                               value="{{ old('latitude') }}">
+                                            value="{{ old('latitude') }}">
                                         <a href="https://www.latlong.net/convert-address-to-lat-long.html"
-                                           target="_blank">Go here to get Latitude from address</a>
+                                            target="_blank">Go here to get Latitude from address</a>
                                     </div>
                                     @error('latitude')
-                                    <div class="invalid font-danger">{{ $message }}</div>
+                                        <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
                                 </div><!-- Col -->
                                 <div class="col-sm-6">
@@ -217,12 +225,12 @@
 
                                         <label class="form-label">Longitude</label>
                                         <input type="text" name="longitude" class="form-control"
-                                               value="{{ old('longitude') }}">
+                                            value="{{ old('longitude') }}">
                                         <a href="https://www.latlong.net/convert-address-to-lat-long.html"
-                                           target="_blank">Go here to get Longitude from address</a>
+                                            target="_blank">Go here to get Longitude from address</a>
                                     </div>
                                     @error('longitude')
-                                    <div class="invalid font-danger">{{ $message }}</div>
+                                        <div class="invalid font-danger">{{ $message }}</div>
                                     @enderror
                                 </div><!-- Col -->
                             </div><!-- Row -->
@@ -251,7 +259,7 @@
                                     <div class="mb-3">
                                         <label for="distance" class="form-label"> Distance </label>
                                         <input type="text" name="distance[]" id="distance" class="form-control"
-                                               placeholder="Distance (Km)">
+                                            placeholder="Distance (Km)">
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4" style="padding-top: 30px;">
@@ -259,7 +267,7 @@
                                         More..</a>
                                 </div>
                                 @error('facility_name')
-                                <div class="invalid font-danger">{{ $message }}</div>
+                                    <div class="invalid font-danger">{{ $message }}</div>
                                 @enderror
                             </div> <!---end row-->
 
@@ -273,7 +281,7 @@
                                                 <div class="form-group col-md-4">
                                                     <label for="facility_name">Facilities</label>
                                                     <select name="facility_name[]" id="facility_name"
-                                                            class="form-control">
+                                                        class="form-control">
                                                         <option value="">Select Facility</option>
                                                         <option value="Hospital">Hospital</option>
                                                         <option value="SuperMarket">Super Market</option>
@@ -291,7 +299,7 @@
                                                 <div class="form-group col-md-4">
                                                     <label for="distance">Distance</label>
                                                     <input type="text" name="distance[]" id="distance"
-                                                           class="form-control" placeholder="Distance (Km)">
+                                                        class="form-control" placeholder="Distance (Km)">
                                                 </div>
                                                 <div class="form-group col-md-4" style="padding-top: 20px">
                                                     <span class="btn btn-success btn-sm addeventmore"><i
@@ -310,7 +318,7 @@
                                 <label class="form-label">description</label>
                                 <textarea id="editor1" name="description" cols="30" rows="10"></textarea>
                                 @error('description')
-                                <div class="invalid font-danger">{{ $message }}</div>
+                                    <div class="invalid font-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div id="html_container"></div>
@@ -333,16 +341,16 @@
                             </div>
                     </div>
 
-{{--                    <iframe--}}
-{{--                        width="600"--}}
-{{--                        height="450"--}}
-{{--                        style="border:0"--}}
-{{--                        loading="lazy"--}}
-{{--                        allowfullscreen--}}
-{{--                        referrerpolicy="no-referrer-when-downgrade"--}}
-{{--                        src="https://www.google.com/maps/embed/v1/place?key=--}}
-{{--    &q=Space+Needle,Seattle+WA">--}}
-{{--                    </iframe>--}}
+                    {{--                    <iframe --}}
+                    {{--                        width="600" --}}
+                    {{--                        height="450" --}}
+                    {{--                        style="border:0" --}}
+                    {{--                        loading="lazy" --}}
+                    {{--                        allowfullscreen --}}
+                    {{--                        referrerpolicy="no-referrer-when-downgrade" --}}
+                    {{--                        src="https://www.google.com/maps/embed/v1/place?key= --}}
+                    {{--    &q=Space+Needle,Seattle+WA"> --}}
+                    {{--                    </iframe> --}}
 
                     <div class="mb-3 text-center m-t-5">
                         <button class="btn btn-primary w-25" type="submit">Save</button>
@@ -354,8 +362,8 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#country-dd').on('change', function () {
+        $(document).ready(function() {
+            $('#country-dd').on('change', function() {
                 var idCountry = this.value;
                 $("#state-dd").html('');
                 $.ajax({
@@ -366,9 +374,9 @@
                         _token: '{{ csrf_token() }}'
                     },
                     dataType: 'json',
-                    success: function (result) {
+                    success: function(result) {
                         $('#state-dd').html('<option value="">Select State</option>');
-                        $.each(result.states, function (key, value) {
+                        $.each(result.states, function(key, value) {
                             $("#state-dd").append('<option value="' + value
                                 .id + '">' + value.name + '</option>');
                         });
@@ -376,7 +384,7 @@
                     }
                 });
             });
-            $('#state-dd').on('change', function () {
+            $('#state-dd').on('change', function() {
                 var idState = this.value;
                 $("#city-dd").html('');
                 $.ajax({
@@ -387,9 +395,9 @@
                         _token: '{{ csrf_token() }}'
                     },
                     dataType: 'json',
-                    success: function (res) {
+                    success: function(res) {
                         $('#city-dd').html('<option value="">Select City</option>');
-                        $.each(res.cities, function (key, value) {
+                        $.each(res.cities, function(key, value) {
                             $("#city-dd").append('<option value="' + value
                                 .id + '">' + value.name + '</option>');
                         });
@@ -402,7 +410,7 @@
         function mainThamUrl(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     $('#mainThmb').attr('src', e.target.result).width(80).height(80);
                 };
                 reader.readAsDataURL(input.files[0]);
@@ -412,21 +420,21 @@
 
 
     <script>
-        $(document).ready(function () {
-            $('#multiImg').on('change', function () { //on file input change
+        $(document).ready(function() {
+            $('#multiImg').on('change', function() { //on file input change
                 if (window.File && window.FileReader && window.FileList && window
                     .Blob) //check File API supported browser
                 {
                     var data = $(this)[0].files; //this file data
 
-                    $.each(data, function (index, file) { //loop though each file
+                    $.each(data, function(index, file) { //loop though each file
                         if (/(\.|\/)(gif|jpe?g|png|webp)$/i.test(file
-                            .type)) { //check supported file type
+                                .type)) { //check supported file type
                             var fRead = new FileReader(); //new filereader
-                            fRead.onload = (function (file) { //trigger function on successful read
-                                return function (e) {
+                            fRead.onload = (function(file) { //trigger function on successful read
+                                return function(e) {
                                     var img = $('<img/>').addClass('thumb').attr('src',
-                                        e.target.result).width(100)
+                                            e.target.result).width(100)
                                         .height(80); //create image element
                                     $('#preview_img').append(
                                         img); //append image to output element
@@ -446,14 +454,14 @@
 
     <!----For Section-------->
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             var counter = 0;
-            $(document).on("click", ".addeventmore", function () {
+            $(document).on("click", ".addeventmore", function() {
                 var whole_extra_item_add = $("#whole_extra_item_add").html();
                 $(this).closest(".add_item").append(whole_extra_item_add);
                 counter++;
             });
-            $(document).on("click", ".removeeventmore", function (event) {
+            $(document).on("click", ".removeeventmore", function(event) {
                 $(this).closest("#whole_extra_item_delete").remove();
                 counter -= 1
             });

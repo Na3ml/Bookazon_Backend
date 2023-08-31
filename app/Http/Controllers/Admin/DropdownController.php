@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
-use App\Models\Country;
+use App\Models\User;
 use App\Models\State;
 use App\Models\City;
+use App\Models\Property;
+use App\Models\Room;
 
 class DropdownController extends Controller {
     //
@@ -35,4 +38,16 @@ class DropdownController extends Controller {
 
         return response()->json( $data );
     }
+
+    public function index() {
+        $properties = Property::count();
+        $rooms = Room::count();
+        $orders = Order::count();
+        $bookers = User::where( 'role_id', 3 )->count();
+        $admins = User::where( 'role_id', 1 )->count();
+        $owners = User::where( 'role_id', 2 )->count();
+
+        return view( 'admin.dashboard.index', compact( 'properties', 'rooms', 'orders', 'bookers', 'admins', 'owners' ) );
+    }
+
 }

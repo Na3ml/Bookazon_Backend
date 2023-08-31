@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Property_TypeController;
 use App\Http\Controllers\Admin\AminityController;
 use App\Http\Controllers\Admin\DropdownController;
 use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\Admin\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +32,10 @@ Route::prefix('admin/dashboard')->middleware('auth:admin')->group(function () {
     Route::get('/admin/profile', [UserController::class,'Adminprofile'])->name('admin.profile');
     Route::post('/admin/profile/update', [UserController::class,'AdminProfileStore'])->name('admin.profile.store');
     Route::resource('admin',UserController::class);
-    
+    Route::get('orders',[OrderController::class,'index'])->name('orders.index');
     Route::resource('propertyowner',PropertyOwnerController::class);
     Route::resource('booker',BookerController::class);
     Route::resource('{owner}/property',PropertyController::class);
-    Route::post('/{owner}/update/property/thambnail/', [PropertyController::class,'UpdatePropertyThambnail'])->name('update.property.thambnail');
     Route::post('/{owner}/update/property/facilities/', [PropertyController::class,'UpdatePropertyFacilities'])->name('update.property.facilities');
     Route::post('/{owner}/update/property/multiimage/', [PropertyController::class,'UpdatePropertyMultiimage'])->name('update.property.multiimage');
     Route::resource('/rooms', RoomController::class);
@@ -44,6 +44,7 @@ Route::prefix('admin/dashboard')->middleware('auth:admin')->group(function () {
     Route::resource('aminities', AminityController::class);
     Route::post('api/fetch-states', [DropdownController::class, 'fetchState']);
     Route::post('api/fetch-cities', [DropdownController::class, 'fetchCity']);
+    Route::get('statistics',[DropdownController::class,'index'])->name('statistics');
 
 });
 

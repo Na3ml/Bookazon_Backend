@@ -35,11 +35,22 @@ class AuthController extends Controller
 
     public function login( LoginRequest $request )
  {
-        $user = [ 'email'=>$request->email, 'password'=>$request->password ];
-        if ( Auth::guard( 'admin' )->attempt( $user ) ) {
+        $request->validate( [
+            'email' => 'required',
+            'password' => 'required',
+        ] );
+        $user = User::where( 'email', '=', $request->email )
+        ->first();
+        if ( $user && $user->role_id == 3 && $user->status == 'active' ) {
+
+            return redirect()->back()->with( 'err', 'Not Allowed Login By this User' );
+
+        }
+        $credentials = [ 'email'=>$request->email, 'password'=>$request->password ];
+        if ( Auth::guard( 'admin' )->attempt( $credentials ) ) {
             return redirect()->route( 'dashboard' );
         }
-        return redirect()->back()->with('err','please enter valid data');
+        return redirect()->back()->with( 'err', 'please enter valid data' );
 
     }
 
@@ -60,7 +71,7 @@ class AuthController extends Controller
     * @return Response
     */
 
-    public function store(RegisterRequest $request )
+    public function store( RegisterRequest $request )
  {
         $user = User::create( [
             'first_name'=>$request->first_name,
@@ -108,7 +119,7 @@ class AuthController extends Controller
 
     public function logout()
  {
-//     dd(Auth::user());
+        //     dd( Auth::user() );
         Auth::logout();
         return redirect( 'login' );
     }

@@ -42,7 +42,7 @@
                                             <th>Room Image</th>
                                             <th>Room Type</th>
                                             <th>Price</th>
-                                            <th>Room Video</th>
+                                            <th>Total Guests</th>
                                             <th>Action</th>
 
                                         </tr>
@@ -63,9 +63,7 @@
                                                 <td>{{ $item->price }}</td>
 
                                                 <td>
-                                                    <video width="140" height="140" controls>
-                                                        <source src="{{ URL::asset($item->video_id) }}" type="video/mp4">
-                                                    </video>
+                                                    {{ $item->total_guests }}
                                                 </td>
                                                 <td>
                                                     <ul class="action">
