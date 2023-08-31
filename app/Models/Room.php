@@ -17,7 +17,7 @@ class Room extends Model {
     }
 
     public function getFeaturedPhotoAttribute( $value ) {
-        return 'dashboard/upload/room/image' .'/'.$value;
+        return url( 'dashboard/upload/room/image' ) .'/'.$value;
     }
 
     // public function getVideoIdAttribute( $value ) {

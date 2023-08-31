@@ -57,7 +57,7 @@ class RoomResource extends JsonResource {
             'total_bathrooms'=>$this->total_bathrooms,
             'total_balconies'=>$this->total_balconies,
             'total_guests'=>$this->total_guests,
-            'featured_photo'=>asset( '/' ).$this->featured_photo,
+            'featured_photo' => $this->featured_photo,
             'property_id'=>$this->property_id,
             // 'video_id'=>asset( '/' ).$this->video_id,
             'property'=>$this->property->property_name,

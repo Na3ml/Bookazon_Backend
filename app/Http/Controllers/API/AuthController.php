@@ -159,7 +159,7 @@ class AuthController extends Controller {
         $user = JWTAuth::parseToken()->authenticate();
         $profile =$user->profile_picture ;
         if($request->profile_picture ){
-            $profile =  $request->profile_picture->store('image/','public_path');
+            $profile_pic =  $request->profile_picture->store('profile/','public_path');
         }
         // $user = JWTAuth::parseToken()->authenticate();
         // dd($user);
@@ -170,7 +170,7 @@ class AuthController extends Controller {
             'phone_number' => isset($request->phone_number) ? $request->phone_number : $user->phone_number,
             'email' => isset($request->email ) ? $request->email  : $user->email,
             'address' => isset($request->address) ? $request->address : $user->address,
-            'profile_picture' =>  isset($request->profile_picture) ? $profile : $user->profile_picture,
+            'profile_picture' =>  isset($request->profile_picture) ? $profile_pic : $profile,
             'role_id'=>3,
             'gender' => $request->gender,
             'password' => isset($request->password) ? $password : $user->password,
