@@ -38,6 +38,6 @@ class CreatePropertiesTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('Properties');
+		Schema::drop('properties');
 	}
 }
