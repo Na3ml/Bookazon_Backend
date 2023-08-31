@@ -12,7 +12,7 @@ class Property extends Model
     use HasFactory;
     use Sluggable;
 
-    protected $table = 'Properties';
+    protected $table = 'properties';
     public $timestamps = true;
     protected $fillable = array( 'slug', 'property_name', 'property_code', 'property_status', 'price', 'description', 'property_size', 'property_thumbnail', 'address', 'country', 'state', 'city', 'Additional_fees', 'latitude', 'status', 'featured', 'user_id', 'hot', 'amenities_id', 'ptype_id', 'created_at' );
 
