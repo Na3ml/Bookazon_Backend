@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Property;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Favorite;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
 use App\Traits\ApiResponseTrait;
+use Illuminate\Support\Facades\DB;
 
 class FavoriteController extends Controller {
     //
@@ -17,6 +17,7 @@ class FavoriteController extends Controller {
 
     public function index() {
         $favorites = Favorite::with( 'properties' )->get();
+        // dd( $favorites );
 
         return $this->apiResponse( 'successfully', $favorites );
     }
@@ -31,7 +32,7 @@ class FavoriteController extends Controller {
             return $this->apiResponseValidation( $validator );
         }
 
-        $property = Property::find( $request-> property_id );
+        $property = DB::table( 'Properties' )->find( $request-> property_id );
         // dd( $property );
         $user = User::find( JWTAuth::parseToken()->authenticate()->id );
 

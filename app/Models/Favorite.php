@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Favorite extends Model
-{
+ {
     use HasFactory;
 
     protected $fillable = [
@@ -15,7 +15,7 @@ class Favorite extends Model
     ];
 
     public function properties()
-    {
-        return $this->belongsTo(Property::class, 'property_id');
+ {
+        return $this->belongsTo( Property::class, 'property_id' );
     }
 }
