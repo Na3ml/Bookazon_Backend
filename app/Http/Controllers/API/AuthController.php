@@ -180,7 +180,7 @@ class AuthController extends Controller {
         ]);
 
         if ($update){
-            return sendResponse($update,'User Data Updated Successfully');
+            return sendResponse($user,'User Data Updated Successfully');
         }
     }
 
