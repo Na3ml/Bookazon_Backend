@@ -44,6 +44,7 @@ Route::prefix('admin/dashboard')->middleware('auth:admin')->group(function () {
     Route::resource('aminities', AminityController::class);
     Route::post('api/fetch-states', [DropdownController::class, 'fetchState']);
     Route::post('api/fetch-cities', [DropdownController::class, 'fetchCity']);
+    Route::get('statistics',[DropdownController::class,'index'])->name('statistics');
 
 });
 

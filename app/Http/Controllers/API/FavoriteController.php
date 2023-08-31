@@ -14,6 +14,7 @@ use App\Traits\ApiResponseTrait;
 class FavoriteController extends Controller {
     //
     use ApiResponseTrait;
+
     public function index() {
         $favorites = Favorite::with( 'properties' )->get();
 
@@ -30,7 +31,8 @@ class FavoriteController extends Controller {
             return $this->apiResponseValidation( $validator );
         }
 
-        $property = Property::find( $request->post( 'property_id' ) );
+        $property = Property::find( $request-> property_id );
+        // dd( $property );
         $user = User::find( JWTAuth::parseToken()->authenticate()->id );
 
         if ( $property->property_status != 1 ) {
@@ -38,7 +40,7 @@ class FavoriteController extends Controller {
         }
 
         $isExist = Favorite::where( 'property_id', $request->property_id )->where( 'user_id', $user->id )->first();
-//        dd($isExist);
+        //        dd( $isExist );
         if ( $isExist ) {
             $isExist->delete();
             return $this->apiResponse( 'successfully remove it', $isExist );

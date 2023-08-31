@@ -36,7 +36,15 @@
                     {{--                <div class="card-header pb-0"> --}}
                     {{--                    <h4>Create Property</h4> --}}
                     {{--                </div> --}}
-
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <div class="card-body">
                         <form class="needs-validation" novalidate="" action="{{ route('property.store', $owner) }}"

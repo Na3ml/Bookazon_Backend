@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('property_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->foreign('property_id')->references('id')->on('properties')->cascadeOnDelete();
+            $table->foreign('property_id')->references('id')->on('Properties')->cascadeOnDelete();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();
         });
