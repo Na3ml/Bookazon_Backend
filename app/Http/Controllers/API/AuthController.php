@@ -129,7 +129,6 @@ class AuthController extends Controller {
     */
 
     public function userProfile() {
-//        header('Access-Control-Allow-Origin : *');
         return response()->json( auth()->user() );
     }
     /**
