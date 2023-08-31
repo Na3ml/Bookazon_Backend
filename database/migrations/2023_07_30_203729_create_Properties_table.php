@@ -7,7 +7,7 @@ class CreatePropertiesTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('Properties', function(Blueprint $table) {
+		Schema::create('properties', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('slug')->unique();
 			$table->char('property_name', 255);
