@@ -106,7 +106,6 @@ class HomeController extends Controller {
         ] )->pluck( 'room_id' );
         $room = Room::where( [
             [ 'id', $request->room_id ],
-            [ 'total_guests', $request->total_guests ],
         ] )->WhereNotIn( 'id', $ids )->first();
         if ( !$room ) {
             return sendError( '', 'this room not available now' );

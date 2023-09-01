@@ -43,6 +43,7 @@ class RoomResource extends JsonResource {
 
         return [
 
+//            'id'=>$this->id,
             'room_number'=>$this->room_number,
             'description'=>strip_tags( $this->description ),
             'nightly_rate'=>$this->nightly_rate,
