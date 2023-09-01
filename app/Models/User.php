@@ -66,9 +66,10 @@ class User extends Authenticatable implements JWTSubject {
     public function getJWTCustomClaims() {
         return [];
     }
-    public function getProfilePictureAttribute( $value ) {
-        return asset( 'image' ) . '/' . $value;
-    }
+
+//    public function getProfilePictureAttribute( $value ) {
+//        return asset( 'image' ) . '/' . $value;
+//    }
 
     public function getFirstNameAttribute( $value ) {
         return ucwords( $value );

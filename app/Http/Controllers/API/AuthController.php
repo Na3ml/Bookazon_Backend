@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResourc;
 use App\Mail\UserMail;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -100,7 +101,7 @@ class AuthController extends Controller {
             return sendError( [], $e->getMessage(), 500 );
         }
 
-        return sendResponse( $user, 'user data retrieved', 200 );
+        return sendResponse( UserResourc::make($user), 'user data retrieved', 200 );
     }
 
     /**
@@ -129,7 +130,7 @@ class AuthController extends Controller {
     */
 
     public function userProfile() {
-        return response()->json( auth()->user() );
+        return response()->json( UserResourc::make(auth()->user()) );
     }
     /**
     * Get the token array structure.
@@ -178,7 +179,7 @@ class AuthController extends Controller {
         ]);
 
         if ($update){
-            return sendResponse($user,'User Data Updated Successfully');
+            return sendResponse(UserResourc::make($user),'User Data Updated Successfully');
         }
     }
 

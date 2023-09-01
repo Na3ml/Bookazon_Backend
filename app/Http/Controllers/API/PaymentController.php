@@ -25,7 +25,6 @@ class PaymentController extends Controller
 
         $order = Order::where( 'user_id', $user->id )->where( 'id', $request->order_id )->first();
         $price = $order->paid_amount;
-        //        dd( $price );
         $data = [
             'CustomerName' => $user->first_name,
             'Notificationoption'=> 'LNK',
